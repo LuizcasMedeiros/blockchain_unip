@@ -32,6 +32,10 @@
         <servlet-name>ExcluirMenu</servlet-name>
         <servlet-class>controle.ExcluirMenu</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ValidaLogin</servlet-name>
+        <servlet-class>controle.ValidaLogin</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InserirCliente</servlet-name>
         <url-pattern>/inserir_cliente.do</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>ExcluirMenu</servlet-name>
         <url-pattern>/excluir_menu.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ValidaLogin</servlet-name>
+        <url-pattern>/valida_login.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

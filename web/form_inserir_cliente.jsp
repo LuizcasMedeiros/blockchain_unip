@@ -1,3 +1,6 @@
+<%@page import="modelo.PerfilDAO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="modelo.Perfil"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -45,11 +48,11 @@
                                     <div class="form-group">
                                         <input id="email" class="form-control form-control-user" type="email"  placeholder="Email" name="email" id="email" maxlength="45" required/> 
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <input id="cemail" class="form-control form-control-user"   type="email"  placeholder="Confirmar Emai"  id="confirmarEmail" maxlength="45" required/> 
                                     </div>
-                                    
+
                                     <div class="form-group row">
                                         <div class="col-sm-6">
                                             <input class="form-control form-control-user" type="text"  placeholder="Username" name="user"id="user" maxlength="45"  required/>
@@ -61,6 +64,28 @@
                                     <div class="form-group row">
                                         <div class="col-sm-6 ">
                                             <input type="password" id="confirmarSenha" class="form-control form-control-user"  placeholder="Confirmar Senha" minlength="3"  maxlength="16"  required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 ">
+                                            <label for="inputPerfil">Perfil:</label>
+                                            <select class="form-control" id="inputPerfil" name="perfil" required>
+                                                <option selected>Escolha...</option>
+                                                <% ArrayList<Perfil> lista = new ArrayList<Perfil>();
+                                                    PerfilDAO pDAO = new PerfilDAO();
+                                                    try {
+                                                        lista = pDAO.listar();
+                                                    } catch (Exception e) {
+                                                        out.print("Erro:" + e);
+                                                    }
+
+                                                    for (Perfil p : lista) {
+                                                %>
+                                                <option value="<%=p.getId()%>"><%=p.getNome()%></option>               
+                                                <%
+                                                    }
+                                                %>                                  
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group">

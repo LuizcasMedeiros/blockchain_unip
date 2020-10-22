@@ -9,8 +9,8 @@ public class ClienteDAO extends DataBaseDAO {
 
     public void inserir(Cliente c) throws Exception {
         String sql = "INSERT INTO cliente (nome, email, cep, localidade, bairro, complemento,logadouro,"
-                + "uf, user, senha, cpf, celular, data_nascimento, data_inclusao)"
-                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,now())";
+                + "uf, user, senha, cpf, celular, data_nascimento, data_inclusao, perfil_id)"
+                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,now(),?)";
 
         this.conectar();
 
@@ -28,6 +28,7 @@ public class ClienteDAO extends DataBaseDAO {
         pstm.setString(11, c.getCpf());
         pstm.setString(12, c.getCelular());
         pstm.setDate(13, (Date) c.getData_nascimento());
+        pstm.setInt(14, c.getPerfil().getId());
         pstm.execute();
         this.desconectar();
     }
@@ -45,6 +46,10 @@ public class ClienteDAO extends DataBaseDAO {
             c.setCpf(rs.getString("Cpf"));
             c.setEmail(rs.getString("email"));
             c.setUser(rs.getString("user"));
+            
+            PerfilDAO pdao = new PerfilDAO();
+            c.setPerfil(pdao.carregarPorId(rs.getInt("perfil_id")));
+            
 
             lista.add(c);
         }
@@ -63,7 +68,7 @@ public class ClienteDAO extends DataBaseDAO {
     }
 
     public void alterar(Cliente c) throws Exception {
-        String sql = "UPDATE cliente SET nome=?, email=?, user=?, celular=?, senha=?, cpf=?"
+        String sql = "UPDATE cliente SET nome=?, email=?, user=?, celular=?, senha=?, cpf=?, perfil_id=?"
                 + " WHERE id=?";
         this.conectar();
         PreparedStatement pstm = conn.prepareStatement(sql);
@@ -74,6 +79,7 @@ public class ClienteDAO extends DataBaseDAO {
         pstm.setString(5, c.getSenha());
         pstm.setString(6, c.getCpf());
         pstm.setInt(7, c.getId());
+        pstm.setInt(14, c.getPerfil().getId());
         pstm.execute();
         this.desconectar();
     }
@@ -111,6 +117,9 @@ public class ClienteDAO extends DataBaseDAO {
             c.setCpf(rs.getString("cpf"));
             c.setSenha(rs.getString("senha"));
             c.setData_nascimento(rs.getDate("data_nascimento"));
+            
+            PerfilDAO pdao = new PerfilDAO();
+            c.setPerfil(pdao.carregarPorId(rs.getInt("perfil_id")));
         }
         this.desconectar();
         return c;
@@ -150,7 +159,7 @@ public class ClienteDAO extends DataBaseDAO {
                 c.setUser(rs.getString("user"));
                 c.setSenha(rs.getString("senha")); 
                 PerfilDAO pDAO = new PerfilDAO();
-                c.setPerfil(pDAO.carregarPorId(rs.getInt("id_perfil")));
+                c.setPerfil(pDAO.carregarPorId(rs.getInt("perfil_id")));
             }
         }
         this.desconectar();

@@ -7,20 +7,19 @@ package controle;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import modelo.Cliente;
 import modelo.ClienteDAO;
-import modelo.Perfil;
 
 /**
  *
  * @author luizf
  */
-public class InserirCliente extends HttpServlet {
+public class ValidaLogin extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,64 +38,28 @@ public class InserirCliente extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet InserirCliente</title>");            
+            out.println("<title>Servlet ValidaLogin</title>");
             out.println("</head>");
             out.println("<body>");
-            try{
-                int perfil = Integer.parseInt(request.getParameter("perfil"));
-                String nome = request.getParameter("nome");
-                String email = request.getParameter("email");
+            HttpSession session = request.getSession();
+            try {
                 String user = request.getParameter("user");
-                String senha= request.getParameter("senha");
-                String cpf = request.getParameter("cpf");
-                String celular= request.getParameter("celular");
-                Date data_nascimento = (Date) Date.valueOf(request.getParameter("data_nascimento"));
-                String cep = request.getParameter("cep");
-                String localidade = request.getParameter("localidade");
-                String bairro = request.getParameter("bairro");
-                String logadouro = request.getParameter("logadouro");
-                String complemento = request.getParameter("complemento");
-                String uf = request.getParameter("uf");
-                
-                        
-                
-                if(!nome.isEmpty() && !email.isEmpty()){
-                    Cliente c = new Cliente();
-                    ClienteDAO cDAO = new ClienteDAO();
-                    
-                    c.setNome(nome);
-                    c.setCpf(cpf);
-                    c.setCelular(celular);
-                    c.setData_nascimento(data_nascimento);
-                    c.setEmail(email); 
-                    c.setCep(cep);
-                    c.setLocalidade(localidade);
-                    c.setBairro(bairro);
-                    c.setLogadouro(logadouro);
-                    c.setComplemento(complemento);
-                    c.setUf(uf);
-                    c.setUser(user);
-                    c.setSenha(senha);
-                    
-                    Perfil p = new Perfil();
-                    
-                    p.setId(perfil);
-                    
-                    c.setPerfil(p);
-                    
-                    c.setSenha(c.criptografarSenha(senha));
-                    
-                    cDAO.inserir(c);
-                    
+                String senha = request.getParameter("senha");
+                ClienteDAO cDAO = new ClienteDAO();
+                Cliente csenhaEncrip = new Cliente();
+               
+                Cliente c = cDAO.logar(user, csenhaEncrip.criptografarSenha(senha));
+                if (c.getId() > 0) {
+                    session.setAttribute("cliente", c);
                     response.sendRedirect("listar_cliente.jsp");
-                }else{
-                    out.println("Algum campo obrigátorio não foi preenchido");
+                } else {
+                    out.print("<script type='text/javascript'>");
+                    out.print("alert('Usuário e/ou senha inválidos!'); ");
+                    out.print("history.back();");
+                    out.print("</script>");
                 }
-                    
-                
-            }catch (Exception e){
-                out.println("Error"+e);
-            }
+            } catch (Exception e) {
+            };
             out.println("</body>");
             out.println("</html>");
         }

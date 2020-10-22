@@ -31,10 +31,10 @@
                                         </div>
                                         <form class="user" method="post" action="valida_login.do">
                                             <div class="form-group">
-                                                <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Entre com o usuario">
+                                                <input type="text" class="form-control form-control-user" name="user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Entre com o usuario">
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Digite a senha">
+                                                <input type="password" class="form-control form-control-user" name="senha" id="exampleInputPassword" placeholder="Digite a senha">
                                             </div>
                                             <div class="form-group">
                                                 <div class="custom-control custom-checkbox small">
@@ -42,9 +42,11 @@
                                                     <label class="custom-control-label" for="customCheck">Lembre me</label>
                                                 </div>
                                             </div>
-                                            <a href="index.html" class="btn btn-primary btn-user btn-block">
-                                                Login
-                                            </a>
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                     <input class="form-control btn btn-primary btn-user btn-blocky" type="submit" value="Entrar" />
+                                                </div>
+                                            </div>
                                             <hr>
                                         </form>
                                         <hr>
