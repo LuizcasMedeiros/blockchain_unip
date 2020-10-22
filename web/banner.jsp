@@ -11,21 +11,22 @@
 
 <%
     Cliente cLogado = new Cliente();;
-    try{
+    try {
         cLogado = (Cliente) session.getAttribute("cliente");
-    
+
 %>
 
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
-    
+
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+            <img src="assets/coivest.png" alt="Logo">
+          
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">Blockchain Controller</div>
     </a>
 
     <!-- Divider -->
@@ -52,31 +53,25 @@
         <a class="nav-link" href="<%=ma.getLink()%>">
             <i class="fas fa-fw fa-chart-area"></i>
             <span><%=ma.getTitulo()%></span></a>
-        <%}%>
+            <%}%>
     </li>
 
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
-      <li class="nav-item">
-                <%
-                    out.print(cLogado.getNome());
-                %>,
-                <a href="logoff.jsp"> 
-                    <span><i class="fas fa-sign-out-alt"></i></span>
-                    <span>Sair</span> 
-                </a>
-      </li>
+    <li class="nav-item">
+       
+    </li>
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
-      <%
-        }catch (Exception e){
+    <%
+        } catch (Exception e) {
             response.sendRedirect("login.jsp");
         }
 
-     %>
+    %>
 </ul>
 <!-- End of Sidebar -->
