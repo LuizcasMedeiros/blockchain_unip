@@ -47,7 +47,7 @@ public class ExcluirPerfil extends HttpServlet {
                 pDAO.excluir(id);
                 response.sendRedirect("listar_perfil.jsp");
             } catch (Exception e) {
-                out.print("Erro:" + e);
+                out.print("Não pode ser apagado pois está associado ao um cliente");
             }
             out.println("</body>");
             out.println("</html>");

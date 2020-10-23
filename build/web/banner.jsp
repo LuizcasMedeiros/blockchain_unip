@@ -7,7 +7,7 @@
 <%@page import="modelo.Menu"%>
 <%@page import="modelo.Cliente"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+
 
 <%
     Cliente cLogado = new Cliente();;

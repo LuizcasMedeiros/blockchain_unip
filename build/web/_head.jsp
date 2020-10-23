@@ -22,10 +22,14 @@
     
         
         <! - importação de script ->
-        <script type ="text/javascript" src="javascript/jquery/jquery-3.5.1.min.js"></script>
-        <script type ="text/javascript" src ="javascript/api_validandion_end.js"></script>
-        <script type ="text/javascript" src="javascript/mask.js"></script>
-        <script type ="text/javascript" src="javascript/validation.js" defer> </script>
+        <script  src="javascript/jquery/jquery-3.5.1.min.js"></script>
+        <script  src="javascript/bootsrap_scipts/bootstrap.min.js"></script>
+        <script  src="javascript/api_validandion_end.js"></script>
+        <script  src="javascript/mask.js"></script>
+        <script  src="javascript/validation.js"></script>
+         <script  src="javascript/alterar_perfil.js" defer></script>
+        
+        
         
         
         <! - Fontes personalizadas para este modelo ->
@@ -37,26 +41,30 @@
         
         <! - JavaScript básico de bootstrap ->
         
-        <script src ="vendor/jquery/jquery.min.js" defer></script>
-        <script src ="vendor/bootstrap/js/bootstrap.bundle.min.js" defer></script>
+        <script src ="vendor/jquery/jquery.min.js"></script>
+        <script src ="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         
         <! - Plug-in do núcleo JavaScript ->
         
-        <script src ="vendor/jquery-easing/jquery.easing.min.js" defer></script>
+        <script src ="vendor/jquery-easing/jquery.easing.min.js"></script>
         
         <! - Scripts personalizados para todas as páginas ->
         
-        <script src ="javascript/js/sb-admin-2.min.js" defer></script>
+        <script src ="javascript/js/sb-admin-2.min.js"></script>
+       
         
         <! - Plug-ins de nível de página ->
         
-        <script src ="vendor/chart.js/Chart.min.js" defer></script>
+        <script src ="vendor/chart.js/Chart.min.js"></script>
         
-        <! - Scripts personalizados de nível de página ->
+        
+        
+        <!--Scripts personalizados de nível de página ->
         <!-- 
         <script src ="javascript/js/demo/chart-area-demo.js" defer> </script>
         <script src ="javascript/js/demo/chart-pie-demo.js" defer> </script>
         -->
+       
 </head>
 
 

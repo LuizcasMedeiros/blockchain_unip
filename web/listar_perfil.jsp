@@ -29,6 +29,7 @@
             }
         }
     </script>
+    
 
     <% String name = "Inserir endereço";%>
     <jsp:include page="_head.jsp">
@@ -46,20 +47,23 @@
                 <!-- Main Content -->
                 <div id="content">
 
-                    <%@include file="top_bar.jsp" %>
+                    <%@include file="top_bar.jsp"%>
                     <!-- Final da barra topo -->
 
                     <!-- Conteudo da pagaina principal container -->
                     <div class="container-fluid">
 
                         <!-- Page Heading -->
-                        <h1 class="h3 mb-2 text-gray-800">Listar Menu</h1>
+                        <h1 class="h3 mb-2 text-gray-800">Listar Perfil</h1>
 
 
                         <!-- Tabela -->
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Menu</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Perfil
+                                    <span><a href="inserir_perfil.jsp" class="btn btn-primary mt-2 mb-2">Novo Perfil</a> </span>
+                                </h6>
+                                
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -87,7 +91,17 @@
                                                 <td> <%=p.getNome()%></td>
                                                 <td> <%=p.getDescricao()%></td>
                                                 <td>  
-                                                    <a href="form_alterar_perfil.jsp?id=<%=p.getId()%>" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a> 
+                                                    <button  type="button" class="btn btn-primary btn-sm" data-toggle="modal" 
+                                                        data-target="#ModalAlterar"
+                                                        data-whatever="<%=p.getId()%>"
+                                                        data-whatevernome="<%=p.getNome()%>" 
+                                                        data-whateverdescricao="<%=p.getDescricao()%>"  
+                                                    >
+                                                        <i class="fas fa-pencil-alt"></i>
+                                                    </button>
+
+
+
                                                     <a href="#" onclick="excluir('<%=p.getNome()%>',<%=p.getId()%>)" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a> 
                                                     <a href="gerenciar_menu_perfil.jsp?id=<%=p.getId()%>" class="btn btn-info btn-sm"><i class="fas fa-tasks"></i></a>
                                             </tr>
@@ -100,6 +114,59 @@
 
                     </div>
                     <!--Final do container  -->
+
+                    <!-- MODALLL ALTERAR -->
+                   
+                   
+                    <div class="modal fade" id="ModalAlterar" tabindex="-1" role="dialog" aria-labelledby="ModalAlterarLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="ModalAlterarLabel">Modal title</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card shadow mb-4">
+                                        <div class="card-header py-3">
+                                            <h6 class="m-0 font-weight-bold text-primary">Inserir Perfil do usuario</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row justify-content-center pl-4 mt-4 mb-4">
+                                                <div class="col-sm-12 col-md-10 col-lg-8">
+                                                    <form name="alterar_perfil" action="alterar_perfil.do" method="post">
+                                                        <div class="form-row">
+                                                            <div class="form-group col-sm-6">
+                                                                <label for="inputNome"> Nome: </label>
+                                                                <input type="text" class="form-control" id="nome" placeholder="Nome" name="nome" required />
+                                                            </div>
+                                                            <div class="form-group col-sm-6">
+                                                                <label for="inputDescricao"> Descrição: </label>
+                                                                <input type="text" class="form-control" id="descricao" placeholder="Descriçao" name="descricao" required />
+                                                            </div>
+                                                                <input name="id" type="hidden" id="id" value=""/>
+                                                        </div>
+                                                        <div class="form-row">
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                                <button type="submit" class="btn btn-primary">Salvar alteração</button>
+                                                            </div>
+                                                        </div> 
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- fINALLL MODALLL ALTERAR -->
 
                 </div>
                 <!-- End of Main Content -->
@@ -143,5 +210,6 @@
                 </div>
             </div>
         </div>
+       
     </body>
 </html>

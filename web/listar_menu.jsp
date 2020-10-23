@@ -86,14 +86,18 @@
                                                     <td> <%=m.getTitulo()%></td>
                                                     <td> <%=m.getLink()%></td>
                                                     <td>  
-                                                        <a onclick="excluir('<%=m.getTitulo()%>', <%=m.getId()%>)" href="#">
+                                                        <a onclick="excluir('<%=m.getTitulo()%>', <%=m.getId()%>)" href="#" class="btn btn-danger btn-sm">
+                                                            <i class="fas fa-trash"></i>
 
-                                                            <img src="assets/excluir.png" alt="excluir"/>
                                                         </a>
-                                                        <a  href="alterar_menu.jsp?id=<%=m.getId()%>">
-
-                                                            <img src="assets/alterar.png" alt="alterar"/>
-                                                        </a>
+                                                        <button id="alterarSenha" type="button" class="btn btn-primary btn-sm" data-toggle="modal" 
+                                                        data-target="#ModalAlterarMenu"
+                                                        data-whatever="<%=m.getId()%>"
+                                                        data-whatevertitulo="<%=m.getTitulo()%>" 
+                                                        data-whateverlink="<%=m.getLink()%>"  
+                                                        >
+                                                        <i class="fas fa-pencil-alt"></i>
+                                                    </button>
                                                 </tr>
 
                                             </tbody> <%}%>
@@ -101,8 +105,8 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
+                                        
                         <!--Final do container  -->
 
                     </div>

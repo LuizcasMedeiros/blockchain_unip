@@ -5,8 +5,6 @@
 --%>
 
 <%@page import="modelo.Cliente"%>
-<%@page import="modelo.Cliente"%>
-<%@page import="modelo.Menu"%>
 <%@page import="modelo.Menu"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%

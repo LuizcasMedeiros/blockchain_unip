@@ -24,6 +24,13 @@
     <jsp:include page="_head.jsp">
         <jsp:param name="pageTitle" value="<%= name%>"/>
     </jsp:include>
+    <script type="text/javascript">
+        function excluir(nome, id) {
+            if (confirm("Tem certeza que deseja excluir o cliente: " + nome + "?")) {
+                window.open("excluir_cliente.do?op=c&id=" + id, "_self");
+            }
+        }
+    </script>
 
     <body id="page-top">
 
@@ -71,7 +78,7 @@
                                             </tr>
                                         </tfoot>
                                         <% for(Cliente c: lista){
-                                            if(cLogado.getId() == c.getId() || cLogado.getPerfil().getId() == 1){%>
+                                           %>
                                         <tbody>
                                             <tr>
                                                 <td><%=c.getId()%></td>
@@ -79,21 +86,22 @@
                                                 <td> <%=c.getEmail()%></td>
                                                 <td> <%=c.getUser()%></td>
                                                 <td>  
-                                                    <a onclick="excluir('<%=c.getNome()%>', <%=c.getId()%>)" href="#">
-
-                                                        <img src="assets/excluir.png" alt="excluir"/>
+                                                    <a onclick="excluir('<%=c.getNome()%>', <%=c.getId()%>)"  class="btn btn-danger btn-sm">
+                                                        <i class="fas fa-trash"></i>
                                                     </a>
-                                                    <a  href="alterar_cliente.jsp?id=<%=c.getId()%>">
-
-                                                        <img src="assets/alterar.png" alt="alterar"/>
+                                                    <a  href="alterar_cliente.jsp?id=<%=c.getId()%>" class="btn btn-primary btn-sm">
+                                                        <i class="fas fa-pencil-alt"></i>
                                                     </a>
 
-                                                    <a  href="adicionar_cartao.jsp?id_cliente=<%=c.getId()%>">
+                                                    <a  href="adicionar_cartao.jsp?id_cliente=<%=c.getId()%>"class="btn btn-info btn-sm">
+                                                        <i class="fas fa-search-dollar"></i>
                                                         <img src="assets/pag.png" alt="alterar"/>
                                                     </a>
                                             </tr>
                                             
-                                       </tbody> <%}}%>
+                                       </tbody> <%
+                                                    
+                                                }%>
                                     </table>
                                 </div>
                             </div>
