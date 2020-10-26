@@ -23,12 +23,11 @@
         
         <! - importação de script ->
         <script  src="javascript/jquery/jquery-3.5.1.min.js"></script>
-        <script  src="javascript/bootsrap_scipts/bootstrap.min.js"></script>
         <script  src="javascript/api_validandion_end.js"></script>
         <script  src="javascript/mask.js"></script>
         <script  src="javascript/validation.js"></script>
-         <script  src="javascript/alterar_perfil.js" defer></script>
-        
+        <script src="javascript/alterar_perfil.js" defer></script>
+        <script src="javascript/alterar_menu.js" defer></script>
         
         
         
@@ -41,6 +40,7 @@
         
         <! - JavaScript básico de bootstrap ->
         
+       
         <script src ="vendor/jquery/jquery.min.js"></script>
         <script src ="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         
@@ -50,12 +50,16 @@
         
         <! - Scripts personalizados para todas as páginas ->
         
-        <script src ="javascript/js/sb-admin-2.min.js"></script>
+        
+        <!- menu lateral encolher script responsavel  ->
+        
+        <script src ="javascript/js/sb-admin-2.min.js" async></script>
+        <script  src="javascript/bootsrap_scipts/bootstrap.min.js" ></script>
        
         
         <! - Plug-ins de nível de página ->
         
-        <script src ="vendor/chart.js/Chart.min.js"></script>
+        <!--<script src ="vendor/chart.js/Chart.min.js"></script>->
         
         
         

@@ -90,11 +90,12 @@
                                                             <i class="fas fa-trash"></i>
 
                                                         </a>
-                                                        <button id="alterarSenha" type="button" class="btn btn-primary btn-sm" data-toggle="modal" 
-                                                        data-target="#ModalAlterarMenu"
-                                                        data-whatever="<%=m.getId()%>"
-                                                        data-whatevertitulo="<%=m.getTitulo()%>" 
-                                                        data-whateverlink="<%=m.getLink()%>"  
+                                                        <button id="alterarSenha" type="button" class="btn btn-primary btn-sm" 
+                                                            data-toggle="modal" 
+                                                            data-target="#ModalAlterarMenu"
+                                                            data-whatever="<%=m.getId()%>"
+                                                            data-whatevertitulo="<%=m.getTitulo()%>" 
+                                                            data-whateverlink="<%=m.getLink()%>"  
                                                         >
                                                         <i class="fas fa-pencil-alt"></i>
                                                     </button>
@@ -107,7 +108,51 @@
                             </div>
                         </div>
                                         
-                        <!--Final do container  -->
+                        <!--Final do container --> 
+                        <div class="modal fade" id="ModalAlterarMenu" tabindex="-1" role="dialog" aria-labelledby="ModalAlterarLabelMenu" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="ModalAlterarLabelMenu">Modal title</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card shadow mb-4">
+                                        <div class="card-header py-3">
+                                            <h6 class="m-0 font-weight-bold text-primary">Alterar menu</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row justify-content-center pl-4 mt-4 mb-4">
+                                                <div class="col-sm-12 col-md-10 col-lg-8">
+                                                    <form name="alterar_perfil" action="alterar_menu.do" method="post">
+                                                        <div class="form-row">
+                                                            <div class="form-group col-sm-6">
+                                                                <label for="inputNome"> Titulo: </label>
+                                                                <input type="text" class="form-control" id="titulo" placeholder="Titulo" name="titulo" required />
+                                                            </div>
+                                                            <div class="form-group col-sm-6">
+                                                                <label for="inputDescricao"> Link: </label>
+                                                                <input type="text" class="form-control" id="link" placeholder="Descriçao" name="link" required />
+                                                            </div>
+                                                                <input name="id" type="hidden" id="id" value=""/>
+                                                        </div>
+                                                        <div class="form-row">
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                                <button type="submit" class="btn btn-primary">Salvar alteração</button>
+                                                            </div>
+                                                        </div> 
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     </div>
                     <!-- End of Main Content -->
@@ -146,7 +191,7 @@
                         <div class="modal-body">Tem certeza que deseja sair?</div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                            <a class="btn btn-primary" href="login.html">Sair</a>
+                            <a class="btn btn-primary" href="logoff.jsp">Sair</a>
                         </div>
                     </div>
                 </div>

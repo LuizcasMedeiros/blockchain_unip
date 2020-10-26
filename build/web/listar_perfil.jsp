@@ -130,7 +130,7 @@
                                 <div class="modal-body">
                                     <div class="card shadow mb-4">
                                         <div class="card-header py-3">
-                                            <h6 class="m-0 font-weight-bold text-primary">Inserir Perfil do usuario</h6>
+                                            <h6 class="m-0 font-weight-bold text-primary">Alterar Perfil</h6>
                                         </div>
                                         <div class="card-body">
                                             <div class="row justify-content-center pl-4 mt-4 mb-4">
@@ -158,9 +158,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="modal-footer">
-                                    
                                 </div>
                             </div>
                         </div>
@@ -205,7 +202,7 @@
                     <div class="modal-body">Tem certeza que deseja sair?</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                        <a class="btn btn-primary" href="login.html">Sair</a>
+                        <a class="btn btn-primary" href="logoff.jsp">Sair</a>
                     </div>
                 </div>
             </div>

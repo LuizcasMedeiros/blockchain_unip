@@ -68,7 +68,7 @@
                 <%
                     out.print(nomeLogado.getNome());
                 %></span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                <img class="img-profile rounded-circle" src="" alt="logo">
             </a>
             <!-- Dropdown - Informações de usuarios -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

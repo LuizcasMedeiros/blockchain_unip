@@ -95,7 +95,7 @@ public class PerfilDAO extends DataBaseDAO{
     }
     
     public ArrayList<Menu> meusMenus(int perfil_id) throws Exception{
-        ArrayList<Menu> lista = new ArrayList<Menu>();
+        ArrayList<Menu> lista = new ArrayList<>();
         String sql = "SELECT m.* FROM menu as m, perfil_menu as pm WHERE m.id=pm.menu_id AND pm.perfil_id=?";
         this.conectar();
         PreparedStatement pstm = conn.prepareStatement(sql);
@@ -114,7 +114,7 @@ public class PerfilDAO extends DataBaseDAO{
     }
     
     public ArrayList<Menu> menusNaoVinculados(int perfil_id) throws Exception{
-        ArrayList<Menu> lista = new ArrayList<Menu>();
+        ArrayList<Menu> lista = new ArrayList<>();
         String sql = "SELECT * FROM menu WHERE id NOT IN(SELECT menu_id FROM perfil_menu WHERE perfil_id=?)";
         this.conectar();
         PreparedStatement pstm = conn.prepareStatement(sql);
