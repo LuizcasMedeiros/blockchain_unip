@@ -1,11 +1,29 @@
 <%-- 
-    Document   : inserir_menu
-    Created on : 21/10/2020, 11:09:11
+    Document   : realizar_investimento
+    Created on : 27/10/2020, 17:39:00
     Author     : luizf
 --%>
 
+<%@page import="modelo.CriptoativoDAO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="modelo.Criptoativo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+    ArrayList<Criptoativo> lista = new ArrayList<Criptoativo>();
+    
+    try{
+        CriptoativoDAO cDAO = new CriptoativoDAO();
+        lista = cDAO.listar();
+    }catch (Exception e){
+         out.print("error"+e);   
+    }
+            
+
+
+
+
+%>
 <html lang="pt-br">
     <% String name = "Inserir endereço";%>
     <jsp:include page="_head.jsp">
@@ -31,32 +49,44 @@
                     <div class="container-fluid">
 
                         <!-- Page Heading -->
-                        <h1 class="h3 mb-2 text-gray-800">Listar Cliente</h1>
+                        <h1 class="h3 mb-2 text-gray-800">Cadastrar Investimento</h1>
 
 
                         <!-- Content -->
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Inserir Menu</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Inserir Investimento</h6>
                             </div>
                             <div class="card-body">
                                 <div class="row justify-content-center pl-4 mt-4 mb-4">
                                     <div class="col-sm-12 col-md-10 col-lg-8">
-                                        <form name="inserir_menu" action="inserir_menu.do" method="post">
+                                        <form  action="inserir_investimento.do" method="post">
                                             <div class="form-row">
                                                 <div class="form-group col-sm-4">
-                                                    <label for="inputTitulo"> Título: </label>
-                                                    <input type="text" class="form-control" id="inputTitulo" placeholder="Título" name="titulo" required />
+                                                    <label for="inputValor"> Valor: </label>
+                                                    <input type="text" class="form-control" id="inputValor" placeholder="Valor em reais que deseja registrar em criptomoedas" name="valor" required />
                                                 </div>
 
                                                 <div class="form-group col-sm-4">
-                                                    <label for="inputLink"> Link: </label>
-                                                    <input type="text" class="form-control" id="inputLink" placeholder="Link" name="link" required />
+                                                    <label for="inputcriptoativo"> Nome do Criptoativo: </label>
+                                                    <input type="text" list="tipoConta" id="inputcriptoativo" class="form-control" id="inputcriptoativo" placeholder="Criptoativos" name="tipoCriptoativos_id" autocomplete="off" required />
+                                                
+                                                    
+                                                    <datalist id="tipoConta">
+                                                        <%for(Criptoativo c: lista){%>
+                                                            <option value="<%=c.getId()%>"><%=c.getNome()%><option>
+                                                       
+                                                         <%}%>
+                                                    </datalist>
                                                 </div>
 
                                                 <div class="form-group col-sm-4">
-                                                    <label for="inputIcone"> Ícone: </label>
-                                                    <input type="text" class="form-control" id="inputIcone" placeholder="Ícone" name="icone"  />
+                                                    <label for="inputdate"> Data investimento: </label>
+                                                    <input type="date" class="form-control" id="inputdate" name="data"/>
+                                                </div>
+                                                    <div class="form-group col-sm-2">
+                                                    <label for="inputtime">Hora </label>
+                                                    <input  type="time" class="form-control" id="inputtime" name="hora"/>
                                                 </div>
                                             </div>
 

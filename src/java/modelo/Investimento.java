@@ -1,12 +1,17 @@
 package modelo;
 
+import java.sql.Time;
+import java.util.Date;
+
 
 public class Investimento 
 {
     
     private int id;
     private Double valor;
-    private Contrato tipoContrato;
+    private Date data;
+    private Time hora;
+    private Criptoativo criptoativo;
 
     public int getId() {
         return id;
@@ -24,13 +29,41 @@ public class Investimento
         this.valor = valor;
     }
 
-    public Contrato getTipoContrato() {
-        return tipoContrato;
+    public Criptoativo getCriptoativo() {
+        return criptoativo;
     }
 
-    public void setTipoContrato(Contrato tipoContrato) {
-        this.tipoContrato = tipoContrato;
+    public void setCriptoativo(Criptoativo criptoativo) {
+        this.criptoativo = criptoativo;
     }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+
+    public Time getHora() {
+        return hora;
+    }
+
+    public void setHora(Time hora) {
+        this.hora = hora;
+    }
+
+    
+    
+    
+    public Double converteInvestimentoReais (Double valorConvertido){
+        
+        valorConvertido = getValor()*criptoativo.getValor();
+        return valorConvertido;
+    }
+        
+
+    
 
 
     

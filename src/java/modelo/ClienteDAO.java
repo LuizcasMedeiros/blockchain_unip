@@ -79,7 +79,7 @@ public class ClienteDAO extends DataBaseDAO {
         pstm.setString(5, c.getSenha());
         pstm.setString(6, c.getCpf());
         pstm.setInt(7, c.getId());
-        pstm.setInt(14, c.getPerfil().getId());
+        pstm.setInt(8, c.getPerfil().getId());
         pstm.execute();
         this.desconectar();
     }

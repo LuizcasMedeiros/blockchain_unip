@@ -1,34 +1,28 @@
 <%-- 
-    Document   : listar_menu
-    Created on : 21/10/2020, 18:10:24
+    Document   : listar_criptoativos
+    Created on : 26/10/2020, 20:01:24
     Author     : luizf
 --%>
 
-<%@page import="modelo.Menu"%>
+<%@page import="modelo.CriptoativoDAO"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="modelo.MenuDAO"%>
+<%@page import="modelo.Criptoativo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-    ArrayList<Menu> lista = new ArrayList<Menu>();
-    try {
-        MenuDAO mDAO = new MenuDAO();
-        lista = mDAO.listar();
-    } catch (Exception e) {
-        response.sendRedirect("error_page.jsp");
-    }
-
-%>
 <!DOCTYPE html>
-    <html lang="pt-br">
 
-        <script type="text/javascript">
-            function excluir(titulo, id) {
-                if (confirm("Tem certeza que deseja excluir o menu:" + titulo + "?")) {
-                    window.open("excluir_menu.do?id=" + id, "_self");
-                }
-            }
-        </script>
+<%
+     ArrayList<Criptoativo> lista = new ArrayList<Criptoativo>();
+    try {
+        CriptoativoDAO cDAO = new CriptoativoDAO();
+        lista = cDAO.listar();
+    } catch (Exception e) {
+        out.print("error"+e);
+    }
+%>
 
+
+
+<html lang="pt-br">
         <% String name = "Inserir endereço";%>
         <jsp:include page="_head.jsp">
             <jsp:param name="pageTitle" value="<%= name%>"/>
@@ -50,52 +44,52 @@
                         <div class="container-fluid">
 
                             <!-- Page Heading -->
-                            <h1 class="h3 mb-2 text-gray-800">Listar Menu</h1>
+                            <h1 class="h3 mb-2 text-gray-800">Listar Criptoativos</h1>
 
 
                             <!-- Tabela -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Menu <span><a href="inserir_menu.jsp" class="btn btn-primary mt-2 mb-2">Novo Menu</a> </span></h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Criptoativos <span><a href="incluir_criptoativos.jsp" class="btn btn-primary mt-2 mb-2">Novo Criptoativo</a> </span></h6>
                                    
                                 </div>
                                 
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <table class="table table-striped table-dark" id="dataTable" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th>ID</th>
-                                                    <th>TITULO</th>
-                                                    <th>LINK</th>
-                                                    <th>OPÇÕES</th>
+                                                    <th scope="col">ID</th>
+                                                    <th scope="col">Tipo</th>
+                                                    <th scope="col">Valor</th>
+                                                    <th scope="col">OPÇÕES</th>
                                                 </tr>
                                             </thead>
                                             <tfoot>
                                                 <tr>
-                                                    <th>ID</th>
-                                                    <th>TITULO</th>
-                                                    <th>LINK</th>
-                                                    <th>OPÇÕES</th>
+                                                    <th scope="col">ID</th>
+                                                    <th scope="col">Tipo</th>
+                                                    <th scope="col">Valor</th>
+                                                    <th scope="col">OPÇÕES</th>
                                                 </tr>
                                             </tfoot>
-                                            <% for (Menu m : lista) {%>
+                                            <% for (Criptoativo c : lista) {%>
                                             <tbody>
                                                 <tr>
-                                                    <td><%=m.getId()%></td>
-                                                    <td> <%=m.getTitulo()%></td>
-                                                    <td> <%=m.getLink()%></td>
-                                                  
+                                                    <th scope="row"><%=c.getId()%></th>
+                                                    <td> <%=c.getNome()%></td>
+                                                    <td> <%=c.getValor()%></td>
                                                     <td>  
                                                         <button id="alterarSenha" type="button" class="btn btn-primary btn-sm" 
                                                             data-toggle="modal" 
-                                                            data-target="#ModalAlterarMenu"
-                                                            data-whatever="<%=m.getId()%>"
-                                                            data-whatevertitulo="<%=m.getTitulo()%>" 
-                                                            data-whateverlink="<%=m.getLink()%>"  
+                                                            data-target="#ModalAlterarCriptoativo"
+                                                            data-whatever="<%=c.getId()%>"
+                                                            data-whateverNome="<%=c.getNome()%>" 
+                                                            data-whateverValor="<%=c.getValor()%>"  
                                                         >
-                                                        <i class="fas fa-pencil-alt"></i>
-                                                    </button>
+                                                             <i class="fas fa-pencil-alt"></i>
+                                                        </button>
+                                                    </td>
                                                 </tr>
 
                                             </tbody> <%}%>
@@ -106,11 +100,11 @@
                         </div>
                                         
                         <!--Final do container --> 
-                        <div class="modal fade" id="ModalAlterarMenu" tabindex="-1" role="dialog" aria-labelledby="ModalAlterarLabelMenu" aria-hidden="true">
+                        <div class="modal fade" id="ModalAlterarCriptoativo" tabindex="-1" role="dialog" aria-labelledby="ModalAlterarLabelCriptoativo" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="ModalAlterarLabelMenu">Modal title</h5>
+                                    <h5 class="modal-title" id="ModalAlterarLabelCriptoativo">Modal title</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -123,15 +117,15 @@
                                         <div class="card-body">
                                             <div class="row justify-content-center pl-4 mt-4 mb-4">
                                                 <div class="col-sm-12 col-md-10 col-lg-8">
-                                                    <form name="alterar_perfil" action="alterar_menu.do" method="post">
+                                                    <form name="alterar_perfil" action="alterar_criptoativo.do" method="post">
                                                         <div class="form-row">
                                                             <div class="form-group col-sm-6">
-                                                                <label for="inputNome"> Titulo: </label>
-                                                                <input type="text" class="form-control" id="titulo" placeholder="Titulo" name="titulo" required />
+                                                                <label for="inputNome"> Nome: </label>
+                                                                <input type="text" class="form-control" id="nome" placeholder="Nome" name="nome" required />
                                                             </div>
                                                             <div class="form-group col-sm-6">
-                                                                <label for="inputDescricao"> Link: </label>
-                                                                <input type="text" class="form-control" id="link" placeholder="Descriçao" name="link" required />
+                                                                <label for="inputValor"> Valor: </label>
+                                                                <input type="text" class="form-control" id="valor" placeholder="Valor" name="valor" required />
                                                             </div>
                                                                 <input name="id" type="hidden" id="id" value=""/>
                                                         </div>

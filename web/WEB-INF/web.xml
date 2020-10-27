@@ -36,6 +36,18 @@
         <servlet-name>ValidaLogin</servlet-name>
         <servlet-class>controle.ValidaLogin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>InserirCriptoativos</servlet-name>
+        <servlet-class>controle.InserirCriptoativos</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AlterarCriptoativo</servlet-name>
+        <servlet-class>controle.AlterarCriptoativo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InserirInvestimento</servlet-name>
+        <servlet-class>controle.InserirInvestimento</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InserirCliente</servlet-name>
         <url-pattern>/inserir_cliente.do</url-pattern>
@@ -72,9 +84,21 @@
         <servlet-name>ValidaLogin</servlet-name>
         <url-pattern>/valida_login.do</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InserirCriptoativos</servlet-name>
+        <url-pattern>/inserir_criptoativos.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AlterarCriptoativo</servlet-name>
+        <url-pattern>/alterar_criptoativo.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InserirInvestimento</servlet-name>
+        <url-pattern>/inserir_investimento.do</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
-            10
+            90
         </session-timeout>
     </session-config>
     <error-page>

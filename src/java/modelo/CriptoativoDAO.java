@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class CriptoativoDAO extends DataBaseDAO{
     public void inserir(Criptoativo cp) throws Exception{
-        String sql = "INSERT INTO criptoativo (nome, valor)"
+        String sql = "INSERT INTO tipocriptoativos (nome, valor)"
                 + "VALUES (?,?)";
         
         this.conectar();
@@ -22,7 +22,7 @@ public class CriptoativoDAO extends DataBaseDAO{
     
     public ArrayList<Criptoativo> listar() throws Exception {
         ArrayList<Criptoativo> lista = new ArrayList<Criptoativo>();
-        String sql = "SELECT * FROM criptoativo";
+        String sql = "SELECT * FROM tipocriptoativos";
         this.conectar();
         PreparedStatement pstm = conn.prepareStatement(sql);
         ResultSet rs = pstm.executeQuery();
@@ -38,7 +38,7 @@ public class CriptoativoDAO extends DataBaseDAO{
     }
     
     public void excluir(int id) throws Exception{
-        String sql = "DELETE FROM criptoativo WHERE id=?";
+        String sql = "DELETE FROM tipocriptoativos WHERE id=?";
      
          
         this.conectar();
@@ -51,7 +51,7 @@ public class CriptoativoDAO extends DataBaseDAO{
     
     
       public void alterar (Criptoativo cp) throws Exception{
-        String sql = "UPDATE criptoativo SET nome=?, valor=?"
+        String sql = "UPDATE tipocriptoativos SET nome=?, valor=?"
                 + " WHERE id=?";
         this.conectar();
         PreparedStatement pstm = conn.prepareStatement(sql);
@@ -64,7 +64,7 @@ public class CriptoativoDAO extends DataBaseDAO{
       
        public Criptoativo carregarPorId(int id) throws Exception{
         Criptoativo cp = new Criptoativo();
-        String sql = "SELECT * FROM criptoativo WHERE id=?";
+        String sql = "SELECT * FROM tipocriptoativos WHERE id=?";
         this.conectar();
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setInt(1, id);

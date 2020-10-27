@@ -11,14 +11,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Perfil;
-import modelo.PerfilDAO;
+import modelo.Criptoativo;
+import modelo.CriptoativoDAO;
 
 /**
  *
  * @author luizf
  */
-public class AlterarPerfil extends HttpServlet {
+public class InserirCriptoativos extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,27 +38,33 @@ public class AlterarPerfil extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AlterarPerfil</title>");
+            out.println("<title>Servlet InserirCriptoativos</title>");            
             out.println("</head>");
             out.println("<body>");
-            try {
-                int id = Integer.parseInt(request.getParameter("id"));
+            try{
+                
                 String nome = request.getParameter("nome");
-                String descricao = request.getParameter("descricao");
-
-                if (!nome.isEmpty() && !descricao.isEmpty()) {
-                    Perfil p = new Perfil();
-                    PerfilDAO pDAO = new PerfilDAO();
-                    p.setId(id);
-                    p.setNome(nome);
-                    p.setDescricao(descricao);
-                    pDAO.alterar(p);
-                    response.sendRedirect("listar_perfil.jsp");
-                } else {
-                    out.print("Algum campo obrigatório não foi preenchido!");
+                Double valor = Double.parseDouble(request.getParameter("valor"));
+                
+                
+                if(!nome.isEmpty()){
+                    Criptoativo cp = new Criptoativo();
+                    CriptoativoDAO cpDAO = new CriptoativoDAO();
+                    
+                    
+                    cp.setNome(nome);
+                    cp.setValor(valor);
+                    
+                    cpDAO.inserir(cp);
+                    
+                    response.sendRedirect("listar_criptoativos.jsp");
+                    
+                }else{
+                    out.print("Algo obrigatorio não foi preencnhido");
                 }
-            } catch (Exception e) {
-                out.print("Erro:" + e);
+                
+            }catch (Exception e){
+                out.print("Erro: "+e);
             }
             out.println("</body>");
             out.println("</html>");

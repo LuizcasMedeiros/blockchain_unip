@@ -28,6 +28,7 @@
         <script  src="javascript/validation.js"></script>
         <script src="javascript/alterar_perfil.js" defer></script>
         <script src="javascript/alterar_menu.js" defer></script>
+        <script src="javascript/alterar_cripoativos.js" defer></script>
         
         
         

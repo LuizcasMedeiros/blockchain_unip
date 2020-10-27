@@ -8,6 +8,7 @@ package controle;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.Cliente;
 import modelo.Conta;
 import modelo.ContaDAO;
+
+
 
 /**
  *
@@ -35,6 +38,7 @@ public class InserirCartao extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -46,23 +50,36 @@ public class InserirCartao extends HttpServlet {
             out.println("<body>");
             try{
                String banco = request.getParameter("banco");
+               String tipo = request.getParameter("tipo");
+               String contaBancaria = request.getParameter("contaBancaria");
+               String nomeCartao = request.getParameter("nomeCartao");
+               Date dataExpiracao = (Date.valueOf(request.getParameter("dataExpiracao")));
+               String agencia = request.getParameter("agencia");
                int id_cliente = Integer.parseInt(request.getParameter("id_cliente"));
+               
+               
+              
                
                
                if(!banco.isEmpty()){
                    Conta c = new Conta();
                    ContaDAO cDAO= new ContaDAO();
-                   Cliente cl = new Cliente();
+                   
                    
                    
                    c.setBanco(banco);
-                   cl.setId(id_cliente);
+                   c.setTipo(tipo);
+                   c.setContaBancaria(contaBancaria);
+                   c.setNomeCartao(nomeCartao);
+                   c.setDataExpiracao(dataExpiracao);
+                   c.setAgencia(agencia);
                    
-                   c.setCliente(cl);
+                   Cliente cc = new Cliente();
+                   cc.setId(id_cliente);
+                   
+                   c.setCliente(cc);
                    
                    cDAO.inserir(c);
-                   
-                   
                    response.sendRedirect("listar_cliente.jsp");
                }else{
                    out.print("Campo obrigátorio não preenchido");

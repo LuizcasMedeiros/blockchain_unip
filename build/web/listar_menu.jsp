@@ -85,11 +85,8 @@
                                                     <td><%=m.getId()%></td>
                                                     <td> <%=m.getTitulo()%></td>
                                                     <td> <%=m.getLink()%></td>
+                                                  
                                                     <td>  
-                                                        <a onclick="excluir('<%=m.getTitulo()%>', <%=m.getId()%>)" href="#" class="btn btn-danger btn-sm">
-                                                            <i class="fas fa-trash"></i>
-
-                                                        </a>
                                                         <button id="alterarSenha" type="button" class="btn btn-primary btn-sm" 
                                                             data-toggle="modal" 
                                                             data-target="#ModalAlterarMenu"

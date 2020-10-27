@@ -4,11 +4,13 @@ import java.util.Date;
 
 
 public class Conta {
+     private int id;
      private String banco;
      private String contaBancaria;
      private String agencia;
      private String nomeCartao;
      private Date dataExpiracao;
+     private String tipo;
      private Cliente cliente;
 
     public Cliente getCliente() {
@@ -18,9 +20,26 @@ public class Conta {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-     
-     
-     
+
+    public int getId() {
+        return id;
+    }
+    
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+
+    public String getTipo() {
+        return tipo;
+    }
+    
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    
 
     public String getBanco() {
         return banco;

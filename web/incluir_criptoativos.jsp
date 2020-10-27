@@ -1,6 +1,6 @@
 <%-- 
-    Document   : inserir_menu
-    Created on : 21/10/2020, 11:09:11
+    Document   : incluir_criptoativos
+    Created on : 26/10/2020, 19:38:45
     Author     : luizf
 --%>
 
@@ -31,32 +31,27 @@
                     <div class="container-fluid">
 
                         <!-- Page Heading -->
-                        <h1 class="h3 mb-2 text-gray-800">Listar Cliente</h1>
+                        <h1 class="h3 mb-2 text-gray-800">Inserir Criptoativos</h1>
 
 
                         <!-- Content -->
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Inserir Menu</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Inserir Criptoativos</h6>
                             </div>
                             <div class="card-body">
                                 <div class="row justify-content-center pl-4 mt-4 mb-4">
                                     <div class="col-sm-12 col-md-10 col-lg-8">
-                                        <form name="inserir_menu" action="inserir_menu.do" method="post">
+                                        <form name="inserir_criptoativos.do" action="inserir_criptoativos.do" method="post">
                                             <div class="form-row">
                                                 <div class="form-group col-sm-4">
-                                                    <label for="inputTitulo"> Título: </label>
-                                                    <input type="text" class="form-control" id="inputTitulo" placeholder="Título" name="titulo" required />
+                                                    <label for="inputNome"> Nome do Criptoativo: </label>
+                                                    <input type="text" class="form-control" id="inputNome" placeholder="Nome do Criptoativo" name="nome"  autocomplete="off"required />
                                                 </div>
 
                                                 <div class="form-group col-sm-4">
-                                                    <label for="inputLink"> Link: </label>
-                                                    <input type="text" class="form-control" id="inputLink" placeholder="Link" name="link" required />
-                                                </div>
-
-                                                <div class="form-group col-sm-4">
-                                                    <label for="inputIcone"> Ícone: </label>
-                                                    <input type="text" class="form-control" id="inputIcone" placeholder="Ícone" name="icone"  />
+                                                    <label for="inputValor"> Valor: </label>
+                                                    <input type="text" class="form-control" id="inputValor" placeholder="Valor do criptoativo" name="valor" autocomplete="off" required />
                                                 </div>
                                             </div>
 

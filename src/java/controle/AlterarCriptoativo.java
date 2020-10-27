@@ -11,14 +11,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Perfil;
-import modelo.PerfilDAO;
+import modelo.Criptoativo;
+import modelo.CriptoativoDAO;
 
 /**
  *
  * @author luizf
  */
-public class AlterarPerfil extends HttpServlet {
+public class AlterarCriptoativo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,22 +38,24 @@ public class AlterarPerfil extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AlterarPerfil</title>");
+            out.println("<title>Servlet AlterarCriptoativo</title>");            
             out.println("</head>");
             out.println("<body>");
             try {
                 int id = Integer.parseInt(request.getParameter("id"));
                 String nome = request.getParameter("nome");
-                String descricao = request.getParameter("descricao");
-
-                if (!nome.isEmpty() && !descricao.isEmpty()) {
-                    Perfil p = new Perfil();
-                    PerfilDAO pDAO = new PerfilDAO();
-                    p.setId(id);
-                    p.setNome(nome);
-                    p.setDescricao(descricao);
-                    pDAO.alterar(p);
-                    response.sendRedirect("listar_perfil.jsp");
+                Double valor = Double.parseDouble(request.getParameter("valor"));
+                
+                if (!nome.isEmpty() && valor !=0) {
+                    Criptoativo cp = new Criptoativo();
+                    CriptoativoDAO cDAO = new CriptoativoDAO();
+                    
+                    cp.setId(id);
+                    cp.setNome(nome);
+                    cp.setValor(valor);
+                    
+                    cDAO.alterar(cp);
+                    response.sendRedirect("listar_criptoativos.jsp");
                 } else {
                     out.print("Algum campo obrigatório não foi preenchido!");
                 }

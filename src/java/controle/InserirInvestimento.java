@@ -7,18 +7,22 @@ package controle;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.sql.Time;
+import java.text.SimpleDateFormat;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Perfil;
-import modelo.PerfilDAO;
+import modelo.Criptoativo;
+import modelo.Investimento;
+import modelo.InvestimentoDAO;
 
 /**
  *
  * @author luizf
  */
-public class AlterarPerfil extends HttpServlet {
+public class InserirInvestimento extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,34 +35,48 @@ public class AlterarPerfil extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AlterarPerfil</title>");
+            out.println("<title>Servlet InserirInvestimento</title>");            
             out.println("</head>");
             out.println("<body>");
-            try {
-                int id = Integer.parseInt(request.getParameter("id"));
-                String nome = request.getParameter("nome");
-                String descricao = request.getParameter("descricao");
-
-                if (!nome.isEmpty() && !descricao.isEmpty()) {
-                    Perfil p = new Perfil();
-                    PerfilDAO pDAO = new PerfilDAO();
-                    p.setId(id);
-                    p.setNome(nome);
-                    p.setDescricao(descricao);
-                    pDAO.alterar(p);
-                    response.sendRedirect("listar_perfil.jsp");
-                } else {
-                    out.print("Algum campo obrigatório não foi preenchido!");
+            try{
+                int tipoCriptoativos_id = Integer.parseInt(request.getParameter("tipoCriptoativos_id"));
+                Double valor= Double.parseDouble(request.getParameter("valor"));
+                Date data = (Date) Date.valueOf(request.getParameter("data"));
+                String hora_modificada = request.getParameter("hora");
+                String segundos = ":00";
+                Time hora = (Time) Time.valueOf(hora_modificada+segundos);
+                
+                if(valor !=0 && tipoCriptoativos_id !=0){
+                    Investimento in = new Investimento();
+                    InvestimentoDAO inDAO = new InvestimentoDAO();
+                    
+                    in.setValor(valor);
+                    in.setData(data);
+                    in.setHora(hora);
+                    
+                    Criptoativo cp = new Criptoativo();
+                    cp.setId(tipoCriptoativos_id);
+                    
+                    in.setCriptoativo(cp);
+                    
+                    
+                    inDAO.inserir(in);
+                    
+                    
+                    response.sendRedirect("listar_cliente.jsp");
+                    
+                }else{
+                    out.print("Algum campo obrigátorio não foi preenchido");
                 }
-            } catch (Exception e) {
-                out.print("Erro:" + e);
+                
+            }catch (Exception e){
+                out.print("error: "+e);
             }
             out.println("</body>");
             out.println("</html>");
