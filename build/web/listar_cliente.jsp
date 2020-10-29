@@ -9,9 +9,9 @@
     ArrayList<Cliente> lista = new ArrayList<Cliente>();
     try {
         ClienteDAO cDAO = new ClienteDAO();
-        lista = cDAO.listar();
+        lista = cDAO.listarJoin();
     } catch (Exception e) {
-        response.sendRedirect("error_page.jsp");
+        out.print("error"+e);
     }
 
 %>
@@ -58,7 +58,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <table class="table table-striped table-dark" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
@@ -92,7 +92,11 @@
                                                     <a  href="alterar_cliente.jsp?id=<%=c.getId()%>" class="btn btn-primary btn-sm">
                                                         <i class="fas fa-pencil-alt"></i>
                                                     </a>
-
+                                                    <%if (c.getConta().getId() != 0){%>
+                                                    <a  href="#"class="btn btn-info btn-sm">
+                                                        Cartão adicionado
+                                                    </a>
+                                                    <%}else{%>
                                                     <a  href="adicionar_cartao.jsp?id_cliente=<%=c.getId()%>"class="btn btn-info btn-sm">
                                                         <i class="fas fa-search-dollar"></i>
                                                         <img src="assets/pag.png" alt="alterar"/>
@@ -100,6 +104,7 @@
                                             </tr>
                                             
                                        </tbody> <%
+                                                 }
                                                     
                                                 }%>
                                     </table>

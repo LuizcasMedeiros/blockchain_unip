@@ -25,6 +25,7 @@ public class Cliente {
     private Date data_nascimento;
     private Date dataInclusao;
     private Perfil perfil;
+    private Conta conta;
     
     
     
@@ -40,6 +41,16 @@ public class Cliente {
         } catch (Exception e) {}
         return retorno;
     }
+
+    public Conta getConta() {
+        return conta;
+    }
+
+    public void setConta(Conta conta) {
+        this.conta = conta;
+    }
+    
+    
 
     public Perfil getPerfil() {
         return perfil;

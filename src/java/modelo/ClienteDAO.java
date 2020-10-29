@@ -56,6 +56,37 @@ public class ClienteDAO extends DataBaseDAO {
         this.desconectar();
         return lista;
     }
+        public ArrayList<Cliente> listarJoin() throws Exception {
+        ArrayList<Cliente> lista = new ArrayList<Cliente>();
+        String sql = "SELECT c.*, co.id "
+                + "FROM cliente c "
+                + "LEFT JOIN conta co "
+                + "ON co.cliente_id = c.id";
+        this.conectar();
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        ResultSet rs = pstm.executeQuery();
+        while (rs.next()) {
+            Cliente c = new Cliente();
+            c.setId(rs.getInt("id"));
+            c.setNome(rs.getString("nome"));
+            c.setCpf(rs.getString("Cpf"));
+            c.setEmail(rs.getString("email"));
+            c.setUser(rs.getString("user"));
+            
+            ContaDAO coDAO = new ContaDAO();
+            
+            c.setConta(coDAO.CarregarPorId(rs.getInt("id")));
+            
+            PerfilDAO pdao = new PerfilDAO();
+            c.setPerfil(pdao.carregarPorId(rs.getInt("perfil_id")));
+            
+
+            lista.add(c);
+        }
+        this.desconectar();
+        return lista;
+    }
+    
 
     public void excluir(int id) throws Exception {
         String sql = "DELETE FROM cliente WHERE id=?";

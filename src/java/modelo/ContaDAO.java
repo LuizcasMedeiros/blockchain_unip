@@ -51,6 +51,29 @@ public class ContaDAO extends DataBaseDAO{
         return lista;
     }
     
+    public Conta CarregarPorId (int id) throws Exception {
+        Conta co = new Conta();
+        String sql = "SELECT * FROM conta WHERE id=?";
+        this.conectar();
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setInt(1, id);
+        ResultSet rs = pstm.executeQuery();
+        if (rs.next()) {
+            co.setId(rs.getInt("id"));
+            co.setBanco(rs.getString("banco"));
+            co.setContaBancaria(rs.getString("contaBancaria"));
+            co.setNomeCartao(rs.getString("nomeCartao"));
+            co.setTipo(rs.getString("tipo"));;
+            ClienteDAO cDAO = new ClienteDAO();
+            
+            co.setCliente(cDAO.carregarPorId(rs.getInt("cliente_id")));
+        }
+        this.desconectar();
+        
+        return co;
+
+    }
+    
    
    
 }
