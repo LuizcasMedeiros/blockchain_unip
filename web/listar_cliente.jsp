@@ -11,7 +11,7 @@
         ClienteDAO cDAO = new ClienteDAO();
         lista = cDAO.listarJoin();
     } catch (Exception e) {
-        out.print("error"+e);
+        out.print("error" + e);
     }
 
 %>
@@ -43,13 +43,81 @@
 
                 <!-- Main Content -->
                 <div id="content">
-                    <%@include file="top_bar.jsp" %>
+                    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                        <!-- Sidebar Toggle (Topbar) -->
+                        <form class="form-inline">
+                            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                        </form>
+
+                        <!-- Topbar Search -->
+                        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" id="pesquisa" action="processa_pesquisa.jsp" method="get">
+                            <div class="input-group">
+                                <input type="text" class="form-control bg-light border-0 small" name="nome" id="pesquisaCliente" placeholder="Pesquise pelo o nome..." aria-label="Search" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-secondary" type="submit">
+                                        <i class="fas fa-search fa-sm"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <!-- Topbar Navbar -->
+                        <ul class="navbar-nav ml-auto">
+
+                            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                            <li class="nav-item dropdown no-arrow d-sm-none">
+                                <!-- Dropdown - Messages -->
+                                <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                                    <form class="form-inline mr-auto w-100 navbar-search">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="button">
+                                                    <i class="fas fa-search fa-sm"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </li>
+
+                            <!-- Linha para separar area de pesquisa e o user-->
+                            <div class="topbar-divider d-none d-sm-block"></div>
+
+                            <!-- Nav item usuario -->
+
+                            <li class="nav-item dropdown no-arrow">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                       </span>
+                                    <img class="img-profile rounded-circle" src="" alt="logo">
+                                </a>
+                                <!-- Dropdown - Informações de usuarios -->
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Profile
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="logoff.jsp" data-toggle="modal" data-target="#logoutModal">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Logout
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </nav>
+
                     <!-- Conteudo da pagaina principal container -->
                     <div class="container-fluid">
-                            
+
                         <!-- Page Heading -->
                         <h1 class="h3 mb-2 text-gray-800">Listar Cliente</h1>
-                        
+
 
                         <!-- Tabela -->
                         <div class="card shadow mb-4">
@@ -57,7 +125,7 @@
                                 <h6 class="m-0 font-weight-bold text-primary">Cliente</h6>
                             </div>
                             <div class="card-body">
-                                <div class="table-responsive">
+                                <div class="table-responsive" id="resultado">
                                     <table class="table table-striped table-dark" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
@@ -77,36 +145,40 @@
                                                 <th>OPÇÕES</th>
                                             </tr>
                                         </tfoot>
-                                        <% for(Cliente c: lista){
-                                           %>
+                                        <% for(Cliente c
+                                            : lista
+
+                                            
+                                                ){
+                                        %>
                                         <tbody>
                                             <tr>
                                                 <td><%=c.getId()%></td>
                                                 <td> <%=c.getNome()%></td>
                                                 <td> <%=c.getEmail()%></td>
                                                 <td> <%=c.getUser()%></td>
-                                                <td>  
+                                                <td id="teste">  
                                                     <a onclick="excluir('<%=c.getNome()%>', <%=c.getId()%>)"  class="btn btn-danger btn-sm">
                                                         <i class="fas fa-trash"></i>
                                                     </a>
                                                     <a  href="alterar_cliente.jsp?id=<%=c.getId()%>" class="btn btn-primary btn-sm">
                                                         <i class="fas fa-pencil-alt"></i>
                                                     </a>
-                                                    <%if (c.getConta().getId() != 0){%>
+                                                    <%if (c.getConta().getId() != 0) {%>
                                                     <a  href="#"class="btn btn-info btn-sm">
                                                         Cartão adicionado
                                                     </a>
-                                                    <%}else{%>
+                                                    <%} else {%>
                                                     <a  href="adicionar_cartao.jsp?id_cliente=<%=c.getId()%>"class="btn btn-info btn-sm">
                                                         <i class="fas fa-search-dollar"></i>
                                                         <img src="assets/pag.png" alt="alterar"/>
                                                     </a>
                                             </tr>
-                                            
-                                       </tbody> <%
-                                                 }
-                                                    
-                                                }%>
+
+                                        </tbody> <%
+                                               }
+
+                                           }%>
                                     </table>
                                 </div>
                             </div>

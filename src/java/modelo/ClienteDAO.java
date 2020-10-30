@@ -46,17 +46,49 @@ public class ClienteDAO extends DataBaseDAO {
             c.setCpf(rs.getString("Cpf"));
             c.setEmail(rs.getString("email"));
             c.setUser(rs.getString("user"));
-            
+
             PerfilDAO pdao = new PerfilDAO();
             c.setPerfil(pdao.carregarPorId(rs.getInt("perfil_id")));
-            
 
             lista.add(c);
         }
         this.desconectar();
         return lista;
     }
-        public ArrayList<Cliente> listarJoin() throws Exception {
+    public ArrayList<Cliente> pesquisarNome(String nome) throws Exception {
+        ArrayList<Cliente> lista = new ArrayList<>();
+        String sql = "SELECT c.*, co.id "
+                + "FROM cliente c "
+                + "LEFT JOIN conta co "
+                + "ON co.cliente_id = c.id "
+                + "WHERE c.nome LIKE ?";
+        this.conectar();
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1,"%" + nome + "%");
+        ResultSet rs = pstm.executeQuery();
+       
+        while (rs.next()) {
+            Cliente c = new Cliente();
+            c.setId(rs.getInt("id"));
+            c.setNome(rs.getString("nome"));
+            c.setCpf(rs.getString("Cpf"));
+            c.setEmail(rs.getString("email"));
+            c.setUser(rs.getString("user"));
+            
+            ContaDAO coDAO = new ContaDAO();
+
+            c.setConta(coDAO.CarregarPorId(rs.getInt("id")));
+            
+            PerfilDAO pdao = new PerfilDAO();
+            c.setPerfil(pdao.carregarPorId(rs.getInt("perfil_id")));
+            lista.add(c);
+        }
+        this.desconectar();
+        return lista;
+       
+    }
+
+    public ArrayList<Cliente> listarJoin() throws Exception {
         ArrayList<Cliente> lista = new ArrayList<Cliente>();
         String sql = "SELECT c.*, co.id "
                 + "FROM cliente c "
@@ -72,21 +104,19 @@ public class ClienteDAO extends DataBaseDAO {
             c.setCpf(rs.getString("Cpf"));
             c.setEmail(rs.getString("email"));
             c.setUser(rs.getString("user"));
-            
+
             ContaDAO coDAO = new ContaDAO();
-            
+
             c.setConta(coDAO.CarregarPorId(rs.getInt("id")));
-            
+
             PerfilDAO pdao = new PerfilDAO();
             c.setPerfil(pdao.carregarPorId(rs.getInt("perfil_id")));
-            
 
             lista.add(c);
         }
         this.desconectar();
         return lista;
     }
-    
 
     public void excluir(int id) throws Exception {
         String sql = "DELETE FROM cliente WHERE id=?";
@@ -148,7 +178,7 @@ public class ClienteDAO extends DataBaseDAO {
             c.setCpf(rs.getString("cpf"));
             c.setSenha(rs.getString("senha"));
             c.setData_nascimento(rs.getDate("data_nascimento"));
-            
+
             PerfilDAO pdao = new PerfilDAO();
             c.setPerfil(pdao.carregarPorId(rs.getInt("perfil_id")));
         }
@@ -175,8 +205,8 @@ public class ClienteDAO extends DataBaseDAO {
         this.desconectar();
         return c;
     }
-    
-       public Cliente logar(String user, String senha) throws Exception {
+
+    public Cliente logar(String user, String senha) throws Exception {
         Cliente c = new Cliente();
         String sql = "SELECT * FROM cliente WHERE user=?";
         this.conectar();
@@ -188,14 +218,13 @@ public class ClienteDAO extends DataBaseDAO {
                 c.setId(rs.getInt("id"));
                 c.setNome(rs.getString("nome"));
                 c.setUser(rs.getString("user"));
-                c.setSenha(rs.getString("senha")); 
+                c.setSenha(rs.getString("senha"));
                 PerfilDAO pDAO = new PerfilDAO();
                 c.setPerfil(pDAO.carregarPorId(rs.getInt("perfil_id")));
             }
         }
         this.desconectar();
         return c;
-       }
-    
+    }
 
 }
