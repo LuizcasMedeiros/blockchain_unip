@@ -80,7 +80,7 @@ public class InvestimentoDAO extends DataBaseDAO {
     
 
     public void excluir(int id) throws Exception {
-        String sql = "DELETE FROM contrato WHERE id=?";
+        String sql = "DELETE FROM investimentos WHERE id=?";
 
         this.conectar();
         PreparedStatement pstm = conn.prepareStatement(sql);
@@ -90,16 +90,15 @@ public class InvestimentoDAO extends DataBaseDAO {
     }
 
     public void alterar(Investimento in) throws Exception {
-        String sql = "UPDATE investimento SET data=?, valor=?"
-                + ", tipoCriptoativos_id=?, hora=?"
+        String sql = "UPDATE investimentos SET data=?, hora=?"
                 + " WHERE id=?";
         this.conectar();
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setDate(1, (Date) in.getData());
-        pstm.setDouble(2, in.getValor());
-        pstm.setInt(3, in.getCriptoativo().getId());
-        pstm.setTime(4, in.getHora());
+        pstm.setTime(2, in.getHora());
+        pstm.setInt(3, in.getId());
         pstm.execute();
+        pstm.close();
         this.desconectar();
     }
 

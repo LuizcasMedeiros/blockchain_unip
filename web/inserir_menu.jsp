@@ -31,7 +31,7 @@
                     <div class="container-fluid">
 
                         <!-- Page Heading -->
-                        <h1 class="h3 mb-2 text-gray-800">Listar Cliente</h1>
+                        <h1 class="h3 mb-2 text-gray-800">Menu</h1>
 
 
                         <!-- Content -->

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Criptoativo;
+import modelo.CriptoativoDAO;
 import modelo.Investimento;
 import modelo.InvestimentoDAO;
 
@@ -56,9 +57,18 @@ public class InserirInvestimento extends HttpServlet {
                     Investimento in = new Investimento();
                     InvestimentoDAO inDAO = new InvestimentoDAO();
                     
+                    
+                    Criptoativo c = new Criptoativo();
+                    CriptoativoDAO cDAO = new CriptoativoDAO();
+                    c= cDAO.carregarPorId(tipoCriptoativos_id);
+                    
                     in.setValor(valor);
                     in.setData(data);
                     in.setHora(hora);
+                    
+                    in.setValor(in.converteInvestimentoReais(valor, c.getValor()));
+                    
+                    
                     
                     Criptoativo cp = new Criptoativo();
                     cp.setId(tipoCriptoativos_id);
@@ -69,7 +79,7 @@ public class InserirInvestimento extends HttpServlet {
                     inDAO.inserir(in);
                     
                     
-                    response.sendRedirect("listar_cliente.jsp");
+                    response.sendRedirect("listar_investimento.jsp");
                     
                 }else{
                     out.print("Algum campo obrigátorio não foi preenchido");

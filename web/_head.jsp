@@ -30,6 +30,8 @@
         <script src="javascript/alterar_menu.js" defer></script>
         <script src="javascript/alterar_cripoativos.js" defer></script>
         <script src="javascript/localizar_cliente.js" defer></script>
+        <script src="javascript/alterar_cliente.js" defer></script>
+        <script src="javascript/alterar_investimento.js" defer></script>
         
         
         <! - Fontes personalizadas para este modelo ->

@@ -56,9 +56,10 @@ public class Investimento
     
     
     
-    public Double converteInvestimentoReais (Double valorConvertido){
+    public Double converteInvestimentoReais (Double valorConvertido, Double valorCriptomoeda ){
         
-        valorConvertido = getValor()*criptoativo.getValor();
+        
+        valorConvertido = valorConvertido*valorCriptomoeda;
         return valorConvertido;
     }
         

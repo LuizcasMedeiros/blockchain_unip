@@ -46,6 +46,8 @@ public class ClienteDAO extends DataBaseDAO {
             c.setCpf(rs.getString("Cpf"));
             c.setEmail(rs.getString("email"));
             c.setUser(rs.getString("user"));
+            c.setCelular(rs.getString("celular"));
+            c.setData_nascimento(rs.getDate("data_nascimento"));
 
             PerfilDAO pdao = new PerfilDAO();
             c.setPerfil(pdao.carregarPorId(rs.getInt("perfil_id")));
@@ -104,6 +106,9 @@ public class ClienteDAO extends DataBaseDAO {
             c.setCpf(rs.getString("Cpf"));
             c.setEmail(rs.getString("email"));
             c.setUser(rs.getString("user"));
+            c.setCelular(rs.getString("celular"));
+            c.setData_nascimento(rs.getDate("data_nascimento"));
+            
 
             ContaDAO coDAO = new ContaDAO();
 
@@ -129,18 +134,16 @@ public class ClienteDAO extends DataBaseDAO {
     }
 
     public void alterar(Cliente c) throws Exception {
-        String sql = "UPDATE cliente SET nome=?, email=?, user=?, celular=?, senha=?, cpf=?, perfil_id=?"
+        String sql = "UPDATE cliente SET nome=?, email=?, celular=?, data_nascimento=?, cpf=? "
                 + " WHERE id=?";
         this.conectar();
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, c.getNome());
         pstm.setString(2, c.getEmail());
-        pstm.setString(3, c.getUser());
-        pstm.setString(4, c.getCelular());
-        pstm.setString(5, c.getSenha());
-        pstm.setString(6, c.getCpf());
-        pstm.setInt(7, c.getId());
-        pstm.setInt(8, c.getPerfil().getId());
+        pstm.setString(3, c.getCelular());
+        pstm.setDate(4, (Date) c.getData_nascimento());
+        pstm.setString(5, c.getCpf());
+        pstm.setInt(6, c.getId());
         pstm.execute();
         this.desconectar();
     }

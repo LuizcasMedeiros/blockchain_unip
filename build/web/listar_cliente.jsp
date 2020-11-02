@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="modelo.ClienteDAO"%>
@@ -13,6 +14,12 @@
     } catch (Exception e) {
         out.print("error" + e);
     }
+
+%>
+
+<%
+    SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+
 
 %>
 
@@ -92,7 +99,7 @@
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                       </span>
+                                    </span>
                                     <img class="img-profile rounded-circle" src="" alt="logo">
                                 </a>
                                 <!-- Dropdown - Informações de usuarios -->
@@ -116,13 +123,13 @@
                     <div class="container-fluid">
 
                         <!-- Page Heading -->
-                        <h1 class="h3 mb-2 text-gray-800">Listar Cliente</h1>
+                        <h1 class="h3 mb-2 text-gray-800">Cliente</h1>
 
 
                         <!-- Tabela -->
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Cliente</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Listar Cliente</h6>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive" id="resultado">
@@ -132,6 +139,7 @@
                                                 <th>ID</th>
                                                 <th>NOME</th>
                                                 <th>EMAIL</th>
+                                                <th>Data de nascimento</th>
                                                 <th>USER</th>
                                                 <th>OPÇÕES</th>
                                             </tr>
@@ -141,29 +149,42 @@
                                                 <th>ID</th>
                                                 <th>NOME</th>
                                                 <th>EMAIL</th>
+                                                <th>Data de nascimento</th>
                                                 <th>USER</th>
                                                 <th>OPÇÕES</th>
                                             </tr>
                                         </tfoot>
-                                        <% for(Cliente c
-                                            : lista
-
-                                            
-                                                ){
+                                        <% 
+                                             
+                                            for (Cliente c
+                                                    : lista) {
+                                                
+                                                    
                                         %>
                                         <tbody>
                                             <tr>
                                                 <td><%=c.getId()%></td>
                                                 <td> <%=c.getNome()%></td>
                                                 <td> <%=c.getEmail()%></td>
+                                                <td> <%=df.format(c.getData_nascimento())%></td>
                                                 <td> <%=c.getUser()%></td>
-                                                <td id="teste">  
+                                                <td>  
                                                     <a onclick="excluir('<%=c.getNome()%>', <%=c.getId()%>)"  class="btn btn-danger btn-sm">
                                                         <i class="fas fa-trash"></i>
                                                     </a>
-                                                    <a  href="alterar_cliente.jsp?id=<%=c.getId()%>" class="btn btn-primary btn-sm">
+                                                    <button  type="button" class="btn btn-primary btn-sm" 
+                                                        data-toggle="modal" 
+                                                        data-target="#ModalAlterarCliente"
+                                                        data-whatever="<%=c.getId()%>"
+                                                        data-whatevernome="<%=c.getNome()%>" 
+                                                        data-whateveremail="<%=c.getEmail()%>"  
+                                                        data-whatevercelular="<%=c.getCelular()%>"  
+                                                        data-whatevercpf="<%=c.getCpf()%>" 
+                                                        data-whateverdata_nascimento="<%=c.getData_nascimento()%>" 
+                                                         
+                                                    >
                                                         <i class="fas fa-pencil-alt"></i>
-                                                    </a>
+                                                    </button>
                                                     <%if (c.getConta().getId() != 0) {%>
                                                     <a  href="#"class="btn btn-info btn-sm">
                                                         Cartão adicionado
@@ -176,9 +197,9 @@
                                             </tr>
 
                                         </tbody> <%
-                                               }
+                                                }
 
-                                           }%>
+                                            }%>
                                     </table>
                                 </div>
                             </div>
@@ -186,6 +207,67 @@
 
                     </div>
                     <!--Final do container  -->
+
+
+                    <div class="modal fade" id="ModalAlterarCliente" tabindex="-1" role="dialog" aria-labelledby="ModalAlterarLabelCliente" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="ModalAlterarLabelCliente">Modal title</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card shadow mb-4">
+                                        <div class="card-header py-3">
+                                            <h6 class="m-0 font-weight-bold text-primary">Alterar Cliente</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row justify-content-center pl-4 mt-4 mb-4">
+                                                <div class="col-sm-12 col-md-10 col-lg-8">
+                                                    <form name="alterar_cliente" action="alterar_cliente.do" method="post">
+                                                        <div class="form-row">
+                                                            <div class="form-group col-sm-6">
+                                                                <label for="nome"> Nome: </label>
+                                                                <input type="text" class="form-control" id="nome" placeholder="Nome" name="nome" required />
+                                                            </div>
+                                                            <div class="form-group col-sm-6">
+                                                                <label for="email"> Email: </label>
+                                                                <input type="text" class="form-control" id="email" placeholder="Email" name="email" required />
+                                                            </div>
+                                                            <div class="form-group col-sm-6">
+                                                                <label for="cpf"> Cpf: </label>
+                                                                <input id="cpf" class="form-control form-control-user" type="text"  placeholder="Cpf" name="cpf"   OnKeyPress="formatar('###.###.###-##', this)" maxlength="14" minlength="14"  required/> 
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="data_nascimento"> Data de nascimento: </label>
+                                                                <input id="data_nascimento" class="form-control form-control-user" type="date"   name="data_nascimento"  required/> 
+                                                            </div>  
+
+
+                                                            <div class="form-group col-sm-6">
+                                                                <label for="celular"> Celular </label>
+                                                                <input id="celular" class="form-control form-control-user" type="text"  placeholder="XX XXXXX-XXXX" name="celular" OnKeyPress="formatar('## #####-####', this)" minlength="13" maxlength="13" required/> 
+                                                            </div>
+                                                            <input name="id" type="hidden" id="id" value=""/>
+                                                        </div>
+                                                        <div class="form-row">
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                                <button type="submit" class="btn btn-primary">Salvar alteração</button>
+                                                            </div>
+                                                        </div> 
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
                 <!-- End of Main Content -->

@@ -4,6 +4,7 @@
     Author     : luizf
 --%>
 
+<%@page import="java.text.NumberFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="modelo.InvestimentoDAO"%>
 <%@page import="modelo.Investimento"%>
@@ -12,7 +13,7 @@
 <!DOCTYPE html>
 <%
     ArrayList<Investimento> lista = new ArrayList<Investimento>();
-    SimpleDateFormat df = new SimpleDateFormat("dd-MM-YYYY");
+   
     try{
        InvestimentoDAO iDAO = new InvestimentoDAO();
        lista = iDAO.listarinner();
@@ -20,6 +21,14 @@
         
         out.print("erro feio"+e);
     }
+%>
+<%
+    SimpleDateFormat df = new SimpleDateFormat("dd-MM-YYYY");
+    SimpleDateFormat hr = new SimpleDateFormat("HH:mm");
+    NumberFormat z = NumberFormat.getCurrencyInstance();
+
+
+
 %>
 
 <html lang="pt-br">
@@ -44,13 +53,13 @@
                         <div class="container-fluid">
 
                             <!-- Page Heading -->
-                            <h1 class="h3 mb-2 text-gray-800">Listar Investimento</h1>
+                            <h1 class="h3 mb-2 text-gray-800">Investimento</h1>
 
 
                             <!-- Tabela -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Investimentos <span><a href="incluir_criptoativos.jsp" class="btn btn-primary mt-2 mb-2">Novo Criptoativo</a> </span></h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Listar Investimento<span><a href="realizar_investimento.jsp" class="btn btn-primary mt-2 mb-2">Novo Investimento</a> </span></h6>
                                    
                                 </div>
                                 
@@ -79,17 +88,16 @@
                                             <tbody>
                                                 <tr>
                                                     <th scope="row"><%=i.getId()%></th>
-                                                    <td> <%=i.getValor()%></td>
-                                                    <td> <%=df.format(i.getData())%> : <%=i.getHora()%></td>
+                                                    <td> <%=z.format(i.getValor())%></td>
+                                                    <td> <%=df.format(i.getData())%> : <%=hr.format(i.getHora())%></td>
                                                     <td> <%=i.getCriptoativo().getNome()%></td>
                                                     <td>  
-                                                        <button id="alterarSenha" type="button" class="btn btn-primary btn-sm" 
+                                                        <button  type="button" class="btn btn-primary btn-sm" 
                                                             data-toggle="modal" 
-                                                            data-target="#ModalAlterarCriptoativo"
+                                                            data-target="#ModalAlterarInvestimento"
                                                             data-whatever="<%=i.getId()%>"
-                                                            data-whateverNome="<%=i.getValor()%>" 
-                                                            data-whateverValor="<%=i.getData()%>"  
-                                                            data-whateverValor="<%=i.getHora()%>" 
+                                                            data-whateverdata="<%=i.getData()%>"  
+                                                            data-whateverhora="<%=hr.format(i.getHora())%>" 
                                                         >
                                                              <i class="fas fa-pencil-alt"></i>
                                                         </button>
@@ -104,11 +112,11 @@
                         </div>
                                         
                         <!--Final do container --> 
-                        <div class="modal fade" id="ModalAlterarCriptoativo" tabindex="-1" role="dialog" aria-labelledby="ModalAlterarLabelCriptoativo" aria-hidden="true">
+                        <div class="modal fade" id="ModalAlterarInvestimento" tabindex="-1" role="dialog" aria-labelledby="ModalAlterarLabelInvestimento" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="ModalAlterarLabelCriptoativo">Modal title</h5>
+                                    <h5 class="modal-title" id="ModalAlterarLabelInvestimento">Modal title</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -116,20 +124,22 @@
                                 <div class="modal-body">
                                     <div class="card shadow mb-4">
                                         <div class="card-header py-3">
-                                            <h6 class="m-0 font-weight-bold text-primary">Alterar menu</h6>
+                                            <h6 class="m-0 font-weight-bold text-primary">Alterar Investimento</h6>
                                         </div>
                                         <div class="card-body">
                                             <div class="row justify-content-center pl-4 mt-4 mb-4">
                                                 <div class="col-sm-12 col-md-10 col-lg-8">
-                                                    <form name="alterar_perfil" action="alterar_criptoativo.do" method="post">
+                                                    <form name="alterar_investimento" action="alterar_investimento.do" method="post">
+                                                        <div class="form-row">
+                                                            <div class="form-group col-sm-8">
+                                                                <label for="data"> Data: </label>
+                                                                <input type="date" class="form-control" id="data" placeholder="Data" name="data" required />
+                                                            </div>
+                                                        </div>
                                                         <div class="form-row">
                                                             <div class="form-group col-sm-6">
-                                                                <label for="inputNome"> Nome: </label>
-                                                                <input type="text" class="form-control" id="nome" placeholder="Nome" name="nome" required />
-                                                            </div>
-                                                            <div class="form-group col-sm-6">
-                                                                <label for="inputValor"> Valor: </label>
-                                                                <input type="text" class="form-control" id="valor" placeholder="Valor" name="valor" required />
+                                                                <label for="hora"> Hora: </label>
+                                                                <input type="time" class="form-control" id="hora" placeholder="Hora" name="hora" required />
                                                             </div>
                                                                 <input name="id" type="hidden" id="id" value=""/>
                                                         </div>

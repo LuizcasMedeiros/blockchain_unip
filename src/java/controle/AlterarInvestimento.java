@@ -8,18 +8,21 @@ package controle;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.sql.Time;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Cliente;
-import modelo.ClienteDAO;
+import modelo.Criptoativo;
+import modelo.CriptoativoDAO;
+import modelo.Investimento;
+import modelo.InvestimentoDAO;
 
 /**
  *
  * @author luizf
  */
-public class AlterarCliente extends HttpServlet {
+public class AlterarInvestimento extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,49 +35,52 @@ public class AlterarCliente extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AlterarCliente</title>");            
+            out.println("<title>Servlet AlterarInvestimento</title>");
             out.println("</head>");
             out.println("<body>");
-           try{
+            try {
                 int id = Integer.parseInt(request.getParameter("id"));
-                String nome = request.getParameter("nome");
-                String email = request.getParameter("email");
-                Date data_nascimento = (Date) Date.valueOf(request.getParameter("data_nascimento"));
-                String cpf = request.getParameter("cpf");
-                String celular= request.getParameter("celular");
-               
-               
-                
-                if(!nome.isEmpty() && !email.isEmpty()){
-                    Cliente c = new Cliente();
-                    ClienteDAO cDAO = new ClienteDAO();
-                    
-                    c.setNome(nome);
-                    c.setCpf(cpf);
-                    c.setEmail(email);
-                    c.setCelular(celular);
-                    c.setData_nascimento(data_nascimento);
-                    c.setId(id);
+                Date data = (Date) Date.valueOf(request.getParameter("data"));
+                String hora_modificada = request.getParameter("hora");
+                String segundos = ":00";
+                Time hora = (Time) Time.valueOf(hora_modificada+segundos);
+
+                if(data != null && id !=0){
+                    Investimento in = new Investimento();
+                    InvestimentoDAO inDAO = new InvestimentoDAO();
                     
                     
-                    cDAO.alterar(c);
+                    in.setId(id);
+                    in.setData(data);
+                    in.setHora(hora);
+                   
+                 
                     
-                    response.sendRedirect("listar_cliente.jsp");
+                    
+                    
+                  
+                    
+                   
+                    
+                    
+                    inDAO.alterar(in);
+                    
+                    
+                    response.sendRedirect("listar_investimento.jsp");
+                    
                 }else{
-                    out.println("Algum campo obrigátorio não foi preenchido");
+                    out.print("Algum campo obrigátorio não foi preenchido");
                 }
-                    
-                
-            }catch (Exception e){
-                out.println("Error"+e);
+            } catch (Exception e) {
+                out.print("Erro:" + e);
             }
+
             out.println("</body>");
             out.println("</html>");
         }

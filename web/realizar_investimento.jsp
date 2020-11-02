@@ -75,7 +75,6 @@
                                                     <datalist id="tipoConta">
                                                         <%for(Criptoativo c: lista){%>
                                                             <option value="<%=c.getId()%>"><%=c.getNome()%><option>
-                                                       
                                                          <%}%>
                                                     </datalist>
                                                 </div>
