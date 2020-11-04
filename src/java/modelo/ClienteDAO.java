@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class ClienteDAO extends DataBaseDAO {
 
     public void inserir(Cliente c) throws Exception {
-        String sql = "INSERT INTO cliente (nome, email, cep, localidade, bairro, complemento,logadouro,"
+        String sql = "INSERT INTO cliente (nome, email, cep, localidade, bairro, complemento,logradouro,"
                 + "uf, user, senha, cpf, celular, data_nascimento, data_inclusao, perfil_id)"
                 + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,now(),?)";
 
@@ -51,6 +51,8 @@ public class ClienteDAO extends DataBaseDAO {
 
             PerfilDAO pdao = new PerfilDAO();
             c.setPerfil(pdao.carregarPorId(rs.getInt("perfil_id")));
+            
+          
 
             lista.add(c);
         }

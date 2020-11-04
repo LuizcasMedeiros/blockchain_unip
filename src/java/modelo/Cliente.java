@@ -26,7 +26,7 @@ public class Cliente {
     private Date dataInclusao;
     private Perfil perfil;
     private Conta conta;
-    
+    private Contrato contrato;
     
     
     
@@ -41,6 +41,16 @@ public class Cliente {
         } catch (Exception e) {}
         return retorno;
     }
+
+    public Contrato getContrato() {
+        return contrato;
+    }
+
+    public void setContrato(Contrato contrato) {
+        this.contrato = contrato;
+    }
+    
+    
 
     public Conta getConta() {
         return conta;

@@ -40,6 +40,12 @@ public class ContratoDAO extends DataBaseDAO
             ct.setDataEncerramento(rs.getDate("data_encerramento"));
             ct.setJuros(rs.getDouble("juros"));
             ct.setValor(rs.getDouble("valor"));
+            
+            ClienteDAO cDAO = new ClienteDAO();
+        
+            
+            ct.setCliente(cDAO.carregarPorId(rs.getInt("cliente_id")));
+            
             lista.add(ct);
         }
         this.desconectar();

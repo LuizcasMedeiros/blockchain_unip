@@ -4,6 +4,7 @@
     Author     : luizf
 --%>
 
+<%@page import="java.text.NumberFormat"%>
 <%@page import="modelo.CriptoativoDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="modelo.Criptoativo"%>
@@ -18,6 +19,11 @@
     } catch (Exception e) {
         out.print("error"+e);
     }
+%>
+<%
+    NumberFormat z = NumberFormat.getCurrencyInstance();
+
+
 %>
 
 
@@ -44,13 +50,13 @@
                         <div class="container-fluid">
 
                             <!-- Page Heading -->
-                            <h1 class="h3 mb-2 text-gray-800">Listar Criptoativos</h1>
+                            <h1 class="h3 mb-2 text-gray-800">Criptoativos</h1>
 
 
                             <!-- Tabela -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Criptoativos <span><a href="incluir_criptoativos.jsp" class="btn btn-primary mt-2 mb-2">Novo Criptoativo</a> </span></h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Listar Criptoativos <span><a href="incluir_criptoativos.jsp" class="btn btn-primary mt-2 mb-2">Novo Criptoativo</a> </span></h6>
                                    
                                 </div>
                                 
@@ -78,7 +84,7 @@
                                                 <tr>
                                                     <th scope="row"><%=c.getId()%></th>
                                                     <td> <%=c.getNome()%></td>
-                                                    <td> <%=c.getValor()%></td>
+                                                    <td> <%=z.format(c.getValor())%></td>
                                                     <td>  
                                                         <button id="alterarSenha" type="button" class="btn btn-primary btn-sm" 
                                                             data-toggle="modal" 

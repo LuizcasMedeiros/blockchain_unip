@@ -5,13 +5,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-    
-        int id_cliente = Integer.parseInt(request.getParameter("id_cliente"));
-   
-
-
-%>
 <!DOCTYPE html>
 <html lang="pt-br">
     <% String name = "Inserir endereço";%>
@@ -51,7 +44,7 @@
                                         <form name="inserir_perfil" action="inserir_cartao.do" method="post">
                                             <div class="form-row">
                                                 <div class="form-group col-sm-6">
-                                                    <input type="hidden" name="id_cliente" value="<%=id_cliente%>"
+                                                    <input type="hidden" name="id_cliente" value="<%=cLogado.getId()%>"
                                                     
                                                     <label for="selectBanco"> Banco: </label>
                                                     <!--<select class="form-control" name="banco" id="selectBanco">

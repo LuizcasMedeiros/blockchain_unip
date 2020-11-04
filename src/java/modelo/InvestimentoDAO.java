@@ -9,8 +9,8 @@ import java.util.ArrayList;
 public class InvestimentoDAO extends DataBaseDAO {
 
     public void inserir(Investimento in) throws Exception {
-        String sql = "INSERT INTO investimentos (data, valor, tipoCriptoativos_id, hora)"
-                + "VALUES (?, ?,?, ?)";
+        String sql = "INSERT INTO investimentos (data, valor, tipoCriptoativos_id, hora, cliente_id)"
+                + "VALUES (?, ?,?, ?, ?)";
 
         this.conectar();
 
@@ -19,6 +19,7 @@ public class InvestimentoDAO extends DataBaseDAO {
         pstm.setDouble(2, in.getValor());
         pstm.setInt(3, in.getCriptoativo().getId());
         pstm.setTime(4, in.getHora());
+        pstm.setInt(5, in.getCliente().getId());
         pstm.execute();
         this.desconectar();
     }
@@ -39,9 +40,15 @@ public class InvestimentoDAO extends DataBaseDAO {
             CriptoativoDAO cDAO = new CriptoativoDAO();
 
             in.setCriptoativo(cDAO.carregarPorId(rs.getInt("tipoCriptoativos_id")));
+            
+            
+            ClienteDAO clienteDAO = new ClienteDAO();
+            
+            in.setCliente(clienteDAO.carregarPorId(rs.getInt("cliente_id")));
 
             lista.add(in);
         }
+        pstm.close();
         this.desconectar();
         return lista;
     }
@@ -71,6 +78,8 @@ public class InvestimentoDAO extends DataBaseDAO {
             CriptoativoDAO cDAO = new CriptoativoDAO();
 
             in.setCriptoativo(cDAO.carregarPorId(rs.getInt("tipoCriptoativos_id")));
+            
+          
 
             listaj.add(in);
         }
@@ -104,7 +113,7 @@ public class InvestimentoDAO extends DataBaseDAO {
 
     public Investimento CarregarPorId (int id) throws Exception {
         Investimento in = new Investimento();
-        String sql = "SELECT * FROM investimento WHERE id=?";
+        String sql = "SELECT * FROM investimentos WHERE id=?";
         this.conectar();
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setInt(1, id);

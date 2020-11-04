@@ -16,7 +16,7 @@
    
     try{
        InvestimentoDAO iDAO = new InvestimentoDAO();
-       lista = iDAO.listarinner();
+       lista = iDAO.listar();
     }catch(Exception e){
         
         out.print("erro feio"+e);
@@ -71,7 +71,8 @@
                                                     <th scope="col">ID</th>
                                                     <th scope="col">Valor</th>
                                                     <th scope="col">Data e horario</th>
-                                                     <th scope="col">Nome do criptoativo</th>
+                                                    <th scope="col">Nome do criptoativo</th>
+                                                    <th scope="col"> Cliente que realizou</th>
                                                     <th scope="col">OPÇÕES</th>
                                                 </tr>
                                             </thead>
@@ -81,6 +82,7 @@
                                                     <th scope="col">Valor</th>
                                                     <th scope="col">Data e horario</th>
                                                     <th scope="col">Nome do criptoativo</th>
+                                                    <th scope="col"> Cliente que realizou</th>
                                                     <th scope="col">OPÇÕES</th>
                                                 </tr>
                                             </tfoot>
@@ -91,6 +93,7 @@
                                                     <td> <%=z.format(i.getValor())%></td>
                                                     <td> <%=df.format(i.getData())%> : <%=hr.format(i.getHora())%></td>
                                                     <td> <%=i.getCriptoativo().getNome()%></td>
+                                                    <td> <%=i.getCliente().getNome()%></td>
                                                     <td>  
                                                         <button  type="button" class="btn btn-primary btn-sm" 
                                                             data-toggle="modal" 
@@ -101,6 +104,16 @@
                                                         >
                                                              <i class="fas fa-pencil-alt"></i>
                                                         </button>
+                                                        
+                                                        
+                                                       
+                                                            
+                                                             <a href="realizar_operacoes.jsp?investimentos_id=<%=i.getId()%>"
+                                                                class="btn btn-info btn-sm" >
+                                                                 <i class="fas fa-calculator"></i>
+                                                             </a>
+                                                       
+                                                 
                                                     </td>
                                                 </tr>
 

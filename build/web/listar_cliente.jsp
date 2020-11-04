@@ -99,6 +99,7 @@
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                        <%out.print(cLogado.getNome());%>
                                     </span>
                                     <img class="img-profile rounded-circle" src="" alt="logo">
                                 </a>
@@ -155,10 +156,10 @@
                                             </tr>
                                         </tfoot>
                                         <% 
-                                             
+                                            
                                             for (Cliente c
                                                     : lista) {
-                                                
+                                                if(cLogado.getPerfil().getNome().equals("Admin")){
                                                     
                                         %>
                                         <tbody>
@@ -190,7 +191,7 @@
                                                         Cartão adicionado
                                                     </a>
                                                     <%} else {%>
-                                                    <a  href="adicionar_cartao.jsp?id_cliente=<%=c.getId()%>"class="btn btn-info btn-sm">
+                                                    <a  href="adicionar_cartao.jsp"class="btn btn-info btn-sm">
                                                         <i class="fas fa-search-dollar"></i>
                                                         <img src="assets/pag.png" alt="alterar"/>
                                                     </a>
@@ -199,7 +200,46 @@
                                         </tbody> <%
                                                 }
 
-                                            }%>
+                                                        }else if(c.getId() == cLogado.getId()){%>
+
+                                          <tbody>
+                                            <tr>
+                                                <td><%=c.getId()%></td>
+                                                <td> <%=c.getNome()%></td>
+                                                <td> <%=c.getEmail()%></td>
+                                                <td> <%=df.format(c.getData_nascimento())%></td>
+                                                <td> <%=c.getUser()%></td>
+                                                <td>  
+                                                    <a onclick="excluir('<%=c.getNome()%>', <%=c.getId()%>)"  class="btn btn-danger btn-sm">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                    <button  type="button" class="btn btn-primary btn-sm" 
+                                                        data-toggle="modal" 
+                                                        data-target="#ModalAlterarCliente"
+                                                        data-whatever="<%=c.getId()%>"
+                                                        data-whatevernome="<%=c.getNome()%>" 
+                                                        data-whateveremail="<%=c.getEmail()%>"  
+                                                        data-whatevercelular="<%=c.getCelular()%>"  
+                                                        data-whatevercpf="<%=c.getCpf()%>" 
+                                                        data-whateverdata_nascimento="<%=c.getData_nascimento()%>" 
+                                                         
+                                                    >
+                                                        <i class="fas fa-pencil-alt"></i>
+                                                    </button>
+                                                    <%if (c.getConta().getId() != 0) {%>
+                                                    <a  href="#"class="btn btn-info btn-sm">
+                                                        Cartão adicionado
+                                                    </a>
+                                                    <%} else {%>
+                                                    <a  href="adicionar_cartao.jsp"class="btn btn-info btn-sm">
+                                                        <i class="fas fa-search-dollar"></i>
+                                                        <img src="assets/pag.png" alt="alterar"/>
+                                                    </a>
+                                            </tr>
+
+                                        </tbody>          
+
+            <%}}}%>
                                     </table>
                                 </div>
                             </div>

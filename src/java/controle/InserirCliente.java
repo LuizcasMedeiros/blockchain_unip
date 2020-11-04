@@ -55,7 +55,7 @@ public class InserirCliente extends HttpServlet {
                 String cep = request.getParameter("cep");
                 String localidade = request.getParameter("localidade");
                 String bairro = request.getParameter("bairro");
-                String logadouro = request.getParameter("logadouro");
+                String logradouro = request.getParameter("logradouro");
                 String complemento = request.getParameter("complemento");
                 String uf = request.getParameter("uf");
                 
@@ -73,7 +73,7 @@ public class InserirCliente extends HttpServlet {
                     c.setCep(cep);
                     c.setLocalidade(localidade);
                     c.setBairro(bairro);
-                    c.setLogadouro(logadouro);
+                    c.setLogadouro(logradouro);
                     c.setComplemento(complemento);
                     c.setUf(uf);
                     c.setUser(user);

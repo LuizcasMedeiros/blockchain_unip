@@ -1,31 +1,25 @@
 <%-- 
-    Document   : realizar_investimento
-    Created on : 27/10/2020, 17:39:00
+    Document   : tipo_operacao
+    Created on : 04/11/2020, 10:09:17
     Author     : luizf
 --%>
 
-<%@page import="modelo.ContaDAO"%>
-<%@page import="modelo.Conta"%>
-<%@page import="modelo.ContratoDAO"%>
-<%@page import="modelo.Contrato"%>
-<%@page import="modelo.CriptoativoDAO"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="modelo.Criptoativo"%>
+<%@page import="java.text.NumberFormat"%>
+<%@page import="modelo.InvestimentoDAO"%>
+<%@page import="modelo.Investimento"%>
+<%@page import="modelo.Operacoes"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
+
 <%
-    ArrayList<Criptoativo> lista = new ArrayList<Criptoativo>();
-
-
-    try {
-        CriptoativoDAO cDAO = new CriptoativoDAO();
-        lista = cDAO.listar();
-    } catch (Exception e) {
-        out.print("error" + e);
-    }
-
+    session = request.getSession(); 
+    Operacoes op = (Operacoes) session.getAttribute("operacao");
+    NumberFormat z = NumberFormat.getCurrencyInstance();
 
 %>
+        
+    
 <html lang="pt-br">
     <% String name = "Inserir endereço";%>
     <jsp:include page="_head.jsp">
@@ -51,51 +45,43 @@
                     <div class="container-fluid">
 
                         <!-- Page Heading -->
-                        <h1 class="h3 mb-2 text-gray-800">Investimento</h1>
+                        <h1 class="h3 mb-2 text-gray-800">Operações </h1>
 
 
                         <!-- Content -->
                      
                         <div class="card shadow mb-4">
                              <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Inserir Investimento </h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Realizar Operações</h6>
                                 </div>
                             <div class="card-body">
                                 <div class="row justify-content-center pl-4 mt-4 mb-4">
                                     <div class="col-sm-12 col-md-10 col-lg-8">
-                                        <form  action="inserir_investimento.do" method="post">
+                                        <form  action="realizar_op.do" method="post">
                                             <div class="form-row">
                                                 <div class="form-group col-sm-4">
-                                                    <label for="inputValor"> Valor:</label>
-                                                    <input type="text" class="form-control" id="inputValor" placeholder="Valor em reais que deseja registrar em criptomoedas" name="valor" required />
+                                                    <label for="inputSaldo">Seu Saldo:</label>
+                                                    <input type="text" class="form-control" id="inputSaldo" value="<%=z.format(op.getInvestimento().getValor())%>" placeholder="Valor para realizar a operação" readonly required />
                                                 </div>
 
                                                 <div class="form-group col-sm-4">
-                                                    <label for="inputcriptoativo"> Nome do Criptoativo: </label>
-                                                    <input type="text" list="tipoConta" id="inputcriptoativo" class="form-control" id="inputcriptoativo" placeholder="Criptoativos" name="tipoCriptoativos_id" autocomplete="off" required />
-
-
-                                                    <datalist id="tipoConta">
-                                                        <%for (Criptoativo c : lista) {%>
-                                                        <option value="<%=c.getId()%>"><%=c.getNome()%><option>
-                                                            <%}%>
-                                                    </datalist>
+                                                    <label for="inputoperacao">Tipo de operação </label>
+                                                    <input type="text" class="form-control"  id="inputoperacao" value="<%=op.getDescricao()%>"  placeholder="Operações" autocomplete="off" required />   
                                                 </div>
 
+                                            </div>
+                                            <div class="form-row">
                                                 <div class="form-group col-sm-4">
-                                                    <label for="inputdate"> Data investimento: </label>
-                                                    <input type="date" class="form-control" id="inputdate" name="data"/>
+                                                    <label for="inputValor">Valor:</label>
+                                                    <input type="text" class="form-control" id="inputValor" name="valor_op" placeholder="Informe o valor para depositar" required />
                                                 </div>
-                                                <div class="form-group col-sm-2">
-                                                    <label for="inputtime">Hora </label>
-                                                    <input  type="time" class="form-control" id="inputtime" name="hora"/>
-                                                    <input type="hidden" name="cliente_id" value="<%=cLogado.getId()%>"/>
-                                                </div>
+                                                
+                                                
                                             </div>
 
                                             <div class="form-row">
                                                 <div class="col-sm-12">
-                                                    <input type="submit" class="btn btn-primary" value="Salvar"/>
+                                                    <input type="submit" class="btn btn-primary" value="Continuar"/>
                                                 </div>
                                             </div>
                                         </form>

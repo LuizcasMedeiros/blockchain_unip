@@ -7,24 +7,19 @@ package controle;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
-import java.sql.Time;
-import java.text.SimpleDateFormat;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Cliente;
-import modelo.Criptoativo;
-import modelo.CriptoativoDAO;
-import modelo.Investimento;
-import modelo.InvestimentoDAO;
+import javax.servlet.http.HttpSession;
+import modelo.Operacoes;
+import modelo.OperacoesDAO;
 
 /**
  *
  * @author luizf
  */
-public class InserirInvestimento extends HttpServlet {
+public class RealizarOp extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,60 +38,37 @@ public class InserirInvestimento extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet InserirInvestimento</title>");            
+            out.println("<title>Servlet RealizarOp</title>");            
             out.println("</head>");
             out.println("<body>");
+            
+             HttpSession session = request.getSession(); 
             try{
-                int tipoCriptoativos_id = Integer.parseInt(request.getParameter("tipoCriptoativos_id"));
-                int cliente_id= Integer.parseInt(request.getParameter("cliente_id"));
-                Double valor= Double.parseDouble(request.getParameter("valor"));
-                Date data = (Date) Date.valueOf(request.getParameter("data"));
-                String hora_modificada = request.getParameter("hora");
-                String segundos = ":00";
-                Time hora = (Time) Time.valueOf(hora_modificada+segundos);
+                Double valor_op = Double.parseDouble(request.getParameter("valor_op"));
+                Operacoes op = (Operacoes) session.getAttribute("operacao");
                 
-                if(valor !=0 && tipoCriptoativos_id !=0){
-                    Investimento in = new Investimento();
-                    InvestimentoDAO inDAO = new InvestimentoDAO();
+                
+                
+                if(valor_op != 0){
+                    OperacoesDAO opDAO = new OperacoesDAO();
+                    op.setValor(valor_op);
                     
-                    
-                    Criptoativo c = new Criptoativo();
-                    CriptoativoDAO cDAO = new CriptoativoDAO();
-                    c= cDAO.carregarPorId(tipoCriptoativos_id);
-                    
-                    in.setValor(valor);
-                    in.setData(data);
-                    in.setHora(hora);
-                    
-                    in.setValor(in.converteInvestimentoReais(valor, c.getValor()));
-                    
-                    
-                    
-                    Criptoativo cp = new Criptoativo();
-                    cp.setId(tipoCriptoativos_id);
-                    in.setCriptoativo(cp);
-                    
-                    
-                    Cliente cliente = new Cliente();
-                    cliente.setId(cliente_id);
-                    in.setCliente(cliente);
-                    
-                    
-                    
-                    
-                    
-                    inDAO.inserir(in);
-                    
-                    
-                    response.sendRedirect("listar_investimento.jsp");
+                      out.println(op.getInvestimento().getValor());
+                      out.println(op.getValor());
+                      
+                     op.getInvestimento().setValor(op.depositar(op.getValor(), op.getInvestimento().getValor()));
+                      
+                     out.print("soma: "+op.getInvestimento().getValor());
                     
                 }else{
-                    out.print("Algum campo obrigátorio não foi preenchido");
+                      out.println("Algum campo obrigátorio não foi preenchido");
                 }
+                    
                 
             }catch (Exception e){
-                out.print("error: "+e);
+                out.println("error:"+e);
             }
+                
             out.println("</body>");
             out.println("</html>");
         }

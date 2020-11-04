@@ -52,6 +52,14 @@
         <servlet-name>AlterarInvestimento</servlet-name>
         <servlet-class>controle.AlterarInvestimento</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RedirecionarOp</servlet-name>
+        <servlet-class>controle.RedirecionarOp</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RealizarOp</servlet-name>
+        <servlet-class>controle.RealizarOp</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InserirCliente</servlet-name>
         <url-pattern>/inserir_cliente.do</url-pattern>
@@ -103,6 +111,14 @@
     <servlet-mapping>
         <servlet-name>AlterarInvestimento</servlet-name>
         <url-pattern>/alterar_investimento.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RedirecionarOp</servlet-name>
+        <url-pattern>/redirecionar_op.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RealizarOp</servlet-name>
+        <url-pattern>/realizar_op.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

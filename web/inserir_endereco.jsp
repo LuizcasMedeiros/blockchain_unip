@@ -59,7 +59,7 @@
 
 
                                     <div class="form-group">
-                                        <input class="form-control form-control-user" id="rua" type="text" placeholder="Logadouro" name="logadouro"  required/> 
+                                        <input class="form-control form-control-user" id="rua" type="text" placeholder="Logradouro" name="logradouro"  required/> 
                                     </div>
 
                                     <div class="form-group">

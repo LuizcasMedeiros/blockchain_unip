@@ -7,11 +7,20 @@ import java.sql.Time;
 
 public class Operacoes {
    private int id;
-   private Date data;
-   private Time hora;
+   private Date data_hora;
    private String descricao;
+   private Double valor;
    private Investimento investimento;
+   
+   
 
+    public Double getValor() {
+        return valor;
+    }
+
+    public void setValor(Double valor) {
+        this.valor = valor;
+    }
     public Investimento getInvestimento() {
         return investimento;
     }
@@ -19,10 +28,6 @@ public class Operacoes {
     public void setInvestimento(Investimento investimento) {
         this.investimento = investimento;
     }
-   
-   
-   
-   
    
     public int getId() {
         return id;
@@ -32,21 +37,15 @@ public class Operacoes {
         this.id = id;
     }
 
-    public Date getData() {
-        return data;
+    public Date getData_hora() {
+        return data_hora;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setData_hora(Date data_hora) {
+        this.data_hora = data_hora;
     }
 
-    public Time getHora() {
-        return hora;
-    }
-
-    public void setHora(Time hora) {
-        this.hora = hora;
-    }
+ 
 
     public String getDescricao() {
         return descricao;
@@ -56,5 +55,18 @@ public class Operacoes {
         this.descricao = descricao;
     }
    
+    
+    public Double depositar (Double valorDeDeposito, Double valorTotal){
+           valorTotal = valorDeDeposito +  investimento.getValor();
+           investimento.setValor(valorTotal);
+           
+           return valorTotal;
+     }
+    
+    public void sacar (){}
+    
+    public void vender (){}
+    
+    public void comprar (){}
    
 }
