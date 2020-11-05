@@ -53,12 +53,12 @@ public class RealizarOp extends HttpServlet {
                     OperacoesDAO opDAO = new OperacoesDAO();
                     op.setValor(valor_op);
                     
-                      out.println(op.getInvestimento().getValor());
-                      out.println(op.getValor());
+                      out.println("<br>"+op.getInvestimento().getValor());
+                      out.println("<br>"+op.getValor());
                       
                      op.getInvestimento().setValor(op.depositar(op.getValor(), op.getInvestimento().getValor()));
                       
-                     out.print("soma: "+op.getInvestimento().getValor());
+                     out.print("<br>"+"soma:"+op.getInvestimento().getValor());
                     
                 }else{
                       out.println("Algum campo obrigátorio não foi preenchido");
