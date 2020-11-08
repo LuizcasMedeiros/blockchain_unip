@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/luizf/Documents/NetBeansProjects/Blockchain/web/error_page.jsp</file>
-            <file>file:/C:/Users/luizf/Documents/NetBeansProjects/Blockchain/web/banner.jsp</file>
-            <file>file:/C:/Users/luizf/Documents/NetBeansProjects/Blockchain/web/listar_menu.jsp</file>
             <file>file:/C:/Users/luizf/Documents/NetBeansProjects/Blockchain/src/java/controle/RealizarOp.java</file>
+            <file>file:/C:/Users/luizf/Documents/NetBeansProjects/Blockchain/src/java/modelo/OperacoesDAO.java</file>
+            <file>file:/C:/Users/luizf/Documents/NetBeansProjects/Blockchain/web/realizar_operacoes.jsp</file>
+            <file>file:/C:/Users/luizf/Documents/NetBeansProjects/Blockchain/src/java/modelo/Operacoes.java</file>
         </group>
     </open-files>
 </project-private>

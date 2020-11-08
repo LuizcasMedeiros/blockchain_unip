@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class OperacoesDAO extends DataBaseDAO{
     
     public void inserir(Operacoes op) throws Exception {
-        String sql = "INSERT INTO operacoes(data_hora, valor, descricao, investimento_id)"
+        String sql = "INSERT INTO operacoes(data_hora, valor, descricao, investimentos_id)"
                 + "VALUES (now(),?,?,?)";
 
         this.conectar();

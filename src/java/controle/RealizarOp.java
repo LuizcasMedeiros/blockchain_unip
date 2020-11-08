@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import modelo.Investimento;
+import modelo.InvestimentoDAO;
 import modelo.Operacoes;
 import modelo.OperacoesDAO;
 
@@ -49,21 +51,60 @@ public class RealizarOp extends HttpServlet {
                 
                 
                 
-                if(valor_op != 0){
+                if(valor_op != 0 && op.getDescricao().equals("Depositar")){
                     OperacoesDAO opDAO = new OperacoesDAO();
+                    
+                    InvestimentoDAO inDAO = new InvestimentoDAO();
+                    Investimento inv = new Investimento();
+                    
                     op.setValor(valor_op);
+                    op.setDescricao(op.getDescricao());
                     
-                      out.println("<br>"+op.getInvestimento().getValor());
-                      out.println("<br>"+op.getValor());
+                    opDAO.inserir(op);
+                    
+                    
+                    op.getInvestimento().setValor(op.depositar(op.getValor(), op.getInvestimento().getValor()));
+                    
+                    
+                    inv.setValor(op.getInvestimento().getValor());
+                    inv.setId(op.getInvestimento().getId());
                       
-                     op.getInvestimento().setValor(op.depositar(op.getValor(), op.getInvestimento().getValor()));
+                    
+                    inDAO.alterarValorOp(inv);
+                    
+                    
+                    session.removeAttribute("operacao");
+                    
+                    response.sendRedirect("listar_investimento.jsp");
+                }else if(valor_op != 0 && op.getDescricao().equals("Sacar")){
+                    OperacoesDAO opDAO = new OperacoesDAO();
+                    
+                    InvestimentoDAO inDAO = new InvestimentoDAO();
+                    Investimento inv = new Investimento();
+                    
+                    op.setValor(valor_op);
+                    op.setDescricao(op.getDescricao());
+                    
+                    opDAO.inserir(op);
+                    
+                    
+                    op.getInvestimento().setValor(op.sacar(op.getInvestimento().getValor(), op.getValor()));
+                    
+                    
+                    inv.setValor(op.getInvestimento().getValor());
+                    inv.setId(op.getInvestimento().getId());
                       
-                     out.print("<br>"+"soma:"+op.getInvestimento().getValor());
                     
-                }else{
-                      out.println("Algum campo obrigátorio não foi preenchido");
-                }
+                    inDAO.alterarValorOp(inv);
                     
+                    session.removeAttribute("operacao");
+                    
+                    response.sendRedirect("listar_investimento.jsp");
+                      
+                }else if(op.getDescricao().equals("Consultar"))
+                {
+                    response.sendRedirect("listar_operacoes_investimento.jsp");
+                }                    
                 
             }catch (Exception e){
                 out.println("error:"+e);

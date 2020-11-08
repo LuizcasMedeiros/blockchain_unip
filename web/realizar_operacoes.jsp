@@ -67,7 +67,7 @@
                                             <div class="form-row">
                                                 <div class="form-group col-sm-4">
                                                     <label for="inputValor">Saldo disponivel para operação:</label>
-                                                    <input type="text" class="form-control" id="inputValor" value="<%=z.format(inv.getValor())%>" placeholder="Valor para realizar a operação" readonly required />
+                                                    <input type="text" class="form-control" id="inputValor" value="<%=z.format(inv.getValor())%>"  readonly required />
                                                 </div>
 
                                                 <div class="form-group col-sm-4">

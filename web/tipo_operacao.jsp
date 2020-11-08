@@ -61,12 +61,12 @@
                                             <div class="form-row">
                                                 <div class="form-group col-sm-4">
                                                     <label for="inputSaldo">Seu Saldo:</label>
-                                                    <input type="text" class="form-control" id="inputSaldo" value="<%=z.format(op.getInvestimento().getValor())%>" placeholder="Valor para realizar a operação" readonly required />
+                                                    <input type="text" class="form-control" id="inputSaldo" value="<%=z.format(op.getInvestimento().getValor())%>"  readonly required />
                                                 </div>
 
                                                 <div class="form-group col-sm-4">
                                                     <label for="inputoperacao">Tipo de operação </label>
-                                                    <input type="text" class="form-control"  id="inputoperacao" value="<%=op.getDescricao()%>"  placeholder="Operações" autocomplete="off" required />   
+                                                    <input type="text" class="form-control"  id="inputoperacao" value="<%=op.getDescricao()%>"  placeholder="Operações"readonly  required />   
                                                 </div>
 
                                             </div>

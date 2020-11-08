@@ -110,6 +110,18 @@ public class InvestimentoDAO extends DataBaseDAO {
         pstm.close();
         this.desconectar();
     }
+    
+    public void alterarValorOp(Investimento in) throws Exception {
+        String sql = "UPDATE investimentos set valor=?"
+                + " WHERE id=?";
+        this.conectar();
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setDouble(1, in.getValor());
+        pstm.setInt(2, in.getId());
+        pstm.execute();
+        pstm.close();
+        this.desconectar();
+    }
 
     public Investimento CarregarPorId (int id) throws Exception {
         Investimento in = new Investimento();
