@@ -39,32 +39,40 @@ public class RedirecionarOp extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RedirecionarOp</title>");            
+            out.println("<title>Servlet RedirecionarOp</title>");
             out.println("</head>");
             out.println("<body>");
-            try{
+            try {
                 HttpSession session = request.getSession();
                 String descricao = request.getParameter("descricao_op");
                 int id_investimento = Integer.parseInt(request.getParameter("id_investimento"));
-                
-                if(!descricao.isEmpty()){
-                
-                Operacoes op = new Operacoes();
-                InvestimentoDAO invDAO = new InvestimentoDAO();
-                Investimento inv = new Investimento();
-                op.setDescricao(descricao);
-                inv = invDAO.CarregarPorId(id_investimento);
-                op.setInvestimento(inv);
-                
-                session.setAttribute("operacao", op);
-                
-                response.sendRedirect("tipo_operacao.jsp");
-                }else{
-                   out.println("algum campo obrigatorio nao preenchido"); 
+
+                if (!descricao.equals("Consultar")) {
+
+                    Operacoes op = new Operacoes();
+                    InvestimentoDAO invDAO = new InvestimentoDAO();
+                    Investimento inv = new Investimento();
+                    op.setDescricao(descricao);
+                    inv = invDAO.CarregarPorId(id_investimento);
+                    op.setInvestimento(inv);
+
+                    session.setAttribute("operacao", op);
+
+                    response.sendRedirect("tipo_operacao.jsp");
+                } else if (descricao.equals("Consultar")) {
+                    Operacoes op = new Operacoes();
+                    InvestimentoDAO invDAO = new InvestimentoDAO();
+                    Investimento inv = new Investimento();
+                    op.setDescricao(descricao);
+                    inv = invDAO.CarregarPorId(id_investimento);
+                    op.setInvestimento(inv);
+
+                    session.setAttribute("operacao", op);
+                    response.sendRedirect("listar_operacoes_investimento.jsp");
                 }
-            
-            }catch(Exception e){
-                out.println("error:"+e);
+
+            } catch (Exception e) {
+                out.println("error:" + e);
             }
             out.println("</body>");
             out.println("</html>");

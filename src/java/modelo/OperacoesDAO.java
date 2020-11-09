@@ -32,18 +32,30 @@ public class OperacoesDAO extends DataBaseDAO{
 
     public ArrayList<Operacoes> listar() throws Exception {
         ArrayList<Operacoes> lista = new ArrayList<Operacoes>();
-        String sql = "SELECT * FROM operacoes";
+        String sql = "SELECT op.*"+
+                     "FROM operacoes op "+
+                     "LEFT JOIN investimentos inv "+
+                     "ON inv.id = op.investimentos_id"; 
         this.conectar();
         PreparedStatement pstm = conn.prepareStatement(sql);
         ResultSet rs = pstm.executeQuery();
         while (rs.next()) {
-            Operacoes c = new Operacoes();
-            c.setId(rs.getInt("id"));
+            Operacoes op = new Operacoes();
+            op.setId(rs.getInt("id"));
+            op.setDescricao(rs.getString("descricao"));
+            op.setValor(rs.getDouble("valor"));
+            op.setData_hora(rs.getTimestamp("data_hora"));
+            
+            InvestimentoDAO invDAO = new InvestimentoDAO();
+            
+            
+            op.setInvestimento(invDAO.CarregarPorId(rs.getInt("investimentos_id")));
+			
            
             
           
 
-            lista.add(c);
+            lista.add(op);
         }
         this.desconectar();
         return lista;

@@ -3,11 +3,12 @@ package modelo;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
 
 
 public class Operacoes {
    private int id;
-   private Date data_hora;
+   private Timestamp data_hora;
    private String descricao;
    private Double valor;
    private Investimento investimento;
@@ -37,15 +38,13 @@ public class Operacoes {
         this.id = id;
     }
 
-    public Date getData_hora() {
+    public Timestamp getData_hora() {
         return data_hora;
     }
 
-    public void setData_hora(Date data_hora) {
+    public void setData_hora(Timestamp data_hora) {
         this.data_hora = data_hora;
     }
-
- 
 
     public String getDescricao() {
         return descricao;
