@@ -60,10 +60,11 @@ public class ClienteDAO extends DataBaseDAO {
         return lista;
     }
     public ArrayList<Cliente> pesquisarNome(String nome) throws Exception {
-        ArrayList<Cliente> lista = new ArrayList<>();
-        String sql = "SELECT c.*, co.id "
-                + "FROM cliente c "
-                + "LEFT JOIN conta co "
+        ArrayList<Cliente> lista = new ArrayList<>();  
+        
+          String sql = "SELECT co.id, c.* "
+                + "FROM conta co "
+                + "RIGHT JOIN cliente c " 
                 + "ON co.cliente_id = c.id "
                 + "WHERE c.nome LIKE ?";
         this.conectar();
@@ -73,15 +74,16 @@ public class ClienteDAO extends DataBaseDAO {
        
         while (rs.next()) {
             Cliente c = new Cliente();
-            c.setId(rs.getInt("id"));
+            ContaDAO coDAO = new ContaDAO();
+            
+            c.setConta(coDAO.CarregarPorId(rs.getInt(1)));
+            c.setId(rs.getInt(2));
             c.setNome(rs.getString("nome"));
             c.setCpf(rs.getString("Cpf"));
             c.setEmail(rs.getString("email"));
             c.setUser(rs.getString("user"));
             
-            ContaDAO coDAO = new ContaDAO();
-
-            c.setConta(coDAO.CarregarPorId(rs.getInt("id")));
+            
             
             PerfilDAO pdao = new PerfilDAO();
             c.setPerfil(pdao.carregarPorId(rs.getInt("perfil_id")));
@@ -94,27 +96,32 @@ public class ClienteDAO extends DataBaseDAO {
 
     public ArrayList<Cliente> listarJoin() throws Exception {
         ArrayList<Cliente> lista = new ArrayList<Cliente>();
-        String sql = "SELECT c.*, co.id "
-                + "FROM cliente c "
-                + "LEFT JOIN conta co "
+        String sql = "SELECT co.id, c.* "
+                + "FROM conta co "
+                + "RIGHT JOIN cliente c " 
                 + "ON co.cliente_id = c.id";
         this.conectar();
         PreparedStatement pstm = conn.prepareStatement(sql);
         ResultSet rs = pstm.executeQuery();
         while (rs.next()) {
             Cliente c = new Cliente();
-            c.setId(rs.getInt("id"));
+            ContaDAO cDAO = new ContaDAO();
+            
+            c.setConta(cDAO.CarregarPorId(rs.getInt(1)));
+            
+            c.setId(rs.getInt(2));
             c.setNome(rs.getString("nome"));
             c.setCpf(rs.getString("Cpf"));
             c.setEmail(rs.getString("email"));
             c.setUser(rs.getString("user"));
             c.setCelular(rs.getString("celular"));
             c.setData_nascimento(rs.getDate("data_nascimento"));
+           
             
 
-            ContaDAO coDAO = new ContaDAO();
+           
 
-            c.setConta(coDAO.CarregarPorId(rs.getInt("id")));
+         
 
             PerfilDAO pdao = new PerfilDAO();
             c.setPerfil(pdao.carregarPorId(rs.getInt("perfil_id")));

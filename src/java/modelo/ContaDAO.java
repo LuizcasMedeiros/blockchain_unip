@@ -63,7 +63,9 @@ public class ContaDAO extends DataBaseDAO{
             co.setBanco(rs.getString("banco"));
             co.setContaBancaria(rs.getString("contaBancaria"));
             co.setNomeCartao(rs.getString("nomeCartao"));
-            co.setTipo(rs.getString("tipo"));;
+            co.setAgencia(rs.getString("agencia"));
+            co.setTipo(rs.getString("tipo"));
+            co.setDataExpiracao(rs.getDate("dataExpiracao"));
             ClienteDAO cDAO = new ClienteDAO();
             
             co.setCliente(cDAO.carregarPorId(rs.getInt("cliente_id")));

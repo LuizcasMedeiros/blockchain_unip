@@ -1,3 +1,7 @@
+<%@page import="modelo.PerfilDAO"%>
+<%@page import="modelo.Perfil"%>
+<%@page import="modelo.Conta"%>
+<%@page import="modelo.ContaDAO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
@@ -10,7 +14,9 @@
     ArrayList<Cliente> lista = new ArrayList<Cliente>();
     try {
         ClienteDAO cDAO = new ClienteDAO();
+        ContaDAO coDAO = new ContaDAO();
         lista = cDAO.listarJoin();
+        
     } catch (Exception e) {
         out.print("error" + e);
     }
@@ -188,19 +194,20 @@
                                                     </button>
                                                     <%if (c.getConta().getId() != 0) {%>
                                                     <a  href="#"class="btn btn-info btn-sm">
-                                                        Cartão adicionado
+                                                        Conta já adicioanda.
                                                     </a>
-                                                    <%} else {%>
+                                                    <%} else if(c.getConta().getId() == 0 && c.getId() == (cLogado.getId())){%>
                                                     <a  href="adicionar_cartao.jsp"class="btn btn-info btn-sm">
                                                         <i class="fas fa-search-dollar"></i>
                                                         <img src="assets/pag.png" alt="alterar"/>
                                                     </a>
+                                                   <%}else{%>
+                                                   
+                                                   
+                                                   <%}%>
                                             </tr>
 
-                                        </tbody> <%
-                                                }
-
-                                                        }else if(c.getId() == cLogado.getId()){%>
+                                        </tbody>  <%}else if(c.getId() == cLogado.getId()){%>
 
                                           <tbody>
                                             <tr>
