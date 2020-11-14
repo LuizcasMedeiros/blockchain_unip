@@ -66,28 +66,7 @@
                                             <input type="password" id="confirmarSenha" class="form-control form-control-user"  placeholder="Confirmar Senha" minlength="3"  maxlength="16"  required/>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-6 ">
-                                            <label for="inputPerfil">Perfil:</label>
-                                            <select class="form-control" id="inputPerfil" name="perfil" required>
-                                                <option selected>Escolha...</option>
-                                                <% ArrayList<Perfil> lista = new ArrayList<Perfil>();
-                                                    PerfilDAO pDAO = new PerfilDAO();
-                                                    try {
-                                                        lista = pDAO.listar();
-                                                    } catch (Exception e) {
-                                                        out.print("Erro:" + e);
-                                                    }
-
-                                                    for (Perfil p : lista) {
-                                                %>
-                                                <option value="<%=p.getId()%>"><%=p.getNome()%></option>               
-                                                <%
-                                                    }
-                                                %>                                  
-                                            </select>
-                                        </div>
-                                    </div>
+                                  
                                     <div class="form-group">
                                         <input class="form-control btn btn-primary btn-user btn-blocky" type="submit" value="Registar" />
                                     </div>

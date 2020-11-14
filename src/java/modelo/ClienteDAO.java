@@ -10,7 +10,7 @@ public class ClienteDAO extends DataBaseDAO {
     public void inserir(Cliente c) throws Exception {
         String sql = "INSERT INTO cliente (nome, email, cep, localidade, bairro, complemento,logradouro,"
                 + "uf, user, senha, cpf, celular, data_nascimento, data_inclusao, perfil_id)"
-                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,now(),?)";
+                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,now(),2)";
 
         this.conectar();
 
@@ -74,17 +74,24 @@ public class ClienteDAO extends DataBaseDAO {
        
         while (rs.next()) {
             Cliente c = new Cliente();
-            ContaDAO coDAO = new ContaDAO();
+            ContaDAO cDAO = new ContaDAO();
             
-            c.setConta(coDAO.CarregarPorId(rs.getInt(1)));
+            c.setConta(cDAO.CarregarPorId(rs.getInt(1)));
+            
             c.setId(rs.getInt(2));
             c.setNome(rs.getString("nome"));
             c.setCpf(rs.getString("Cpf"));
             c.setEmail(rs.getString("email"));
             c.setUser(rs.getString("user"));
+            c.setCelular(rs.getString("celular"));
+            c.setData_nascimento(rs.getDate("data_nascimento"));
+           
             
-            
-            
+
+           
+
+         
+
             PerfilDAO pdao = new PerfilDAO();
             c.setPerfil(pdao.carregarPorId(rs.getInt("perfil_id")));
             lista.add(c);

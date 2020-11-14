@@ -14,7 +14,6 @@
     ArrayList<Cliente> lista = new ArrayList<Cliente>();
     try {
         ClienteDAO cDAO = new ClienteDAO();
-        ContaDAO coDAO = new ContaDAO();
         lista = cDAO.listarJoin();
         
     } catch (Exception e) {
@@ -202,8 +201,9 @@
                                                         <img src="assets/pag.png" alt="alterar"/>
                                                     </a>
                                                    <%}else{%>
-                                                   
-                                                   
+                                                     <a  href="#"class="btn btn-danger btn-sm">
+                                                        Conta Pendente.
+                                                     </a>
                                                    <%}%>
                                             </tr>
 

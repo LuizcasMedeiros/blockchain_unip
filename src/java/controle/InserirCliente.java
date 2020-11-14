@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Cliente;
 import modelo.ClienteDAO;
-import modelo.Perfil;
 
 /**
  *
@@ -44,7 +43,6 @@ public class InserirCliente extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             try{
-                int perfil = Integer.parseInt(request.getParameter("perfil"));
                 String nome = request.getParameter("nome");
                 String email = request.getParameter("email");
                 String user = request.getParameter("user");
@@ -79,12 +77,7 @@ public class InserirCliente extends HttpServlet {
                     c.setUser(user);
                     c.setSenha(senha);
                     
-                    Perfil p = new Perfil();
-                    
-                    p.setId(perfil);
-                    
-                    c.setPerfil(p);
-                    
+                  
                     c.setSenha(c.criptografarSenha(senha));
                     
                     cDAO.inserir(c);
