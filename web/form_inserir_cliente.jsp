@@ -1,6 +1,4 @@
-<%@page import="modelo.PerfilDAO"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="modelo.Perfil"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -66,7 +64,7 @@
                                             <input type="password" id="confirmarSenha" class="form-control form-control-user"  placeholder="Confirmar Senha" minlength="3"  maxlength="16"  required/>
                                         </div>
                                     </div>
-                                  
+                                    
                                     <div class="form-group">
                                         <input class="form-control btn btn-primary btn-user btn-blocky" type="submit" value="Registar" />
                                     </div>

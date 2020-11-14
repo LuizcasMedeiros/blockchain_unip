@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Cliente;
 import modelo.ClienteDAO;
+import modelo.Perfil;
 
 /**
  *
@@ -76,13 +77,13 @@ public class InserirCliente extends HttpServlet {
                     c.setUf(uf);
                     c.setUser(user);
                     c.setSenha(senha);
+                   
                     
-                  
                     c.setSenha(c.criptografarSenha(senha));
                     
                     cDAO.inserir(c);
                     
-                    response.sendRedirect("listar_cliente.jsp");
+                    response.sendRedirect("login.jsp");
                 }else{
                     out.println("Algum campo obrigátorio não foi preenchido");
                 }

@@ -14,7 +14,7 @@
     String senha = request.getParameter("senha");
     String celular = request.getParameter("celular");
     String data_nascimento = request.getParameter("data_nascimento");
-    String perfil = request.getParameter("perfil");
+   
 
 %>
 <html>
@@ -43,7 +43,7 @@
                                     <input type="hidden" name="data_nascimento" value="<%=data_nascimento%>">
                                     <input type="hidden" name="cpf" value="<%=cpf%>">
                                     <input type="hidden" name="senha" value="<%=senha%>">
-                                    <input type="hidden" name="perfil" value="<%=perfil%>">
+                                  
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
                                             <input class="form-control form-control-user" id="cep" type="text"  placeholder="Cep" name="cep"  maxlength="9" OnKeyPress="formatar('#####-###', this)"   required/> 

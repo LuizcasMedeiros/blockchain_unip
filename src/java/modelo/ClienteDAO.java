@@ -28,7 +28,6 @@ public class ClienteDAO extends DataBaseDAO {
         pstm.setString(11, c.getCpf());
         pstm.setString(12, c.getCelular());
         pstm.setDate(13, (Date) c.getData_nascimento());
-        pstm.setInt(14, c.getPerfil().getId());
         pstm.execute();
         this.desconectar();
     }

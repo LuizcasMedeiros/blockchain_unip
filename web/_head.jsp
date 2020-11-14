@@ -66,8 +66,7 @@
         
         
         
-        <!--Scripts personalizados de nível de página ->
-        <!-- 
+    
         <script src ="javascript/js/demo/chart-area-demo.js" defer> </script>
         <script src ="javascript/js/demo/chart-pie-demo.js" defer> </script>
         -->
