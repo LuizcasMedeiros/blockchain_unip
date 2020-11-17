@@ -60,6 +60,10 @@
         <servlet-name>RealizarOp</servlet-name>
         <servlet-class>controle.RealizarOp</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>InserirFuncionario</servlet-name>
+        <servlet-class>controle.InserirFuncionario</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InserirCliente</servlet-name>
         <url-pattern>/inserir_cliente.do</url-pattern>
@@ -119,6 +123,10 @@
     <servlet-mapping>
         <servlet-name>RealizarOp</servlet-name>
         <url-pattern>/realizar_op.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InserirFuncionario</servlet-name>
+        <url-pattern>/inserir_funcionario.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

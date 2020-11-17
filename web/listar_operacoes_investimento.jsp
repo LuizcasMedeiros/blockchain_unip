@@ -4,6 +4,7 @@
     Author     : luizf
 --%>
 
+<%@page import="java.text.NumberFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="modelo.OperacoesDAO"%>
 <%@page import="modelo.Operacoes"%>
@@ -11,7 +12,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
+  session = request.getSession();  
+  Operacoes opS = (Operacoes) session.getAttribute("operacao");
   ArrayList<Operacoes> lista = new ArrayList<Operacoes>();  
+  NumberFormat z = NumberFormat.getCurrencyInstance();
+  out.print("id"+opS.getInvestimento().getId());
+  
 
   try{
       OperacoesDAO opDAO = new OperacoesDAO();
@@ -73,32 +79,36 @@
                                                     <th scope="col">ID</th>
                                                     <th scope="col">Valor</th>
                                                     <th scope="col">Data e horario</th>
+                                                    <th scope="col">Descrição da operação</th>
                                                     <th scope="col">Nome do criptoativo</th>
-                                                    <th scope="col">Cliente que realizou</th>
                                                 </tr>
                                             </thead>
                                             <tfoot>
                                                 <tr>
                                                     <th scope="col">ID</th>
-                                                    <th scope="col">Valo</th>
+                                                    <th scope="col">Valor</th>
                                                     <th scope="col">Data e horario da operação</th>
                                                     <th scope="col">Nome do criptoativo</th>
                                                     <th scope="col"> Cliente que realizou</th>
                                                 </tr>
                                             </tfoot>
-                                            <% for (Operacoes op : lista) {%>
+                                            <% for (Operacoes op : lista) 
+                                                 if(op.getInvestimento().getId() == opS.getInvestimento().getId()){
+                                            
+                                            {%>
                                             <tbody>
                                                 <tr>
                                                     <td scope="row"><%=op.getId()%></td>
                                                    
                                                  
-                                                    <td><%=op.getInvestimento().getId()%></td>
+                                                    <td><%=z.format(op.getInvestimento().getValor())%></td>
                                                     <td><%=sdf.format(op.getData_hora())%></td>
                                                     <td><%=op.getDescricao()%></td>
                                                     <td><%=op.getInvestimento().getCriptoativo().getNome()%></td>
+                                                    
                                                 </tr>
 
-                                            </tbody> <%}%>
+                                            </tbody> <%}}%>
                                         </table>
                                     </div>
                                 </div>

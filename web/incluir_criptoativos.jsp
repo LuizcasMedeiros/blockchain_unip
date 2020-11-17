@@ -31,7 +31,7 @@
                     <div class="container-fluid">
 
                         <!-- Page Heading -->
-                        <h1 class="h3 mb-2 text-gray-800">Inserir Criptoativos</h1>
+                        <h1 class="h3 mb-2 text-gray-800">Criptoativos</h1>
 
 
                         <!-- Content -->
@@ -106,7 +106,7 @@
                     <div class="modal-body">Tem certeza que deseja sair?</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                        <a class="btn btn-primary" href="login.html">Sair</a>
+                        <a class="btn btn-primary" href="logoff.jsp">Sair</a>
                     </div>
                 </div>
             </div>

@@ -1,31 +1,11 @@
 <%-- 
-    Document   : realizar_operacoes
-    Created on : 02/11/2020, 16:49:28
+    Document   : incluir_contrato
+    Created on : 16/11/2020, 07:13:50
     Author     : luizf
 --%>
 
-<%@page import="java.text.NumberFormat"%>
-<%@page import="modelo.InvestimentoDAO"%>
-<%@page import="modelo.Investimento"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%
-    Investimento inv = new Investimento();
-    
-    try{
-        int investimentos_id = Integer.parseInt(request.getParameter("investimentos_id"));
-        
-        InvestimentoDAO invDAO = new InvestimentoDAO();
-        inv = invDAO.CarregarPorId(investimentos_id);
-        
-    }catch (Exception e){
-        out.println("Erro"+e);
-    }
-%>
-<%
-    NumberFormat z = NumberFormat.getCurrencyInstance();
-
-%>
 <html lang="pt-br">
     <% String name = "Inserir endereço";%>
     <jsp:include page="_head.jsp">
@@ -51,74 +31,58 @@
                     <div class="container-fluid">
 
                         <!-- Page Heading -->
-                        <h1 class="h3 mb-2 text-gray-800">Operações </h1>
+                        <h1 class="h3 mb-2 text-gray-800">Contratos</h1>
 
 
                         <!-- Content -->
-                     
                         <div class="card shadow mb-4">
-                             <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Realizar Operações</h6>
-                                </div>
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Incluir Contratos</h6>
+                            </div>
                             <div class="card-body">
                                 <div class="row justify-content-center pl-4 mt-4 mb-4">
                                     <div class="col-sm-12 col-md-10 col-lg-8">
-                                        <form  action="redirecionar_op.do" method="post">
+                                        <form  action="inserir_contrato.do" method="post">
+                                            <div class="form-row">
+                                                
+                                                <div class="form-group col-sm-4">
+                                                    <label for="inputDatain"> Data de Inicio: </label>
+                                                    <input type="date" class="form-control" id="inputDataininputNome"  name="data_inclusao"  required />
+                                                </div>
+
+                                                <div class="form-group col-sm-4">
+                                                    <label for="inputDatafinal"> Data final: </label>
+                                                    <input type="date" class="form-control" id="inputDatafinal"  name="data_encerreamento"  required />
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                 <div class="form-group col-sm-8">
+                                                    <label for="inputDescricao">Descrição: </label>
+                                                    <textarea class="form-control" id="inputDescricao"  placehodler="Descrição" name="descricao"  required>
+
+                                                    </textarea>
+                                                </div>
+                                            </div>    
                                             <div class="form-row">
                                                 <div class="form-group col-sm-4">
-                                                    <label for="inputValor">Saldo disponivel para operação:</label>
-                                                    <input type="text" class="form-control" id="inputValor" value="<%=z.format(inv.getValor())%>"  readonly required />
+                                                        <label for="inputValor"> Valor: </label>
+                                                        <input type="text" class="form-control" id="inputValor" placeholder="Valor do contrato" name="valor" autocomplete="off" required />
                                                 </div>
-
-                                                <div class="form-group col-sm-4">
-                                                    <label for="inputoperacao">Tipo de operação </label>
-                                                    <input type="text" class="form-control"  id="inputoperacao" list="tipoOperacao"  placeholder="Operações" name="descricao_op" autocomplete="off" required />
-
-                                                    <input type="hidden" name="id_investimento" value="<%=inv.getId()%>"/>
-                                                    <datalist id="tipoOperacao">
-                                                     
-                                                        <option value="Depositar"></option>
-                                                        <option value="Comprar"></option>
-                                                        <option value="Sacar"></option>
-                                                        <option value="Vender"></option>
-                                                        <option value="Consultar"></option>
-                                                          
-                                                    </datalist>
-                                                </div>
-
                                             </div>
-
                                             <div class="form-row">
                                                 <div class="col-sm-12">
-                                                    <input type="submit" class="btn btn-primary" value="Continuar"/>
+                                                    <input type="submit" class="btn btn-primary" value="Salvar"/>
                                                 </div>
                                             </div>
                                         </form>
                                     </div>
                                 </div> 
                             </div>
-                            
-                         <!--
-                            <div class="card-body">
-                                <div class="row justify-content-center pl-4 mt-4 mb-4">
-                                    <h6>Adicione uma conta para o seu perfil para continuar</h6>
-                                    <button  type="button" class="btn btn-primary btn-sm">
-                                          <i class="fas fa-search-dollar"></i>
-                                    </button>
-                                </div> 
-                            </div>
-                          -->  
-                      
-                         
                         </div>
 
                     </div>
                     <!--Final do container  -->
-
-                </div>
-                <!-- End of Main Content -->
-
-                <!-- Footer -->
+                      <!-- Footer -->
                 <footer class="sticky-footer bg-white">
                     <div class="container my-auto">
                         <div class="copyright text-center my-auto">
@@ -128,6 +92,11 @@
                 </footer>
                 <!-- End of Footer -->
 
+
+                </div>
+                <!-- End of Main Content -->
+
+              
             </div>
             <!-- End of Content Wrapper -->
 
@@ -158,5 +127,4 @@
             </div>
         </div>
     </body>
-
 </html>

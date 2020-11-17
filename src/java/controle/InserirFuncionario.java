@@ -7,20 +7,19 @@ package controle;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Cliente;
-import modelo.ClienteDAO;
-
+import javax.servlet.http.HttpSession;
+import modelo.Funcionario;
+import modelo.FuncionarioDAO;
 
 /**
  *
  * @author luizf
  */
-public class InserirCliente extends HttpServlet {
+public class InserirFuncionario extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,24 +32,18 @@ public class InserirCliente extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("utf-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet InserirCliente</title>");            
+            out.println("<title>Servlet InserirFuncionario</title>");
             out.println("</head>");
             out.println("<body>");
-            try{
-                String nome = request.getParameter("nome");
-                String email = request.getParameter("email");
-                String user = request.getParameter("user");
-                String senha= request.getParameter("senha");
-                String cpf = request.getParameter("cpf");
-                String celular= request.getParameter("celular");
-                Date data_nascimento = (Date) Date.valueOf(request.getParameter("data_nascimento"));
+            HttpSession session = request.getSession();
+            try {
                 String cep = request.getParameter("cep");
                 String localidade = request.getParameter("localidade");
                 String bairro = request.getParameter("bairro");
@@ -58,39 +51,46 @@ public class InserirCliente extends HttpServlet {
                 String complemento = request.getParameter("complemento");
                 String uf = request.getParameter("uf");
                 
-                        
-                
-                if(!nome.isEmpty() && !email.isEmpty()){
-                    Cliente c = new Cliente();
-                    ClienteDAO cDAO = new ClienteDAO();
+                if (!cep.isEmpty() && !logradouro.isEmpty()) {
+                    Funcionario f = (Funcionario) session.getAttribute("funcionario");
+                    FuncionarioDAO fDAO = new FuncionarioDAO();
                     
-                    c.setNome(nome);
-                    c.setCpf(cpf);
-                    c.setCelular(celular);
-                    c.setData_nascimento(data_nascimento);
-                    c.setEmail(email); 
-                    c.setCep(cep);
-                    c.setLocalidade(localidade);
-                    c.setBairro(bairro);
-                    c.setLogadouro(logradouro);
-                    c.setComplemento(complemento);
-                    c.setUf(uf);
-                    c.setUser(user);
-                    c.setSenha(senha);
-                   
+                    Funcionario funcionario = new Funcionario();
+                    funcionario.setCep(cep);
+                    funcionario.setLocalidade(localidade);
+                    funcionario.setBairro(bairro);
+                    funcionario.setComplemento(complemento);
+                    funcionario.setUf(uf);
+                    funcionario.setLogradouro(logradouro);
+                    funcionario.setNome(f.getNome());
+                    funcionario.setCpf(f.getCpf());
+                    funcionario.setRg(f.getRg());
+                    funcionario.setTelefone(f.getTelefone());
+                    funcionario.setEstadoCivil(f.getEstadoCivil());
+                    funcionario.setQtd_filhos(f.getQtd_filhos());
+                    funcionario.setAfiliacao(f.getAfiliacao());
+                    funcionario.setCtps(f.getCtps());
+                    funcionario.setPis(f.getPis());
+                    funcionario.setCargo(f.getCargo());
+                    funcionario.setSetor(f.getSetor());
+                    funcionario.setEmail(f.getEmail());
+                    funcionario.setSenha(f.getSenha());
+                    funcionario.setData_nascimento(f.getData_nascimento());
+                    funcionario.setData_admissao(f.getData_admissao());
                     
-                    c.setSenha(c.criptografarSenha(senha));
+                    funcionario.setSenha(f.criptografarSenha(f.getSenha()));
                     
-                    cDAO.inserir(c);
+                    fDAO.inserir(funcionario);
                     
-                    response.sendRedirect("login.jsp");
-                }else{
-                    out.println("Algum campo obrigátorio não foi preenchido");
+                    session.removeAttribute("funcionario");
+                    response.sendRedirect("listar_funcionarios.jsp");
+                } else {
+                    out.print("Algum campo obrigatorio não foi preenchido");
                 }
-                    
-                
-            }catch (Exception e){
-                out.println("Error"+e);
+
+              
+            } catch (Exception e) {
+                out.print("error:" + e);
             }
             out.println("</body>");
             out.println("</html>");

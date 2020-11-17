@@ -1,32 +1,132 @@
 package modelo;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
 import java.util.Date;
 
 
 public class Funcionario {
-    private int id;
+    private int matricula;
     private String nome;
     private String cpf;
-    private String matricula;
     private String rg;
     private String setor;
+    private String cargo;
+    private String ctps;
+    private String pis;
+    private String email;
     private String cep;
     private String localidade;
     private String bairro;
-    private String logadouro;
+    private String logradouro;
+    private String uf;
     private String complemento;
     private String telefone;
     private String senha;
     private String estadoCivil;
-    private Date data_inclusao;
+    private String afiliacao;
+    private Date data_admissao;
+    private Date data_nascimento;
+    private int qtd_filhos;
+    private Perfil perfil;
     private Conta conta;
 
-    public int getId() {
-        return id;
+    public Conta getConta() {
+        return conta;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setConta(Conta conta) {
+        this.conta = conta;
+    }
+    
+    
+
+    public Date getData_nascimento() {
+        return data_nascimento;
+    }
+
+    public void setData_nascimento(Date data_nascimento) {
+        this.data_nascimento = data_nascimento;
+    }
+    
+    
+
+    public String getUf() {
+        return uf;
+    }
+
+    public void setUf(String uf) {
+        this.uf = uf;
+    }
+    
+    
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+
+    public String getCtps() {
+        return ctps;
+    }
+
+    public void setCtps(String ctps) {
+        this.ctps = ctps;
+    }
+
+    public String getPis() {
+        return pis;
+    }
+
+    public void setPis(String pis) {
+        this.pis = pis;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    
+
+    public String getAfiliacao() {
+        return afiliacao;
+    }
+
+    public void setAfiliacao(String afiliacao) {
+        this.afiliacao = afiliacao;
+    }
+   
+    
+
+    public int getQtd_filhos() {
+        return qtd_filhos;
+    }
+
+    public void setQtd_filhos(int qtd_filhos) {
+        this.qtd_filhos = qtd_filhos;
+    }
+
+    public Perfil getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
+    }
+
+    public int getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(int matricula) {
+        this.matricula = matricula;
     }
 
     public String getNome() {
@@ -45,13 +145,15 @@ public class Funcionario {
         this.cpf = cpf;
     }
 
-    public String getMatricula() {
-        return matricula;
+    public String getLogradouro() {
+        return logradouro;
     }
 
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
     }
+
+    
 
     public String getRg() {
         return rg;
@@ -93,13 +195,7 @@ public class Funcionario {
         this.bairro = bairro;
     }
 
-    public String getLogadouro() {
-        return logadouro;
-    }
 
-    public void setLogadouro(String logadouro) {
-        this.logadouro = logadouro;
-    }
 
     public String getComplemento() {
         return complemento;
@@ -133,22 +229,24 @@ public class Funcionario {
         this.estadoCivil = estadoCivil;
     }
 
-    public Date getData_inclusao() {
-        return data_inclusao;
+    public Date getData_admissao() {
+        return data_admissao;
     }
 
-    public void setData_inclusao(Date data_inclusao) {
-        this.data_inclusao = data_inclusao;
-    }
-
-    public Conta getConta() {
-        return conta;
-    }
-
-    public void setConta(Conta conta) {
-        this.conta = conta;
+    public void setData_admissao(Date data_admissao) {
+        this.data_admissao = data_admissao;
     }
     
+      public String criptografarSenha(String senha){
+        MessageDigest md;
+        String retorno = "";
+        try {
+            md = MessageDigest.getInstance("MD5");
+            BigInteger hash = new BigInteger(1, md.digest(senha.getBytes()));
+            retorno = hash.toString(16);
+        } catch (Exception e) {}
+        return retorno;
+    }
     
 }
 

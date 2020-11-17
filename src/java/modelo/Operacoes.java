@@ -74,7 +74,21 @@ public class Operacoes {
         return valorTotal;
     }
     
-    public void vender (){}
+    public Double vender (Double valorVenda, Double valorTotal){
+            if(valorTotal >= valorVenda){
+                valorTotal = investimento.getValor() - valorVenda;
+                investimento.setValor(valorTotal);
+        }else{
+            return 0.0;
+        }
+            
+            
+        return valorTotal;
+    }
+    
+    
+    
+    
     
     public void comprar (){}
    

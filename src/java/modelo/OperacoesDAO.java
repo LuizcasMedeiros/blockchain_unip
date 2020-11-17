@@ -86,17 +86,29 @@ public class OperacoesDAO extends DataBaseDAO{
     
 
     public Operacoes carregarPorId(int id) throws Exception {
+        ArrayList<Operacoes> lista = new ArrayList<Operacoes>();
         Operacoes op = new Operacoes();
         String sql = "SELECT * FROM cliente WHERE id=?";
         this.conectar();
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setInt(1, id);
         ResultSet rs = pstm.executeQuery();
-        if (rs.next()) {
+        while (rs.next()) {
             op.setId(rs.getInt("id"));
-           
-
+            op.setDescricao(rs.getString("descricao"));
+            op.setValor(rs.getDouble("valor"));
+            op.setData_hora(rs.getTimestamp("data_hora"));
             
+            InvestimentoDAO invDAO = new InvestimentoDAO();
+            
+            
+            op.setInvestimento(invDAO.CarregarPorId(rs.getInt("investimentos_id")));
+			
+           
+            
+          
+
+            lista.add(op);
         }
         this.desconectar();
         return op;
