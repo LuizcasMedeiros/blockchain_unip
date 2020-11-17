@@ -12,7 +12,19 @@ public class Conta {
      private Date dataExpiracao;
      private String tipo;
      private Cliente cliente;
+     private Funcionario Funcionario;
 
+    public Funcionario getFuncionario() {
+        return Funcionario;
+    }
+
+    public void setFuncionario(Funcionario Funcionario) {
+        this.Funcionario = Funcionario;
+    }
+     
+     
+     
+    
     public Cliente getCliente() {
         return cliente;
     }

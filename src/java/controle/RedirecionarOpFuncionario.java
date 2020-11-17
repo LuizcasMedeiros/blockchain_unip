@@ -12,14 +12,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import modelo.Funcionario;
-import modelo.FuncionarioDAO;
+import modelo.Investimento;
+import modelo.InvestimentoDAO;
+import modelo.Operacoes;
 
 /**
  *
  * @author luizf
  */
-public class InserirFuncionario extends HttpServlet {
+public class RedirecionarOpFuncionario extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,64 +34,44 @@ public class InserirFuncionario extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        response.setCharacterEncoding("utf-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet InserirFuncionario</title>");
+            out.println("<title>Servlet RedirecionarOpFuncionario</title>");            
             out.println("</head>");
             out.println("<body>");
-            HttpSession session = request.getSession();
             try {
-                String cep = request.getParameter("cep");
-                String localidade = request.getParameter("localidade");
-                String bairro = request.getParameter("bairro");
-                String logradouro = request.getParameter("logradouro");
-                String complemento = request.getParameter("complemento");
-                String uf = request.getParameter("uf");
-                
-                if (!cep.isEmpty() && !logradouro.isEmpty()) {
-                    Funcionario f = (Funcionario) session.getAttribute("funcionario_cadastro");
-                    FuncionarioDAO fDAO = new FuncionarioDAO();
-                    
-                    Funcionario funcionario = new Funcionario();
-                    funcionario.setCep(cep);
-                    funcionario.setLocalidade(localidade);
-                    funcionario.setBairro(bairro);
-                    funcionario.setComplemento(complemento);
-                    funcionario.setUf(uf);
-                    funcionario.setLogradouro(logradouro);
-                    funcionario.setNome(f.getNome());
-                    funcionario.setCpf(f.getCpf());
-                    funcionario.setRg(f.getRg());
-                    funcionario.setTelefone(f.getTelefone());
-                    funcionario.setEstadoCivil(f.getEstadoCivil());
-                    funcionario.setQtd_filhos(f.getQtd_filhos());
-                    funcionario.setAfiliacao(f.getAfiliacao());
-                    funcionario.setCtps(f.getCtps());
-                    funcionario.setPis(f.getPis());
-                    funcionario.setCargo(f.getCargo());
-                    funcionario.setSetor(f.getSetor());
-                    funcionario.setEmail(f.getEmail());
-                    funcionario.setSenha(f.getSenha());
-                    funcionario.setData_nascimento(f.getData_nascimento());
-                    funcionario.setData_admissao(f.getData_admissao());
-                    
-                    funcionario.setSenha(f.criptografarSenha(f.getSenha()));
-                    
-                    fDAO.inserir(funcionario);
-                    
-                    session.removeAttribute("funcionario_cadastro");
-                    response.sendRedirect("listar_funcionarios.jsp");
-                } else {
-                    out.print("Algum campo obrigatorio não foi preenchido");
+                HttpSession session = request.getSession();
+                String descricao = request.getParameter("descricao_op");
+                int id_investimento = Integer.parseInt(request.getParameter("id_investimento"));
+
+                if (!descricao.equals("Consultar")) {
+
+                    Operacoes op = new Operacoes();
+                    InvestimentoDAO invDAO = new InvestimentoDAO();
+                    Investimento inv = new Investimento();
+                    op.setDescricao(descricao);
+                    inv = invDAO.CarregarPorId(id_investimento);
+                    op.setInvestimento(inv);
+
+                    session.setAttribute("operacao", op);
+
+                    response.sendRedirect("tipo_operacao.jsp");
+                } else if (descricao.equals("Consultar")) {
+                    Operacoes op = new Operacoes();
+                    InvestimentoDAO invDAO = new InvestimentoDAO();
+                    Investimento inv = new Investimento();
+                    op.setDescricao(descricao);
+                    inv = invDAO.CarregarPorId(id_investimento);
+                    op.setInvestimento(inv);
+
+                    session.setAttribute("operacao", op);
+                    response.sendRedirect("listar_operacoes_investimento_funcionario.jsp");
                 }
 
-              
             } catch (Exception e) {
-                out.print("error:" + e);
             }
             out.println("</body>");
             out.println("</html>");

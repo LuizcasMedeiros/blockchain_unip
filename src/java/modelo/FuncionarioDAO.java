@@ -161,5 +161,48 @@ public class FuncionarioDAO extends DataBaseDAO {
         pstm.execute();
         this.desconectar();
     }
+    
+    public boolean pesquisarEmailExiste (String email) throws Exception {
+        String sql = "SELECT * FROM funcionario WHERE email =?";
+        this.conectar();
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, email);
+        ResultSet rs = pstm.executeQuery();
+        boolean result = false;
+       
+     
+         if (rs.next()) {
+            Funcionario f = new Funcionario();
+            f.setEmail(rs.getString("email"));
+            result=true;
+        }else{
+             result=false;
+        }
+         
+        this.desconectar(); 
+        return result;
+    }
+    
+    
+      public Funcionario logar(String email, String senha) throws Exception {
+        Funcionario f = new Funcionario();
+        String sql = "SELECT * FROM funcionario WHERE email=?";
+        this.conectar();
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, email);
+        ResultSet rs = pstm.executeQuery();
+        if (rs.next()) {
+            if (senha.equals(rs.getString("senha"))) {
+                f.setMatricula(rs.getInt("matricula"));
+                f.setNome(rs.getString("nome"));
+                f.setEmail(rs.getString("email"));
+                f.setSenha(rs.getString("senha"));
+                PerfilDAO pDAO = new PerfilDAO();
+                f.setPerfil(pDAO.carregarPorId(rs.getInt("perfil_id")));
+            }
+        }
+        this.desconectar();
+        return f;
+    }
 
 }

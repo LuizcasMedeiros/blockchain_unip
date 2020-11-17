@@ -42,7 +42,7 @@
                             <div class="card-body">
                                 <div class="row justify-content-center pl-4 mt-4 mb-4">
                                     <div class="col-sm-12 col-md-10 col-lg-8">
-                                        <form name="inserir_criptoativos.do" action="inserir_criptoativos.do" method="post">
+                                        <form name="inserir_criptoativos.do" action="inserir_criptoativos_funcionario.do" method="post">
                                             <div class="form-row">
                                                 <div class="form-group col-sm-4">
                                                     <label for="inputNome"> Nome do Criptoativo: </label>

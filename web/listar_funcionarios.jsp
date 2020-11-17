@@ -42,7 +42,7 @@
         <!-- Page Wrapper -->
         <div id="wrapper">
 
-            <%@include file="banner.jsp" %>
+            <%@include file="banner_funcionario.jsp" %>
             <!-- Content Wrapper -->
             <div id="content-wrapper" class="d-flex flex-column">
 
@@ -97,7 +97,7 @@
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                        <%out.print(cLogado.getNome());%>
+                                        <%out.print(fLogado.getNome());%>
                                     </span>
                                     <img class="img-profile rounded-circle" src="" alt="logo">
                                 </a>
@@ -155,7 +155,7 @@
 
                                             for (Funcionario f
                                                     : lista) {
-                                                //if(cLogado.getPerfil().getNome().equals("Admin")){
+                                                if(fLogado.getPerfil().getNome().equals("Gerente")){
 
                                         %>
                                         <tbody>
@@ -188,20 +188,20 @@
                                                              >
                                                         <i class="fas fa-search"></i>
                                                     </button>
-                                                    <%if (f.getConta().getId() != 0) {%>
+                                                   <%if (f.getConta().getId() != 0) {%>
                                                     <a  href="#"class="btn btn-info btn-sm">
                                                         Conta já adicioanda.
                                                     </a>
-                                                    <%} else if (f.getConta().getId() == 0) {%>
-                                                    <a  href="adicionar_cartao.jsp"class="btn btn-info btn-sm">
+                                                    <%} else if(f.getConta().getId() == 0 && f.getMatricula() == (fLogado.getMatricula())){%>
+                                                    <a  href="adicionar_cartao_funcionario.jsp"class="btn btn-info btn-sm">
                                                         <i class="fas fa-search-dollar"></i>
                                                         <img src="assets/pag.png" alt="alterar"/>
                                                     </a>
-                                                    <%} else {%>
-                                                    <a  href="#"class="btn btn-danger btn-sm">
+                                                   <%}else{%>
+                                                     <a  href="#"class="btn btn-danger btn-sm">
                                                         Conta Pendente.
-                                                    </a>
-                                                    <%}%>
+                                                     </a>
+                                                   <%}%>
                                             </tr>
 
 
@@ -271,7 +271,120 @@
 
                                         </tbody>          
 
-                                        <%}%>
+                                        <%}else if(f.getMatricula() == fLogado.getMatricula()){%>
+                                        
+                                          <tbody>
+                                            <tr>
+                                                <td><%=f.getMatricula()%></td>
+                                                <td> <%=f.getNome()%></td>
+                                                <td><%=f.getEmail()%></td>
+                                                <td> <%=f.getCpf()%></td>
+                                                <td>  
+                                                    <a onclick="excluir('<%=f.getNome()%>', <%=f.getMatricula()%>)"  class="btn btn-danger btn-sm">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                    <button  type="button" class="btn btn-primary btn-sm" 
+                                                             data-toggle="modal" 
+                                                             data-target="#ModalAlterarFuncionario"
+                                                             data-whatever="<%=f.getMatricula()%>"
+                                                             data-whatevernome="<%=f.getNome()%>" 
+                                                             data-whateveremail="<%=f.getEmail()%>"  
+                                                             data-whatevercelular="<%=f.getTelefone()%>"  
+                                                             data-whatevercpf="<%=f.getCpf()%>" 
+                                                             data-whateverdata_nascimento="<%=f.getData_nascimento()%>" 
+
+                                                             >
+                                                        <i class="fas fa-pencil-alt"></i>
+                                                    </button>
+                                                    <button  type="button" class="btn btn-primary btn-sm" 
+                                                             data-toggle="modal" 
+                                                             data-target="#ModalMostrarAll<%=f.getMatricula()%>"
+
+                                                             >
+                                                        <i class="fas fa-search"></i>
+                                                    </button>
+                                                   <%if (f.getConta().getId() != 0) {%>
+                                                    <a  href="#"class="btn btn-info btn-sm">
+                                                        Conta já adicioanda.
+                                                    </a>
+                                                    <%} else if(f.getConta().getId() == 0 && f.getMatricula() == (fLogado.getMatricula())){%>
+                                                    <a  href="adicionar_cartao_funcionario.jsp"class="btn btn-info btn-sm">
+                                                        <i class="fas fa-search-dollar"></i>
+                                                        <img src="assets/pag.png" alt="alterar"/>
+                                                    </a>
+                                                   <%}else{%>
+                                                     <a  href="#"class="btn btn-danger btn-sm">
+                                                        Conta Pendente.
+                                                     </a>
+                                                   <%}%>
+                                            </tr>
+
+
+                                            <!-- Modal Visualizar todos-->
+                                        <div class="modal fade" id="ModalMostrarAll<%=f.getMatricula()%>" tabindex="-1" role="dialog" aria-labelledby="ModalMostrar" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="ModalMostrar"><%=f.getMatricula()%></h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="card shadow mb-4">
+                                                            <div class="card-header py-3">
+                                                                <h6 class="m-0 font-weight-bold text-primary">Todas as informações</h6>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="row justify-content-center pl-4 mt-4 mb-4">
+                                                                    <div class="col-sm-12 col-md-10 col-lg-8">
+                                                                        <h5>Informações pessoas e da empresa</h5>
+                                                                         <hr>
+                                                                        <p>MATRICULA: <%=f.getMatricula()%></p>
+                                                                        <p>NOME: <%=f.getNome()%></p>
+                                                                        <p>CPF: <%=f.getCpf()%></p>
+                                                                        <p>RG: <%=f.getRg()%></p>
+                                                                        <p>EMAIL: <%=f.getEmail()%></p>
+                                                                        <p>Data de nascimento: <%=df.format(f.getData_nascimento())%></p>
+                                                                        <p>Data de admissão: <%=df.format(f.getData_admissao())%></p>
+                                                                        <p>CARGO: <%= f.getCargo()%></p>
+                                                                        <p>SETOR: <%=f.getSetor()%></p>
+                                                                        <p>CELULAR: <%=f.getTelefone()%></p>
+                                                                        <p>CTPS: <%=f.getCtps()%></p>
+                                                                        <p>PIS: <%=f.getPis()%></p>
+                                                                        <p>ESTADO CIVIL: <%=f.getEstadoCivil()%></p>
+                                                                        <p>QTD DE FILHOS: <%=f.getQtd_filhos()%></p>
+                                                                        <p>AFILIAÇÃO: <%=f.getAfiliacao()%></p>
+                                                                        
+                                                                        <hr>
+                                                                        
+                                                                        <h5>Informações de Endereço</h5>
+                                                                        
+                                                                        <p>CEP: <%=f.getCep()%></p>
+                                                                        <p>CIDADE: <%=f.getLocalidade()%></p>
+                                                                        <p>BAIRRO:<%=f.getBairro()%></p>
+                                                                        <p>LOGRADOURO:<%=f.getLogradouro()%></p>
+                                                                        <p>UF: <%=f.getUf()%></p>
+                                                                        <%if(!f.getComplemento().isEmpty()){%>
+                                                                        <p>COMPLEMENTO: <%=f.getComplemento()%></p>
+
+
+                                                                        <%}else{%>
+                                                                       
+                                                                        <%}%>
+                                                                         <hr>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Fim Modal vertodos-->
+                                        </tbody> 
+                                        
+                                        <%}}%>
                                     </table>
                                 </div>
                             </div>
@@ -409,7 +522,7 @@
                     <div class="modal-body">Tem certeza que deseja sair?</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                        <a class="btn btn-primary" href="logoff.jsp">Sair</a>
+                        <a class="btn btn-primary" href="logoff_funcionario.jsp">Sair</a>
                     </div>
                 </div>
             </div>

@@ -223,6 +223,27 @@ public class ClienteDAO extends DataBaseDAO {
         this.desconectar();
         return c;
     }
+    
+     public boolean pesquisarUserExiste (String nome) throws Exception {
+        String sql = "SELECT * FROM cliente WHERE user =?";
+        this.conectar();
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, nome);
+        ResultSet rs = pstm.executeQuery();
+        boolean result = false;
+       
+     
+         if (rs.next()) {
+            Cliente c = new Cliente();
+            c.setUser(rs.getString("user"));
+            result=true;
+        }else{
+             result=false;
+        }
+         
+        this.desconectar(); 
+        return result;
+    }
 
     public Cliente logar(String user, String senha) throws Exception {
         Cliente c = new Cliente();

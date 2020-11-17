@@ -11,7 +11,7 @@
 <%
     session = request.getSession();;
     Funcionario funcionario = new Funcionario();
-    Funcionario f = (Funcionario) session.getAttribute("funcionario");
+    Funcionario f = (Funcionario) session.getAttribute("funcionario_cadastro");
     try {
         String ctps = request.getParameter("ctps");
         String pis = request.getParameter("pis");
@@ -35,7 +35,7 @@
         funcionario.setEmail(email);
         funcionario.setSenha(senha);
         funcionario.setData_admissao(data_admissao);
-        session.setAttribute("funcionario", funcionario);
+        session.setAttribute("funcionario_cadastro", funcionario);
     } catch (Exception e) {
         out.print("error" + e);
     }
@@ -52,7 +52,7 @@
 
         <!-- Page Wrapper -->
         <div id="wrapper">
-            <%@include file="banner.jsp" %>
+            <%@include file="banner_funcionario.jsp" %>
             <!-- Content Wrapper -->
             <div id="content-wrapper" class="d-flex flex-column">
 
@@ -60,7 +60,7 @@
                 <div id="content">
 
                     <!-- Topbar -->
-                    <%@include file="top_bar.jsp" %>
+                    <%@include file="top_bar_funcionario.jsp" %>
                     <!-- Final da barra topo -->
 
                     <!-- Conteudo da pagaina principal container -->

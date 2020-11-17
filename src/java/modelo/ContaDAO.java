@@ -10,8 +10,8 @@ public class ContaDAO extends DataBaseDAO{
 
     
     public void inserir(Conta c) throws Exception{
-        String sql = "INSERT INTO conta (banco, contaBancaria, agencia, nomeCartao, dataExpiracao, tipo, cliente_id)"
-                + "VALUES (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO conta (banco, contaBancaria, agencia, nomeCartao, dataExpiracao, tipo, cliente_id, funcionario_id)"
+                + "VALUES (?,?,?,?,?,?,?,?)";
         this.conectar();
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, c.getBanco());
@@ -21,9 +21,28 @@ public class ContaDAO extends DataBaseDAO{
         pstm.setDate(5, (Date) c.getDataExpiracao());
         pstm.setString(6, c.getTipo());
         pstm.setInt(7, c.getCliente().getId());
+        pstm.setInt(8, c.getFuncionario().getMatricula());
         pstm.execute();
         this.desconectar();
     }
+    
+    
+    public void inserirFuncionario (Conta c) throws Exception{
+        String sql = "INSERT INTO conta (banco, contaBancaria, agencia, nomeCartao, dataExpiracao, tipo, funcionario_matricula)"
+                + "VALUES (?,?,?,?,?,?,?)";
+        this.conectar();
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, c.getBanco());
+        pstm.setString(2, c.getContaBancaria());
+        pstm.setString(3, c.getAgencia());
+        pstm.setString(4, c.getNomeCartao());
+        pstm.setDate(5, (Date) c.getDataExpiracao());
+        pstm.setString(6, c.getTipo());
+        pstm.setInt(7, c.getFuncionario().getMatricula());
+        pstm.execute();
+        this.desconectar();
+    }
+    
     
     
     

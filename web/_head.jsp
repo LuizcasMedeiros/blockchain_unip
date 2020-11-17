@@ -34,6 +34,8 @@
         <script src="javascript/localizar_cliente.js" defer></script>
         <script src="javascript/alterar_cliente.js" defer></script>
         <script src="javascript/alterar_investimento.js" defer></script>
+        <script src="javascript/verificar_usuario.js" defer></script>
+        <script src="javascript/verifica_email.js" defer></script>
         
         
         <! - Fontes personalizadas para este modelo ->

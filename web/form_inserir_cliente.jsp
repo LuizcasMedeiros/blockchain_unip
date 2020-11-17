@@ -53,7 +53,10 @@
 
                                     <div class="form-group row">
                                         <div class="col-sm-6">
-                                            <input class="form-control form-control-user" type="text"  placeholder="Username" name="user"id="user" maxlength="45"  required/>
+                                            <input class="form-control form-control-user" type="text"  placeholder="Username" name="user" id="user" maxlength="45"  required/>
+                                        </div>
+                                        <div class="column" id="existe">
+                                            
                                         </div>
                                         <div class="col-sm-6 mb-3 mb-sm-0">
                                             <input id="senha" class="form-control form-control-user" name="senha" type="password"  placeholder="Senha" minlength="3"  maxlength="16"   required/>

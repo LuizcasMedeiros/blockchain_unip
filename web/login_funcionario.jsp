@@ -28,10 +28,11 @@
                                     <div class="p-5">
                                         <div class="text-center">
                                             <h1 class="h4 text-gray-900 mb-4">Bem vindo de volta!</h1>
+                                            <h5>Login Funcionario</h5>
                                         </div>
-                                        <form class="user" method="post" action="valida_login.do">
+                                        <form class="user" method="post" action="valida_login_funcionario.do">
                                             <div class="form-group">
-                                                <input type="text" class="form-control form-control-user" name="user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Entre com o usuario">
+                                                <input type="text" class="form-control form-control-user" name="email"  aria-describedby="emailHelp" placeholder="Entre com o email">
                                             </div>
                                             <div class="form-group">
                                                 <input type="password" class="form-control form-control-user" name="senha" id="exampleInputPassword" placeholder="Digite a senha">
@@ -50,9 +51,9 @@
                                             <hr>
                                         </form>
                                         <hr>
-                                        <form name="login" action="login_funcionario.jsp" method="post">
+                                        <form name="login" action="login.jsp" method="post">
                                                 <div class="d-flex justify-content-center mt-3 login_container">
-                                                    <input type="submit" name="button" class="btn btn-danger" value="Ir para Login Funcionario">
+                                                    <input type="submit" name="button" class="btn btn-danger" value="Ir para Login Cliente">
                                                 </div>
                                         </form>
                                         <div class="text-center">

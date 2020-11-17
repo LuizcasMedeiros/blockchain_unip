@@ -3,10 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/luizf/Documents/NetBeansProjects/Blockchain/web/cadastra_funcionario_endereco.jsp</file>
-            <file>file:/C:/Users/luizf/Documents/NetBeansProjects/Blockchain/src/java/controle/InserirCliente.java</file>
-            <file>file:/C:/Users/luizf/Documents/NetBeansProjects/Blockchain/src/java/modelo/FuncionarioDAO.java</file>
-            <file>file:/C:/Users/luizf/Documents/NetBeansProjects/Blockchain/src/java/controle/InserirFuncionario.java</file>
+            <file>file:/C:/Users/luizf/Documents/NetBeansProjects/Blockchain/web/form_inserir_cliente.jsp</file>
+            <file>file:/C:/Users/luizf/Documents/NetBeansProjects/Blockchain/web/javascript/verificar_usuario.js</file>
+            <file>file:/C:/Users/luizf/Documents/NetBeansProjects/Blockchain/web/cadastra_funcionario.jsp</file>
+            <file>file:/C:/Users/luizf/Documents/NetBeansProjects/Blockchain/web/javascript/localizar_cliente.js</file>
+            <file>file:/C:/Users/luizf/Documents/NetBeansProjects/Blockchain/web/processa_user.jsp</file>
+            <file>file:/C:/Users/luizf/Documents/NetBeansProjects/Blockchain/src/java/modelo/ClienteDAO.java</file>
         </group>
     </open-files>
 </project-private>

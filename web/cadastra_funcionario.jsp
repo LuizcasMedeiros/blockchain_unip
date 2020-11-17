@@ -16,7 +16,7 @@
 
         <!-- Page Wrapper -->
         <div id="wrapper">
-            <%@include file="banner.jsp" %>
+            <%@include file="banner_funcionario.jsp" %>
             <!-- Content Wrapper -->
             <div id="content-wrapper" class="d-flex flex-column">
 
@@ -24,7 +24,7 @@
                 <div id="content">
 
                     <!-- Topbar -->
-                    <%@include file="top_bar.jsp" %>
+                    <%@include file="top_bar_funcionario.jsp" %>
                     <!-- Final da barra topo -->
 
                     <!-- Conteudo da pagaina principal container -->
@@ -96,7 +96,7 @@
                                             </div>    
                                             <div class="form-row">
                                                 <div class="col-sm-12">
-                                                    <input type="submit" class="btn btn-primary" value="Salvar"/>
+                                                    <input type="submit" class="btn btn-primary" value="Proximo"/>
                                                 </div>
                                             </div>
                                         </form>
@@ -146,7 +146,7 @@
                     <div class="modal-body">Tem certeza que deseja sair?</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                        <a class="btn btn-primary" href="logoff.jsp">Sair</a>
+                        <a class="btn btn-primary" href="logoff_funcionario.jsp">Sair</a>
                     </div>
                 </div>
             </div>

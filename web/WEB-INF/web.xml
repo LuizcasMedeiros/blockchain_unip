@@ -64,6 +64,22 @@
         <servlet-name>InserirFuncionario</servlet-name>
         <servlet-class>controle.InserirFuncionario</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ValidaLoginFuncionario</servlet-name>
+        <servlet-class>controle.ValidaLoginFuncionario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdicionarCartaoFuncionario</servlet-name>
+        <servlet-class>controle.AdicionarCartaoFuncionario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InserirCriptoativosFuncionario</servlet-name>
+        <servlet-class>controle.InserirCriptoativosFuncionario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RedirecionarOpFuncionario</servlet-name>
+        <servlet-class>controle.RedirecionarOpFuncionario</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InserirCliente</servlet-name>
         <url-pattern>/inserir_cliente.do</url-pattern>
@@ -127,6 +143,22 @@
     <servlet-mapping>
         <servlet-name>InserirFuncionario</servlet-name>
         <url-pattern>/inserir_funcionario.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ValidaLoginFuncionario</servlet-name>
+        <url-pattern>/valida_login_funcionario.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdicionarCartaoFuncionario</servlet-name>
+        <url-pattern>/adicionar_cartao_funcionario.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InserirCriptoativosFuncionario</servlet-name>
+        <url-pattern>/inserir_criptoativos_funcionario.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RedirecionarOpFuncionario</servlet-name>
+        <url-pattern>/redirecionar_op_funcionario.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

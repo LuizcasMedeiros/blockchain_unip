@@ -1,11 +1,31 @@
 <%-- 
-    Document   : incluir_criptoativos
-    Created on : 26/10/2020, 19:38:45
+    Document   : realizar_operacoes
+    Created on : 02/11/2020, 16:49:28
     Author     : luizf
 --%>
 
+<%@page import="java.text.NumberFormat"%>
+<%@page import="modelo.InvestimentoDAO"%>
+<%@page import="modelo.Investimento"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+    Investimento inv = new Investimento();
+    
+    try{
+        int investimentos_id = Integer.parseInt(request.getParameter("investimentos_id"));
+        
+        InvestimentoDAO invDAO = new InvestimentoDAO();
+        inv = invDAO.CarregarPorId(investimentos_id);
+        
+    }catch (Exception e){
+        out.println("Erro"+e);
+    }
+%>
+<%
+    NumberFormat z = NumberFormat.getCurrencyInstance();
+
+%>
 <html lang="pt-br">
     <% String name = "Inserir endereço";%>
     <jsp:include page="_head.jsp">
@@ -31,39 +51,60 @@
                     <div class="container-fluid">
 
                         <!-- Page Heading -->
-                        <h1 class="h3 mb-2 text-gray-800">Criptoativos</h1>
+                        <h1 class="h3 mb-2 text-gray-800">Operações </h1>
 
 
                         <!-- Content -->
+                     
                         <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Inserir Criptoativos</h6>
-                            </div>
+                             <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Listar Operações</h6>
+                                </div>
                             <div class="card-body">
                                 <div class="row justify-content-center pl-4 mt-4 mb-4">
                                     <div class="col-sm-12 col-md-10 col-lg-8">
-                                        <form name="inserir_criptoativos.do" action="inserir_criptoativos.do" method="post">
+                                        <form  action="redirecionar_op_funcionario.do" method="post">
                                             <div class="form-row">
                                                 <div class="form-group col-sm-4">
-                                                    <label for="inputNome"> Nome do Criptoativo: </label>
-                                                    <input type="text" class="form-control" id="inputNome" placeholder="Nome do Criptoativo" name="nome"  autocomplete="off"required />
+                                                    <p>Funcionario só pode listar o historico de operações do investimento</p>
                                                 </div>
 
                                                 <div class="form-group col-sm-4">
-                                                    <label for="inputValor"> Valor: </label>
-                                                    <input type="text" class="form-control" id="inputValor" placeholder="Valor do criptoativo" name="valor" autocomplete="off" required />
+                                                    <label for="inputoperacao">Tipo de operação </label>
+                                                    <input type="text" class="form-control"  id="inputoperacao" list="tipoOperacao"  placeholder="Operações" name="descricao_op" autocomplete="off" required />
+
+                                                    <input type="hidden" name="id_investimento" value="<%=inv.getId()%>"/>
+                                                    <datalist id="tipoOperacao">
+                                                     
+                                                        <option value="Consultar"></option>
+                                                          
+                                                    </datalist>
                                                 </div>
+
                                             </div>
 
                                             <div class="form-row">
                                                 <div class="col-sm-12">
-                                                    <input type="submit" class="btn btn-primary" value="Salvar"/>
+                                                    <input type="submit" class="btn btn-primary" value="Continuar"/>
                                                 </div>
                                             </div>
                                         </form>
                                     </div>
                                 </div> 
                             </div>
+                            
+                         <!--
+                            <div class="card-body">
+                                <div class="row justify-content-center pl-4 mt-4 mb-4">
+                                    <h6>Adicione uma conta para o seu perfil para continuar</h6>
+                                    <button  type="button" class="btn btn-primary btn-sm">
+                                          <i class="fas fa-search-dollar"></i>
+                                    </button>
+                                </div> 
+                            </div>
+                          -->  
+                      
+                         
                         </div>
 
                     </div>
@@ -106,7 +147,7 @@
                     <div class="modal-body">Tem certeza que deseja sair?</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                        <a class="btn btn-primary" href="logoff_funcionario.jsp">Sair</a>
+                        <a class="btn btn-primary" href="logoff.jsp">Sair</a>
                     </div>
                 </div>
             </div>

@@ -19,6 +19,7 @@
        int qtd_filhos = Integer.parseInt(request.getParameter("qtd_filhos")); 
        String afiliacao = request.getParameter("afiliacao"); 
        Date data_nascimento = (Date) Date.valueOf(request.getParameter("data_nascimento"));
+       
        funcionario.setNome(nome);
        funcionario.setCpf(cpf);
        funcionario.setRg(rg);
@@ -26,8 +27,9 @@
        funcionario.setEstadoCivil(status_civil);
        funcionario.setQtd_filhos(qtd_filhos);
        funcionario.setAfiliacao(afiliacao);
+       
        funcionario.setData_nascimento(data_nascimento);
-       session.setAttribute("funcionario", funcionario);
+       session.setAttribute("funcionario_cadastro", funcionario);
     }catch(Exception e){
        out.print("error"+e); 
     }
@@ -43,7 +45,7 @@
 
         <!-- Page Wrapper -->
         <div id="wrapper">
-            <%@include file="banner.jsp" %>
+            <%@include file="banner_funcionario.jsp" %>
             <!-- Content Wrapper -->
             <div id="content-wrapper" class="d-flex flex-column">
 
@@ -51,7 +53,7 @@
                 <div id="content">
 
                     <!-- Topbar -->
-                    <%@include file="top_bar.jsp" %>
+                    <%@include file="top_bar_funcionario.jsp" %>
                     <!-- Final da barra topo -->
 
                     <!-- Conteudo da pagaina principal container -->
@@ -69,7 +71,7 @@
                             <div class="card-body">
                                 <div class="row justify-content-center pl-4 mt-4 mb-4">
                                     <div class="col-sm-12 col-md-10 col-lg-8">
-                                        <form  action="cadastra_funcionario_endereco.jsp" method="post" onsubmit="return validar()">
+                                        <form  id="funcionario" action="cadastra_funcionario_endereco.jsp" method="post" onsubmit="return validar()">
                                             <div class="form-row">
                                                 
                                                 <div class="form-group col-sm-5">
@@ -109,6 +111,9 @@
                                                     <input id="cemail" class="form-control" type="email" placeholder="Confirmar email do funcionario"  required/> 
                                                 </div>  
                                             </div> 
+                                            <div class="form-row" id="existe">
+                                            
+                                                 </div>
                                              <div class="form-row">
                                                 <div class="form-group col-sm-3">
                                                     <label for="senha">SENHA:</label> 

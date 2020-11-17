@@ -50,6 +50,11 @@
                                             <hr>
                                         </form>
                                         <hr>
+                                        <form name="login" action="login_funcionario.jsp" method="post">
+                                                <div class="d-flex justify-content-center mt-3 login_container">
+                                                    <input type="submit" name="button" class="btn btn-danger" value="Ir para Login Funcionario">
+                                                </div>
+                                        </form>
                                         <div class="text-center">
                                             <a class="small" href="forgot-password.html">Esqueceu a senha?</a>
                                         </div>

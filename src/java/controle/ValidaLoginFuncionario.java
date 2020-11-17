@@ -19,7 +19,7 @@ import modelo.FuncionarioDAO;
  *
  * @author luizf
  */
-public class InserirFuncionario extends HttpServlet {
+public class ValidaLoginFuncionario extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,64 +33,32 @@ public class InserirFuncionario extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        response.setCharacterEncoding("utf-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet InserirFuncionario</title>");
+            out.println("<title>Servlet ValidaLoginFuncionario</title>");            
             out.println("</head>");
             out.println("<body>");
-            HttpSession session = request.getSession();
+             HttpSession session = request.getSession();
             try {
-                String cep = request.getParameter("cep");
-                String localidade = request.getParameter("localidade");
-                String bairro = request.getParameter("bairro");
-                String logradouro = request.getParameter("logradouro");
-                String complemento = request.getParameter("complemento");
-                String uf = request.getParameter("uf");
-                
-                if (!cep.isEmpty() && !logradouro.isEmpty()) {
-                    Funcionario f = (Funcionario) session.getAttribute("funcionario_cadastro");
-                    FuncionarioDAO fDAO = new FuncionarioDAO();
-                    
-                    Funcionario funcionario = new Funcionario();
-                    funcionario.setCep(cep);
-                    funcionario.setLocalidade(localidade);
-                    funcionario.setBairro(bairro);
-                    funcionario.setComplemento(complemento);
-                    funcionario.setUf(uf);
-                    funcionario.setLogradouro(logradouro);
-                    funcionario.setNome(f.getNome());
-                    funcionario.setCpf(f.getCpf());
-                    funcionario.setRg(f.getRg());
-                    funcionario.setTelefone(f.getTelefone());
-                    funcionario.setEstadoCivil(f.getEstadoCivil());
-                    funcionario.setQtd_filhos(f.getQtd_filhos());
-                    funcionario.setAfiliacao(f.getAfiliacao());
-                    funcionario.setCtps(f.getCtps());
-                    funcionario.setPis(f.getPis());
-                    funcionario.setCargo(f.getCargo());
-                    funcionario.setSetor(f.getSetor());
-                    funcionario.setEmail(f.getEmail());
-                    funcionario.setSenha(f.getSenha());
-                    funcionario.setData_nascimento(f.getData_nascimento());
-                    funcionario.setData_admissao(f.getData_admissao());
-                    
-                    funcionario.setSenha(f.criptografarSenha(f.getSenha()));
-                    
-                    fDAO.inserir(funcionario);
-                    
-                    session.removeAttribute("funcionario_cadastro");
-                    response.sendRedirect("listar_funcionarios.jsp");
+                String email = request.getParameter("email");
+                String senha = request.getParameter("senha");
+                FuncionarioDAO fDAO = new FuncionarioDAO();
+                Funcionario fsenhaEncrip = new Funcionario();
+               
+                Funcionario f = fDAO.logar(email, fsenhaEncrip.criptografarSenha(senha));
+                if (f.getMatricula() > 0) {
+                    session.setAttribute("funcionario", f);
+                    response.sendRedirect("listar_cliente_funcionario.jsp");
                 } else {
-                    out.print("Algum campo obrigatorio não foi preenchido");
+                    out.print("<script type='text/javascript'>");
+                    out.print("alert('Usuário e/ou senha inválidos!'); ");
+                    out.print("history.back();");
+                    out.print("</script>");
                 }
-
-              
             } catch (Exception e) {
-                out.print("error:" + e);
             }
             out.println("</body>");
             out.println("</html>");
