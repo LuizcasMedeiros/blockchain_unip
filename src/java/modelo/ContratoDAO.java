@@ -10,7 +10,7 @@ public class ContratoDAO extends DataBaseDAO
 {
     
     public void inserir(Contrato ct) throws Exception{
-        String sql = "INSERT INTO contrato (descricao, data_inclusao, dataEncerramento, valor, juros, id_cliente)"
+        String sql = "INSERT INTO contrato (descricao, data_inclusao, dataEncerramento, valor, juros, cliente_id, funcionario_matricula)"
                 + "VALUES (?,now(),?,?,?,?)";
         
         this.conectar();

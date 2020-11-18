@@ -48,75 +48,7 @@
 
                 <!-- Main Content -->
                 <div id="content">
-                    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                        <!-- Sidebar Toggle (Topbar) -->
-                        <form class="form-inline">
-                            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                                <i class="fa fa-bars"></i>
-                            </button>
-                        </form>
-
-                        <!-- Topbar Search -->
-                        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" id="pesquisa" action="processa_pesquisa.jsp" method="get">
-                            <div class="input-group">
-                                <input type="text" class="form-control bg-light border-0 small" name="nome" id="pesquisaCliente" placeholder="Pesquise pelo o nome..." aria-label="Search" aria-describedby="basic-addon2">
-                                <div class="input-group-append">
-                                    <button class="btn btn-secondary" type="submit">
-                                        <i class="fas fa-search fa-sm"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-
-                        <!-- Topbar Navbar -->
-                        <ul class="navbar-nav ml-auto">
-
-                            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                            <li class="nav-item dropdown no-arrow d-sm-none">
-                                <!-- Dropdown - Messages -->
-                                <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                                    <form class="form-inline mr-auto w-100 navbar-search">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-primary" type="button">
-                                                    <i class="fas fa-search fa-sm"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </li>
-
-                            <!-- Linha para separar area de pesquisa e o user-->
-                            <div class="topbar-divider d-none d-sm-block"></div>
-
-                            <!-- Nav item usuario -->
-
-                            <li class="nav-item dropdown no-arrow">
-                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                        <%out.print(fLogado.getNome());%>
-                                    </span>
-                                    <img class="img-profile rounded-circle" src="" alt="logo">
-                                </a>
-                                <!-- Dropdown - Informações de usuarios -->
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Profile
-                                    </a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="logoff.jsp" data-toggle="modal" data-target="#logoutModal">
-                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Logout
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-
-                    </nav>
+                    <%@include file="top_bar_funcionario.jsp" %>
 
                     <!-- Conteudo da pagaina principal container -->
                     <div class="container-fluid">
@@ -173,7 +105,12 @@
                                                              data-target="#ModalAlterarFuncionario"
                                                              data-whatever="<%=f.getMatricula()%>"
                                                              data-whatevernome="<%=f.getNome()%>" 
-                                                             data-whateveremail="<%=f.getEmail()%>"  
+                                                             data-whateverrg="<%=f.getRg()%>"
+                                                             data-whateverpis="<%=f.getPis()%>" 
+                                                             data-whateverctps="<%=f.getCtps()%>" 
+                                                             data-whateversetor="<%=f.getSetor()%>"
+                                                             data-whatevercargo="<%=f.getCargo()%>"  
+                                                             data-whateverdata_admissao="<%=f.getData_admissao()%>" 
                                                              data-whatevercelular="<%=f.getTelefone()%>"  
                                                              data-whatevercpf="<%=f.getCpf()%>" 
                                                              data-whateverdata_nascimento="<%=f.getData_nascimento()%>" 
@@ -244,7 +181,7 @@
                                                                         <hr>
                                                                         
                                                                         <h5>Informações de Endereço</h5>
-                                                                        
+                                                                        <hr>
                                                                         <p>CEP: <%=f.getCep()%></p>
                                                                         <p>CIDADE: <%=f.getLocalidade()%></p>
                                                                         <p>BAIRRO:<%=f.getBairro()%></p>
@@ -283,12 +220,17 @@
                                                     <a onclick="excluir('<%=f.getNome()%>', <%=f.getMatricula()%>)"  class="btn btn-danger btn-sm">
                                                         <i class="fas fa-trash"></i>
                                                     </a>
-                                                    <button  type="button" class="btn btn-primary btn-sm" 
+                                                     <button  type="button" class="btn btn-primary btn-sm" 
                                                              data-toggle="modal" 
                                                              data-target="#ModalAlterarFuncionario"
                                                              data-whatever="<%=f.getMatricula()%>"
                                                              data-whatevernome="<%=f.getNome()%>" 
-                                                             data-whateveremail="<%=f.getEmail()%>"  
+                                                             data-whateverrg="<%=f.getRg()%>"
+                                                             data-whateverpis="<%=f.getPis()%>" 
+                                                             data-whateverctps="<%=f.getCtps()%>" 
+                                                             data-whateversetor="<%=f.getSetor()%>"
+                                                             data-whatevercargo="<%=f.getCargo()%>"  
+                                                             data-whateverdata_admissao="<%=f.getData_admissao()%>" 
                                                              data-whatevercelular="<%=f.getTelefone()%>"  
                                                              data-whatevercpf="<%=f.getCpf()%>" 
                                                              data-whateverdata_nascimento="<%=f.getData_nascimento()%>" 
@@ -395,11 +337,11 @@
 
                     <!-- Modal Alterar-->
 
-                    <div class="modal fade" id="ModalAlterarCliente" tabindex="-1" role="dialog" aria-labelledby="ModalAlterarLabelCliente" aria-hidden="true">
+                    <div class="modal fade" id="ModalAlterarFuncionario" tabindex="-1" role="dialog" aria-labelledby="ModalAlterarLabelFuncionario" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="ModalAlterarLabelCliente">Modal title</h5>
+                                    <h5 class="modal-title" id="ModalAlterarLabelFuncionario">Modal title</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -407,37 +349,56 @@
                                 <div class="modal-body">
                                     <div class="card shadow mb-4">
                                         <div class="card-header py-3">
-                                            <h6 class="m-0 font-weight-bold text-primary">Alterar Cliente</h6>
+                                            <h6 class="m-0 font-weight-bold text-primary">Alterar Funcionario</h6>
                                         </div>
                                         <div class="card-body">
                                             <div class="row justify-content-center pl-4 mt-4 mb-4">
                                                 <div class="col-sm-12 col-md-10 col-lg-8">
-                                                    <form name="alterar_cliente" action="alterar_cliente.do" method="post">
+                                                    <form name="alterar_cliente" action="alterar_funcionario.do" method="post">
                                                         <div class="form-row">
-                                                            <div class="form-group col-sm-6">
+                                                            <div class="form-group col-sm-8">
                                                                 <label for="nome"> Nome: </label>
                                                                 <input type="text" class="form-control" id="nome" placeholder="Nome" name="nome" required />
                                                             </div>
-                                                            <div class="form-group col-sm-6">
-                                                                <label for="email"> Email: </label>
-                                                                <input type="text" class="form-control" id="email" placeholder="Email" name="email" required />
-                                                            </div>
-                                                            <div class="form-group col-sm-6">
+                                                            <div class="form-group col-sm-8">
                                                                 <label for="cpf"> Cpf: </label>
                                                                 <input id="cpf" class="form-control form-control-user" type="text"  placeholder="Cpf" name="cpf"   OnKeyPress="formatar('###.###.###-##', this)" maxlength="14" minlength="14"  required/> 
                                                             </div>
+                                                            <div class="form-group col-sm-8">
+                                                                 <label for="rg"> RG: </label>
+                                                                 <input class="form-control" type="text"  placeholder="Rg" name="rg"  id="rg" maxlength="14"  required/> 
+                                                            </div>
 
-                                                            <div class="form-group">
+                                                            <div class="form-group col-sm-8">
                                                                 <label for="data_nascimento"> Data de nascimento: </label>
                                                                 <input id="data_nascimento" class="form-control form-control-user" type="date"   name="data_nascimento"  required/> 
                                                             </div>  
-
-
-                                                            <div class="form-group col-sm-6">
+                                                            <div class="form-group col-sm-8">
                                                                 <label for="celular"> Celular </label>
                                                                 <input id="celular" class="form-control form-control-user" type="text"  placeholder="XX XXXXX-XXXX" name="celular" OnKeyPress="formatar('## #####-####', this)" minlength="13" maxlength="13" required/> 
                                                             </div>
-                                                            <input name="id" type="hidden" id="id" value=""/>
+                                                            <div class="form-group col-sm-8">
+                                                                <label for="ctps">CTPS: </label>
+                                                                <input type="text" class="form-control" id="ctps"  placeholder="Informe o numero da carteira de trabalho" name="ctps"  required />  
+                                                            </div> 
+                                                             <div class="form-group col-sm-8">
+                                                                <label for="pis"> PIS: </label>
+                                                                <input class="form-control" type="text"  placeholder="Pis" name="pis"  id="pis" maxlength="11"  required/> 
+                                                             </div> 
+                                                            
+                                                            <div class="form-group col-sm-6">
+                                                                  <label for="setor">SETOR:</label> 
+                                                                  <input id="setor" class="form-control" type="text" name="setor" placeholder="Setor" required/> 
+                                                            </div>
+                                                            <div class="form-group col-sm-6">
+                                                                <label for="cargo">CARGO:</label> 
+                                                                <input id="cargo" class="form-control" type="text" name="cargo" placeholder="Cargo" required/> 
+                                                            </div>
+                                                            <div class="form-group col-sm-8">
+                                                               <label for="data_admissao"> DATA DE ADMISSÃO: </label>
+                                                               <input class="form-control" type="date"  name="data_admissao"  id="data_admissao"  required/>  
+                                                            </div>
+                                                             <input name="matricula" type="hidden" id="matricula" value=""/>
                                                         </div>
                                                         <div class="form-row">
                                                             <div class="modal-footer">

@@ -15,15 +15,14 @@
     try {
         ClienteDAO cDAO = new ClienteDAO();
         lista = cDAO.listarJoin();
-        
+
     } catch (Exception e) {
         out.print("error" + e);
     }
 
 %>
 
-<%
-    SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+<%    SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 
 
 %>
@@ -58,14 +57,12 @@
                     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                         <!-- Sidebar Toggle (Topbar) -->
-                        <form class="form-inline">
-                            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                                <i class="fa fa-bars"></i>
-                            </button>
-                        </form>
+                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                            <i class="fa fa-bars"></i>
+                        </button>
 
                         <!-- Topbar Search -->
-                        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" id="pesquisa" action="processa_pesquisa.jsp" method="get">
+                        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" id="pesquisaTopBar" action="processa_pesquisa.jsp" method="get">
                             <div class="input-group">
                                 <input type="text" class="form-control bg-light border-0 small" name="nome" id="pesquisaCliente" placeholder="Pesquise pelo o nome..." aria-label="Search" aria-describedby="basic-addon2">
                                 <div class="input-group-append">
@@ -81,13 +78,16 @@
 
                             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                             <li class="nav-item dropdown no-arrow d-sm-none">
-                                <!-- Dropdown - Messages -->
+                                <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-search fa-fw"></i>
+                                </a>
+                                <!-- Dropdown - Search -->
                                 <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                                    <form class="form-inline mr-auto w-100 navbar-search">
+                                    <form class="form-inline mr-auto w-100 navbar-search" id="pesquisaDropdown" action="processa_pesquisa.jsp" method="get">
                                         <div class="input-group">
-                                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                            <input type="text" class="form-control bg-light border-0 small" name="nome" id="pesquisa" placeholder="Pesquise pelo o nome..." aria-label="Search" aria-describedby="basic-addon2">
                                             <div class="input-group-append">
-                                                <button class="btn btn-primary" type="button">
+                                                <button class="btn btn-secondary" type="submit">
                                                     <i class="fas fa-search fa-sm"></i>
                                                 </button>
                                             </div>
@@ -96,32 +96,35 @@
                                 </div>
                             </li>
 
-                            <!-- Linha para separar area de pesquisa e o user-->
+
+
+
+
                             <div class="topbar-divider d-none d-sm-block"></div>
 
-                            <!-- Nav item usuario -->
-
+                            <!-- Nav Item - User Information -->
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                        <%out.print(cLogado.getNome());%>
-                                    </span>
-                                    <img class="img-profile rounded-circle" src="" alt="logo">
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%=cLogado.getNome()%></span>
+                                    <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60" alt="logo">
                                 </a>
-                                <!-- Dropdown - Informações de usuarios -->
+                                <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                     <a class="dropdown-item" href="#">
                                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Profile
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="logoff.jsp" data-toggle="modal" data-target="#logoutModal">
+                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Logout
                                     </a>
                                 </div>
                             </li>
+
                         </ul>
+
+
 
                     </nav>
 
@@ -160,12 +163,12 @@
                                                 <th>OPÇÕES</th>
                                             </tr>
                                         </tfoot>
-                                        <% 
-                                            
+                                        <%
+
                                             for (Cliente c
                                                     : lista) {
-                                                if(cLogado.getPerfil().getNome().equals("Admin")){
-                                                    
+                                                if (cLogado.getPerfil().getNome().equals("Admin")) {
+
                                         %>
                                         <tbody>
                                             <tr>
@@ -179,37 +182,37 @@
                                                         <i class="fas fa-trash"></i>
                                                     </a>
                                                     <button  type="button" class="btn btn-primary btn-sm" 
-                                                        data-toggle="modal" 
-                                                        data-target="#ModalAlterarCliente"
-                                                        data-whatever="<%=c.getId()%>"
-                                                        data-whatevernome="<%=c.getNome()%>" 
-                                                        data-whateveremail="<%=c.getEmail()%>"  
-                                                        data-whatevercelular="<%=c.getCelular()%>"  
-                                                        data-whatevercpf="<%=c.getCpf()%>" 
-                                                        data-whateverdata_nascimento="<%=c.getData_nascimento()%>" 
-                                                         
-                                                    >
+                                                             data-toggle="modal" 
+                                                             data-target="#ModalAlterarCliente"
+                                                             data-whatever="<%=c.getId()%>"
+                                                             data-whatevernome="<%=c.getNome()%>" 
+                                                             data-whateveremail="<%=c.getEmail()%>"  
+                                                             data-whatevercelular="<%=c.getCelular()%>"  
+                                                             data-whatevercpf="<%=c.getCpf()%>" 
+                                                             data-whateverdata_nascimento="<%=c.getData_nascimento()%>" 
+
+                                                             >
                                                         <i class="fas fa-pencil-alt"></i>
                                                     </button>
                                                     <%if (c.getConta().getId() != 0) {%>
                                                     <a  href="#"class="btn btn-info btn-sm">
                                                         Conta já adicioanda.
                                                     </a>
-                                                    <%} else if(c.getConta().getId() == 0 && c.getId() == (cLogado.getId())){%>
+                                                    <%} else if (c.getConta().getId() == 0 && c.getId() == (cLogado.getId())) {%>
                                                     <a  href="adicionar_cartao.jsp"class="btn btn-info btn-sm">
                                                         <i class="fas fa-search-dollar"></i>
                                                         <img src="assets/pag.png" alt="alterar"/>
                                                     </a>
-                                                   <%}else{%>
-                                                     <a  href="#"class="btn btn-danger btn-sm">
+                                                    <%} else {%>
+                                                    <a  href="#"class="btn btn-danger btn-sm">
                                                         Conta Pendente.
-                                                     </a>
-                                                   <%}%>
+                                                    </a>
+                                                    <%}%>
                                             </tr>
 
-                                        </tbody>  <%}else if(c.getId() == cLogado.getId()){%>
+                                        </tbody>  <%} else if (c.getId() == cLogado.getId()) {%>
 
-                                          <tbody>
+                                        <tbody>
                                             <tr>
                                                 <td><%=c.getId()%></td>
                                                 <td> <%=c.getNome()%></td>
@@ -221,16 +224,16 @@
                                                         <i class="fas fa-trash"></i>
                                                     </a>
                                                     <button  type="button" class="btn btn-primary btn-sm" 
-                                                        data-toggle="modal" 
-                                                        data-target="#ModalAlterarCliente"
-                                                        data-whatever="<%=c.getId()%>"
-                                                        data-whatevernome="<%=c.getNome()%>" 
-                                                        data-whateveremail="<%=c.getEmail()%>"  
-                                                        data-whatevercelular="<%=c.getCelular()%>"  
-                                                        data-whatevercpf="<%=c.getCpf()%>" 
-                                                        data-whateverdata_nascimento="<%=c.getData_nascimento()%>" 
-                                                         
-                                                    >
+                                                             data-toggle="modal" 
+                                                             data-target="#ModalAlterarCliente"
+                                                             data-whatever="<%=c.getId()%>"
+                                                             data-whatevernome="<%=c.getNome()%>" 
+                                                             data-whateveremail="<%=c.getEmail()%>"  
+                                                             data-whatevercelular="<%=c.getCelular()%>"  
+                                                             data-whatevercpf="<%=c.getCpf()%>" 
+                                                             data-whateverdata_nascimento="<%=c.getData_nascimento()%>" 
+
+                                                             >
                                                         <i class="fas fa-pencil-alt"></i>
                                                     </button>
                                                     <%if (c.getConta().getId() != 0) {%>
@@ -246,7 +249,9 @@
 
                                         </tbody>          
 
-            <%}}}%>
+                                        <%}
+                    }
+                }%>
                                     </table>
                                 </div>
                             </div>

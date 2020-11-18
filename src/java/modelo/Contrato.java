@@ -11,6 +11,19 @@ public class Contrato {
     private Double valor;
     private Double juros;
     private Cliente cliente;
+    private Funcionario funcionario;
+    
+
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
+    
+    
+    
 
     public Cliente getCliente() {
         return cliente;

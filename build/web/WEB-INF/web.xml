@@ -80,6 +80,10 @@
         <servlet-name>RedirecionarOpFuncionario</servlet-name>
         <servlet-class>controle.RedirecionarOpFuncionario</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AlterarFuncionario</servlet-name>
+        <servlet-class>controle.AlterarFuncionario</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InserirCliente</servlet-name>
         <url-pattern>/inserir_cliente.do</url-pattern>
@@ -159,6 +163,10 @@
     <servlet-mapping>
         <servlet-name>RedirecionarOpFuncionario</servlet-name>
         <url-pattern>/redirecionar_op_funcionario.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AlterarFuncionario</servlet-name>
+        <url-pattern>/alterar_funcionario.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -131,33 +131,24 @@ public class FuncionarioDAO extends DataBaseDAO {
         return f;
     }
     
-    
-    public void alterar(Funcionario f) throws Exception {
-        String sql = "UPDATE cliente SET nome=?, email=?, celular=?, data_nascimento=?, cpf=? "
-                + " WHERE id=?";
+     public void alterar(Funcionario f) throws Exception {
+        String sql = "UPDATE funcionario SET nome=?, celular=?, data_nascimento=?, cpf=?"
+                + ", rg=?, pis=?, ctps=?, setor=?, cargo=?, data_admissao=?"
+                + " WHERE matricula=?";
         this.conectar();
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, f.getNome());
-        pstm.setString(2, f.getEmail());
-        pstm.setString(3, f.getCep());
-        pstm.setString(4, f.getLocalidade());
-        pstm.setString(5, f.getBairro());
-        pstm.setString(6, f.getComplemento());
-        pstm.setString(7, f.getLogradouro());
-        pstm.setString(8, f.getUf());
-        pstm.setString(9, f.getCpf());
-        pstm.setString(10, f.getCargo());
-        pstm.setString(11, f.getSetor());
-        pstm.setString(12, f.getTelefone());
-        pstm.setString(13, f.getSenha());
-        pstm.setDate(14, (Date) f.getData_admissao());
-        pstm.setString(15, f.getCtps());
-        pstm.setString(16, f.getRg());
-        pstm.setString(17, f.getPis());
-        pstm.setString(18, f.getEstadoCivil());
-        pstm.setInt(19, f.getQtd_filhos());
-        pstm.setString(20, f.getAfiliacao());
-        pstm.setDate (21, (Date) f.getData_nascimento());
+        pstm.setString(2, f.getTelefone());
+        pstm.setDate(3, (Date) f.getData_nascimento());
+        pstm.setString(4, f.getCpf());
+        pstm.setString(5, f.getRg());
+        pstm.setString(6, f.getPis());
+        pstm.setString(7, f.getCtps());
+        pstm.setString(8, f.getSetor());
+        pstm.setString(9, f.getCargo());
+        pstm.setDate(10, (Date) f.getData_admissao());
+        pstm.setInt(11, f.getMatricula());
+       
         pstm.execute();
         this.desconectar();
     }

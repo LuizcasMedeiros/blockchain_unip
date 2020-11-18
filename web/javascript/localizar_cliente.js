@@ -1,9 +1,9 @@
 $(document).ready(function (){;
     
    
-   $('#pesquisaCliente').keyup(function(){
+   $('#pesquisaCliente').add('#pesquisa').keyup(function(){
        
-       $('#pesquisa').submit(function(){
+       $('#pesquisaTopBar').add('#pesquisaDropdown').submit(function(){
           var dados = $(this).serialize();
           
           

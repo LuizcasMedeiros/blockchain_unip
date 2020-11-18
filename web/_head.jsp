@@ -17,13 +17,13 @@
         
         <link href="css/styles.css" rel="stylesheet" type="text/css">
         
-        <! - Fontes personalizadas para este modelo ->
+        <!--Fontes personalizadas para este modelo -->
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel = "stylesheet">
         
     
         
-        <! - importação de script ->
+        <!--importação de script -->
         <script  src="javascript/jquery/jquery-3.5.1.min.js"></script>
         <script  src="javascript/api_validandion_end.js"></script>
         <script  src="javascript/mask.js"></script>
@@ -31,6 +31,7 @@
         <script src="javascript/alterar_perfil.js" defer></script>
         <script src="javascript/alterar_menu.js" defer></script>
         <script src="javascript/alterar_cripoativos.js" defer></script>
+        <script src="javascript/alterar_funcionario.js" defer></script>
         <script src="javascript/localizar_cliente.js" defer></script>
         <script src="javascript/alterar_cliente.js" defer></script>
         <script src="javascript/alterar_investimento.js" defer></script>
@@ -38,33 +39,33 @@
         <script src="javascript/verifica_email.js" defer></script>
         
         
-        <! - Fontes personalizadas para este modelo ->
+        <!--Fontes personalizadas para este modelo -->
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type ="text/css">
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
         
-        <! - Estilos personalizados para este modelo ->
+        <!--Estilos personalizados para este modelo -->
         <link href = "css/sb-admin-2.min.css" rel = "stylesheet">
         
-        <! - JavaScript básico de bootstrap ->
+        <!--JavaScript básico de bootstrap -->
         
        
         <script src ="vendor/jquery/jquery.min.js"></script>
         <script src ="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         
-        <! - Plug-in do núcleo JavaScript ->
+        <!--Plug-in do núcleo JavaScript -->
         
         <script src ="vendor/jquery-easing/jquery.easing.min.js"></script>
         
-        <! - Scripts personalizados para todas as páginas ->
+        <!--Scripts personalizados para todas as páginas-->
         
         
-        <!- menu lateral encolher script responsavel  ->
+        <!--menu lateral encolher script responsavel  -->
         
         <script src ="javascript/js/sb-admin-2.min.js" async></script>
         <script  src="javascript/bootsrap_scipts/bootstrap.min.js" ></script>
        
         
-        <! - Plug-ins de nível de página ->
+        <!--Plug-ins de nível de página -->
         
         <!--<script src ="vendor/chart.js/Chart.min.js"></script>->
         
