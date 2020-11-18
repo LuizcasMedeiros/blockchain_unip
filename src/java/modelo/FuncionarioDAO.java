@@ -131,6 +131,63 @@ public class FuncionarioDAO extends DataBaseDAO {
         return f;
     }
     
+    
+    public ArrayList<Funcionario> pesquisarNome(String nome) throws Exception {
+        ArrayList<Funcionario> lista = new ArrayList<>();
+          
+          String sql="SELECT co.id, f.* "+
+                    "FROM conta co "+
+                    "RIGHT JOIN funcionario f "+
+                    "ON co.funcionario_matricula = f.matricula "+
+                    "WHERE f.nome LIKE ?";
+        this.conectar();
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1,"%" + nome + "%");
+        ResultSet rs = pstm.executeQuery();
+       
+        while (rs.next()) {
+            Funcionario f = new Funcionario();
+            ContaDAO cDAO = new ContaDAO();
+            
+            f.setConta(cDAO.CarregarPorId(rs.getInt(1)));
+            
+            f.setMatricula(rs.getInt("matricula"));
+            f.setNome(rs.getString("nome"));
+            f.setCpf(rs.getString("Cpf"));
+            f.setEmail(rs.getString("email"));
+            f.setTelefone(rs.getString("celular"));
+            f.setData_nascimento(rs.getDate("data_nascimento"));
+            f.setData_admissao(rs.getDate("data_admissao"));
+            f.setCep(rs.getString("cep"));
+            f.setLocalidade(rs.getString("localidade"));
+            f.setBairro(rs.getString("bairro"));
+            f.setComplemento(rs.getString("complemento"));
+            f.setLogradouro(rs.getString("logradouro"));
+            f.setUf(rs.getString("uf"));
+            f.setCargo(rs.getString("cargo"));
+            f.setSetor(rs.getString("setor"));
+            f.setCtps(rs.getString("ctps"));
+            f.setRg(rs.getString("rg"));
+            f.setPis(rs.getString("pis"));
+            f.setEstadoCivil(rs.getString("status_civil"));
+            f.setQtd_filhos(rs.getInt("qtd_filhos"));
+            f.setAfiliacao(rs.getString("afiliacao"));
+            
+            
+       
+
+            PerfilDAO pdao = new PerfilDAO();
+            f.setPerfil(pdao.carregarPorId(rs.getInt("perfil_id")));
+            
+          
+
+            lista.add(f);
+        }
+        this.desconectar();
+        return lista;
+       
+    }
+    
      public void alterar(Funcionario f) throws Exception {
         String sql = "UPDATE funcionario SET nome=?, celular=?, data_nascimento=?, cpf=?"
                 + ", rg=?, pis=?, ctps=?, setor=?, cargo=?, data_admissao=?"

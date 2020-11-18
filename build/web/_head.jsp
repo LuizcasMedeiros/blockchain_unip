@@ -33,11 +33,12 @@
         <script src="javascript/alterar_cripoativos.js" defer></script>
         <script src="javascript/alterar_funcionario.js" defer></script>
         <script src="javascript/localizar_cliente.js" defer></script>
+        <script src="javascript/localizar_funcionario.js" defer></script>
         <script src="javascript/alterar_cliente.js" defer></script>
         <script src="javascript/alterar_investimento.js" defer></script>
         <script src="javascript/verificar_usuario.js" defer></script>
         <script src="javascript/verifica_email.js" defer></script>
-        
+        <script src="javascript/pesquisa_cliente_funcionario.js" defer></script>
         
         <!--Fontes personalizadas para este modelo -->
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type ="text/css">
