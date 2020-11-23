@@ -41,7 +41,7 @@
                             <div class="card-body">
                                 <div class="row justify-content-center pl-4 mt-4 mb-4">
                                     <div class="col-sm-12 col-md-10 col-lg-8">
-                                        <form name="inserir_perfil" action="inserir_cartao.do" method="post">
+                                        <form  action="inserir_cartao.do" method="post">
                                             <div class="form-row">
                                                 <div class="form-group col-sm-6">
                                                     <input type="hidden" name="id_cliente" value="<%=cLogado.getId()%>"

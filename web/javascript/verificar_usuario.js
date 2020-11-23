@@ -1,6 +1,6 @@
-$(document).ready(function (){;
+$(document).ready(function (){
         
-       $('#cliente').add('#user').on('blur submit',function(){
+       $('#user').on('blur',function(){
           var dados = $(this).serialize();
           
           
@@ -11,6 +11,9 @@ $(document).ready(function (){;
               data: dados,
               success: function(data){
                   $('#existe').html(data).show().fadeOut( 2111 );
+                  if(data.trim() === '<p style="color:red"><small>Usuario Indisponivel!</small></p>'){
+                      $("input[name='user']").val('').focus();
+                  }
                 
                 
               }
@@ -19,6 +22,6 @@ $(document).ready(function (){;
                 
                    
                    );
-          return false;
+         
        });
 });

@@ -40,14 +40,14 @@
 
         <!-- Page Wrapper -->
         <div id="wrapper">
-            <%@include file="banner.jsp" %>
+            <%@include file="banner_funcionario.jsp" %>
             <!-- Content Wrapper -->
             <div id="content-wrapper" class="d-flex flex-column">
 
                 <!-- Main Content -->
                 <div id="content">
 
-                    <%@include file="top_bar.jsp"%>
+                    <%@include file="top_bar_funcionario.jsp"%>
                     <!-- Final da barra topo -->
 
                     <!-- Conteudo da pagaina principal container -->

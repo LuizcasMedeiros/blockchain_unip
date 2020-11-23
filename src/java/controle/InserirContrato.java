@@ -12,15 +12,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Cliente;
-import modelo.ClienteDAO;
-
+import modelo.Contrato;
+import modelo.ContratoDAO;
 
 /**
  *
  * @author luizf
  */
-public class InserirCliente extends HttpServlet {
+public class InserirContrato extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,66 +32,42 @@ public class InserirCliente extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet InserirCliente</title>");            
+            out.println("<title>Servlet InserirContrato</title>");            
             out.println("</head>");
             out.println("<body>");
             try{
-                String nome = request.getParameter("nome");
-                String email = request.getParameter("email");
-                String user = request.getParameter("user");
-                String senha= request.getParameter("senha");
-                String cpf = request.getParameter("cpf");
-                String celular= request.getParameter("celular");
-                Date data_nascimento = (Date) Date.valueOf(request.getParameter("data_nascimento"));
-                String cep = request.getParameter("cep");
-                String localidade = request.getParameter("localidade");
-                String bairro = request.getParameter("bairro");
-                String logradouro = request.getParameter("logradouro");
-                String complemento = request.getParameter("complemento");
-                String uf = request.getParameter("uf");
-                String cpf_responsavel = request.getParameter("cpf_responsavel");
-                
-                        
-                
-                if(!nome.isEmpty() && !email.isEmpty()){
-                    Cliente c = new Cliente();
-                    ClienteDAO cDAO = new ClienteDAO();
-                    
-                    c.setNome(nome);
-                    c.setCpf(cpf);
-                    c.setCelular(celular);
-                    c.setData_nascimento(data_nascimento);
-                    c.setEmail(email); 
-                    c.setCep(cep);
-                    c.setLocalidade(localidade);
-                    c.setBairro(bairro);
-                    c.setLogadouro(logradouro);
-                    c.setComplemento(complemento);
-                    c.setUf(uf);
-                    c.setCpf_responsavel(cpf_responsavel);
-                    c.setUser(user);
-                    c.setSenha(senha);
+               Date data_inclusao = (Date) Date.valueOf(request.getParameter("data_inclusao"));
+               Date data_encerramento = (Date) Date.valueOf(request.getParameter("data_encerramento"));
+               String descricao = request.getParameter("descricao");
+               Double valor = Double.parseDouble(request.getParameter("valor"));
+               
+               
+               if(!descricao.isEmpty() && valor != 0){
+                   Contrato co = new Contrato();
+                   ContratoDAO cDAO = new ContratoDAO();
                    
-                    
-                    c.setSenha(c.criptografarSenha(senha));
-                    
-                    cDAO.inserir(c);
-                    
-                    response.sendRedirect("login.jsp");
-                }else{
-                    out.println("Algum campo obrigátorio não foi preenchido");
-                }
-                    
-                
+                   co.setDataInclusao(data_inclusao);
+                   co.setDataEncerramento(data_encerramento);
+                   co.setDescricao(descricao);
+                   co.setValor(valor);
+                   
+                   cDAO.inserir(co);
+                   
+                   response.sendRedirect("listar_cliente_funcionario.jsp");
+               }else{
+                    out.print("<script type='text/javascript'>");
+                    out.print("alert('Algum Campo nao preenchido'); ");
+                    out.print("history.back();");
+                    out.print("</script>");
+               }
             }catch (Exception e){
-                out.println("Error"+e);
+                out.print("error:"+e);  
             }
             out.println("</body>");
             out.println("</html>");

@@ -107,7 +107,7 @@
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%=fLogado.getNome()%></span>
-                                    <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60" alt="logo">
+                                    <img class="img-profile rounded-circle" src="assets/source-404.jpg" alt="logo">
                                 </a>
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -168,6 +168,7 @@
                                             
                                             for (Cliente c
                                                     : lista) {
+                                                if (fLogado.getPerfil().getNome().equals("Gerente") || fLogado.getPerfil().getNome().equals("Admin")) {
                                                 
                                                     
                                         %>
@@ -179,6 +180,13 @@
                                                 <td> <%=df.format(c.getData_nascimento())%></td>
                                                 <td> <%=c.getUser()%></td>
                                                 <td>  
+                                                    <button  type="button" class="btn btn-primary btn-sm" 
+                                                             data-toggle="modal" 
+                                                             data-target="#ModalMostrarAll<%=c.getId()%>"
+
+                                                     >
+                                                        <i class="fas fa-search"></i>
+                                                    </button>
                                                     <a onclick="excluir('<%=c.getNome()%>', <%=c.getId()%>)"  class="btn btn-danger btn-sm">
                                                         <i class="fas fa-trash"></i>
                                                     </a>
@@ -204,11 +212,93 @@
                                                         Conta Pendente.
                                                      </a>
                                                    <%}%>
+                                                   
+                                                   
                                             </tr>
+                                            <div class="modal fade" id="ModalMostrarAll<%=c.getId()%>" tabindex="-1" role="dialog" aria-labelledby="ModalMostrar" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="ModalMostrar"><%=c.getId()%></h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="card shadow mb-4">
+                                                            <div class="card-header py-3">
+                                                                <h6 class="m-0 font-weight-bold text-primary">Todas as informações</h6>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="row justify-content-center pl-4 mt-4 mb-4">
+                                                                    <div class="col-sm-12 col-md-10 col-lg-8">
+                                                                        <h5>Informações Completa do cliente</h5>
+                                                                         <hr>
+                                                                        <p>ID: <%=c.getId()%></p>
+                                                                        <p>NOME: <%=c.getNome()%></p>
+                                                                        <p>CPF: <%=c.getCpf()%></p>
+                                                                                                             <%if(c.getCpf_responsavel() != null){%>
+                                                                        <p>CPF RESPONSAVEL: <%=c.getCpf_responsavel()%></p>
 
+
+                                                                        <%}else{%>
+                                                                       
+                                                                        <%}%>
+                                                                        <p>EMAIL: <%=c.getEmail()%></p>
+                                                                        <p>Data de nascimento: <%=df.format(c.getData_nascimento())%></p>
+                                                                        <p>CELULAR: <%=c.getCelular()%></p>
+                                                                        
+                                                                        
+                                                                        <hr>
+                                                                        
+                                                                        <h5>Informações de Endereço</h5>
+                                                                        
+                                                                        <p>CEP: <%=c.getCep()%></p>
+                                                                        <p>CIDADE: <%=c.getLocalidade()%></p>
+                                                                        <p>BAIRRO:<%=c.getBairro()%></p>
+                                                                        <p>LOGRADOURO:<%=c.getLogadouro()%></p>
+                                                                        <p>UF: <%=c.getUf()%></p>
+                                                                        <%if(!c.getComplemento().isEmpty()){%>
+                                                                        <p>COMPLEMENTO: <%=c.getComplemento()%></p>
+
+
+                                                                        <%}else{%>
+                                                                       
+                                                                        <%}%>
+                                                                         <hr>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </tbody>  
+                                        <%}else{%>
+                                            <tbody>
+                                            <tr>
+                                                <td><%=c.getId()%></td>
+                                                <td> <%=c.getNome()%></td>
+                                                <td> <%=c.getEmail()%></td>
+                                                <td> <%=df.format(c.getData_nascimento())%></td>
+                                                <td> <%=c.getUser()%></td>
+                                                <td>  
+                                                    <%if (c.getConta().getId() != 0) {%>
+                                                    <a  href="#"class="btn btn-info btn-sm">
+                                                        Conta já adicioanda.
+                                                    </a>
+                                                   <%}else{%>
+                                                     <a  href="#"class="btn btn-danger btn-sm">
+                                                        Conta Pendente.
+                                                     </a>
+                                                   <%}%>
+                                            </tr>
+                                        </tbody>
 
-                                                      <%}%>
+
+                                        <%}}%>
+
+                                                      
                                     </table>
                                 </div>
                             </div>

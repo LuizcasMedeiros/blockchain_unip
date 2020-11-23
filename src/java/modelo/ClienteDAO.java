@@ -9,8 +9,8 @@ public class ClienteDAO extends DataBaseDAO {
 
     public void inserir(Cliente c) throws Exception {
         String sql = "INSERT INTO cliente (nome, email, cep, localidade, bairro, complemento,logradouro,"
-                + "uf, user, senha, cpf, celular, data_nascimento, data_inclusao, perfil_id)"
-                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,now(),2)";
+                + "uf, user, senha, cpf, celular, data_nascimento, data_inclusao, perfil_id, cpf_responsavel)"
+                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,now(),2,?)";
 
         this.conectar();
 
@@ -28,6 +28,7 @@ public class ClienteDAO extends DataBaseDAO {
         pstm.setString(11, c.getCpf());
         pstm.setString(12, c.getCelular());
         pstm.setDate(13, (Date) c.getData_nascimento());
+        pstm.setString(14, c.getCpf_responsavel());
         pstm.execute();
         this.desconectar();
     }
@@ -84,6 +85,13 @@ public class ClienteDAO extends DataBaseDAO {
             c.setUser(rs.getString("user"));
             c.setCelular(rs.getString("celular"));
             c.setData_nascimento(rs.getDate("data_nascimento"));
+            c.setCep(rs.getString("cep"));
+            c.setLocalidade(rs.getString("localidade"));
+            c.setBairro(rs.getString("bairro"));
+            c.setComplemento(rs.getString("complemento"));
+            c.setLogadouro(rs.getString("logradouro"));
+            c.setUf(rs.getString("uf"));
+            c.setCpf_responsavel(rs.getString("cpf_responsavel"));
            
             
 
@@ -122,6 +130,13 @@ public class ClienteDAO extends DataBaseDAO {
             c.setUser(rs.getString("user"));
             c.setCelular(rs.getString("celular"));
             c.setData_nascimento(rs.getDate("data_nascimento"));
+            c.setCep(rs.getString("cep"));
+            c.setLocalidade(rs.getString("localidade"));
+            c.setBairro(rs.getString("bairro"));
+            c.setComplemento(rs.getString("complemento"));
+            c.setLogadouro(rs.getString("logradouro"));
+            c.setUf(rs.getString("uf"));
+            c.setCpf_responsavel(rs.getString("cpf_responsavel"));
            
             
 
@@ -257,6 +272,7 @@ public class ClienteDAO extends DataBaseDAO {
                 c.setId(rs.getInt("id"));
                 c.setNome(rs.getString("nome"));
                 c.setUser(rs.getString("user"));
+                c.setCpf(rs.getString("cpf"));
                 c.setSenha(rs.getString("senha"));
                 PerfilDAO pDAO = new PerfilDAO();
                 c.setPerfil(pDAO.carregarPorId(rs.getInt("perfil_id")));

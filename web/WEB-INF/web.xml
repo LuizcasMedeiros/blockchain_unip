@@ -84,6 +84,22 @@
         <servlet-name>AlterarFuncionario</servlet-name>
         <servlet-class>controle.AlterarFuncionario</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>InserirContrato</servlet-name>
+        <servlet-class>controle.InserirContrato</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdquirirContrato</servlet-name>
+        <servlet-class>controle.AdquirirContrato</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ExcluirFuncionario</servlet-name>
+        <servlet-class>controle.ExcluirFuncionario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChartsFuncionario</servlet-name>
+        <servlet-class>controle.ChartsFuncionario</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InserirCliente</servlet-name>
         <url-pattern>/inserir_cliente.do</url-pattern>
@@ -168,9 +184,25 @@
         <servlet-name>AlterarFuncionario</servlet-name>
         <url-pattern>/alterar_funcionario.do</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InserirContrato</servlet-name>
+        <url-pattern>/inserir_contrato.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdquirirContrato</servlet-name>
+        <url-pattern>/adquirir_contrato.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExcluirFuncionario</servlet-name>
+        <url-pattern>/excluir_funcionario.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChartsFuncionario</servlet-name>
+        <url-pattern>/charts_funcionarios</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
-            60
+            90
         </session-timeout>
     </session-config>
     <error-page>

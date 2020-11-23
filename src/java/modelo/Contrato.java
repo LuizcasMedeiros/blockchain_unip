@@ -1,5 +1,6 @@
 package modelo;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -9,21 +10,8 @@ public class Contrato {
     private Date dataInclusao;
     private Date dataEncerramento;
     private Double valor;
-    private Double juros;
+    private ArrayList <Cliente> cliiente;
     private Cliente cliente;
-    private Funcionario funcionario;
-    
-
-    public Funcionario getFuncionario() {
-        return funcionario;
-    }
-
-    public void setFuncionario(Funcionario funcionario) {
-        this.funcionario = funcionario;
-    }
-    
-    
-    
 
     public Cliente getCliente() {
         return cliente;
@@ -32,6 +20,21 @@ public class Contrato {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+    
+    
+
+    public ArrayList<Cliente> getCliiente() {
+        return cliiente;
+    }
+
+    public void setCliiente(ArrayList<Cliente> cliiente) {
+        this.cliiente = cliiente;
+    }
+  
+    
+    
+
+   
     public int getId() {
         return id;
     }
@@ -70,14 +73,6 @@ public class Contrato {
 
     public void setValor(Double valor) {
         this.valor = valor;
-    }
-
-    public Double getJuros() {
-        return juros;
-    }
-
-    public void setJuros(Double juros) {
-        this.juros = juros;
     }
     
     

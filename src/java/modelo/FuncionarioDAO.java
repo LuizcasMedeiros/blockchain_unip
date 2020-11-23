@@ -209,6 +209,15 @@ public class FuncionarioDAO extends DataBaseDAO {
         pstm.execute();
         this.desconectar();
     }
+      public void excluir(int matricula) throws Exception {
+        String sql = "DELETE FROM funcionario WHERE matricula=?";
+
+        this.conectar();
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setInt(1, matricula);
+        pstm.execute();
+        this.desconectar();
+    }
     
     public boolean pesquisarEmailExiste (String email) throws Exception {
         String sql = "SELECT * FROM funcionario WHERE email =?";

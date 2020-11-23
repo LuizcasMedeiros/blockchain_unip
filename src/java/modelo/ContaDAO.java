@@ -10,8 +10,8 @@ public class ContaDAO extends DataBaseDAO{
 
     
     public void inserir(Conta c) throws Exception{
-        String sql = "INSERT INTO conta (banco, contaBancaria, agencia, nomeCartao, dataExpiracao, tipo, cliente_id, funcionario_id)"
-                + "VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO conta (banco, contaBancaria, agencia, nomeCartao, dataExpiracao, tipo, cliente_id)"
+                + "VALUES (?,?,?,?,?,?,?)";
         this.conectar();
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, c.getBanco());
@@ -21,7 +21,6 @@ public class ContaDAO extends DataBaseDAO{
         pstm.setDate(5, (Date) c.getDataExpiracao());
         pstm.setString(6, c.getTipo());
         pstm.setInt(7, c.getCliente().getId());
-        pstm.setInt(8, c.getFuncionario().getMatricula());
         pstm.execute();
         this.desconectar();
     }
@@ -92,6 +91,63 @@ public class ContaDAO extends DataBaseDAO{
         this.desconectar();
         
         return co;
+
+    }
+       public Conta CarregarPorIdCliente (int id) throws Exception {
+        Conta co = new Conta();
+        String sql = "SELECT * FROM conta WHERE cliente_id=?";
+        this.conectar();
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setInt(1, id);
+        ResultSet rs = pstm.executeQuery();
+        if (rs.next()) {
+            co.setId(rs.getInt("id"));
+            co.setBanco(rs.getString("banco"));
+            co.setContaBancaria(rs.getString("contaBancaria"));
+            co.setNomeCartao(rs.getString("nomeCartao"));
+            co.setAgencia(rs.getString("agencia"));
+            co.setTipo(rs.getString("tipo"));
+            co.setDataExpiracao(rs.getDate("dataExpiracao"));
+            ClienteDAO cDAO = new ClienteDAO();
+            
+            co.setCliente(cDAO.carregarPorId(rs.getInt("cliente_id")));
+        }
+        this.desconectar();
+        
+        return co;
+
+    }
+       
+       public boolean CarregarPorIdClienteB (int id) throws Exception {
+        Conta co = new Conta();
+        String sql = "SELECT * FROM conta WHERE cliente_id=?";
+        this.conectar();
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setInt(1, id);
+        ResultSet rs = pstm.executeQuery();
+        boolean result = false;
+        
+        
+        
+        
+        if (rs.next()) {
+            co.setId(rs.getInt("id"));
+            co.setBanco(rs.getString("banco"));
+            co.setContaBancaria(rs.getString("contaBancaria"));
+            co.setNomeCartao(rs.getString("nomeCartao"));
+            co.setAgencia(rs.getString("agencia"));
+            co.setTipo(rs.getString("tipo"));
+            co.setDataExpiracao(rs.getDate("dataExpiracao"));
+            ClienteDAO cDAO = new ClienteDAO();
+            
+            co.setCliente(cDAO.carregarPorId(rs.getInt("cliente_id")));
+            result=true;
+        }else{
+            result=false;
+        }
+        this.desconectar();
+        
+        return result;
 
     }
     

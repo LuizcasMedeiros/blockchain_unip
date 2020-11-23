@@ -113,7 +113,7 @@
                                             </div> 
                                             <div class="form-row" id="existe">
                                             
-                                                 </div>
+                                            </div>
                                              <div class="form-row">
                                                 <div class="form-group col-sm-3">
                                                     <label for="senha">SENHA:</label> 
@@ -182,5 +182,6 @@
                 </div>
             </div>
         </div>
+        <script src="javascript/verifica_email.js"></script>
     </body>
 </html>

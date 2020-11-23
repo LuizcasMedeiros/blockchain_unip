@@ -50,7 +50,7 @@
 
                                             for (Funcionario f
                                                     : lista) {
-                                                if(fLogado.getPerfil().getNome().equals("Gerente")){
+                                                if(fLogado.getPerfil().getNome().equals("Gerente") || fLogado.getPerfil().getNome().equals("Admin")){
 
                                         %>
                                         <tbody>

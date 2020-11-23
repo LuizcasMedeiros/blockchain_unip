@@ -37,18 +37,22 @@
                                     <div class="form-group">
                                         <input id="data_nascimento" class="form-control form-control-user" type="date"  placeholder="Informe sua data de nascimento" name="data_nascimento"  required/> 
                                     </div>  
-
+                                    <div class="form-group">
+                                        <div class="cpfresponsavel" id="cpf_responsavell">
+                                          <input class="form-control form-control-user" type="text"  placeholder="Cpf Responsavel" name="cpf_responsavel"  id="cpf_responsavel" OnKeyPress="formatar('###.###.###-##', this)" maxlength="14" />   
+                                        </div>
+                                    </div>
 
                                     <div class="form-group">
                                         <input id="numero" class="form-control form-control-user" type="text"  placeholder="Informe seu numero de celular" name="celular" OnKeyPress="formatar('## #####-####', this)" minlength="13" maxlength="13" required/> 
                                     </div>
 
                                     <div class="form-group">
-                                        <input id="email" class="form-control form-control-user" type="email"  placeholder="Email" name="email" id="email" maxlength="45" required/> 
+                                        <input id="email" class="form-control form-control-user" type="email"  placeholder="Email" name="email" id="email"  required/> 
                                     </div>
 
                                     <div class="form-group">
-                                        <input id="cemail" class="form-control form-control-user"   type="email"  placeholder="Confirmar Emai"  id="confirmarEmail" maxlength="45" required/> 
+                                        <input id="cemail" class="form-control form-control-user"   type="email"  placeholder="Confirmar Emai"  id="confirmarEmail"  required/> 
                                     </div>
 
                                     <div class="form-group row">
@@ -97,6 +101,8 @@
 
         <!-- Custom scripts for all pages-->
         <script src="javascript/js/sb-admin-2.min.js"></script>
+        <script src="javascript/verificar_usuario.js" ></script>
+        <script src="javascript/verifica_maioridade.js"></script>
 
     </body>
 

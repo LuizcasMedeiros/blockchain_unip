@@ -30,9 +30,9 @@
         <jsp:param name="pageTitle" value="<%= name%>"/>
     </jsp:include>
     <script type="text/javascript">
-        function excluir(nome, id) {
+        function excluir(nome, matricula) {
             if (confirm("Tem certeza que deseja excluir o cliente: " + nome + "?")) {
-                window.open("excluir_cliente.do?op=c&id=" + id, "_self");
+                window.open("excluir_funcionario.do?op=c&id=" + matricula, "_self");
             }
         }
     </script>
@@ -100,7 +100,7 @@
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%=fLogado.getNome()%></span>
-                                    <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60" alt="logo">
+                                    <img class="img-profile rounded-circle" src="assets/source-404.jpg" alt="logo">
                                 </a>
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -159,7 +159,7 @@
 
                                             for (Funcionario f
                                                     : lista) {
-                                                if(fLogado.getPerfil().getNome().equals("Gerente")){
+                                                if(fLogado.getPerfil().getNome().equals("Gerente") || fLogado.getPerfil().getNome().equals("Admin") ){
 
                                         %>
                                         <tbody>
@@ -288,10 +288,7 @@
                                                 <td> <%=f.getNome()%></td>
                                                 <td><%=f.getEmail()%></td>
                                                 <td> <%=f.getCpf()%></td>
-                                                <td>  
-                                                    <a onclick="excluir('<%=f.getNome()%>', <%=f.getMatricula()%>)"  class="btn btn-danger btn-sm">
-                                                        <i class="fas fa-trash"></i>
-                                                    </a>
+                                                <td> 
                                                      <button  type="button" class="btn btn-primary btn-sm" 
                                                              data-toggle="modal" 
                                                              data-target="#ModalAlterarFuncionario"
@@ -314,7 +311,7 @@
                                                              data-toggle="modal" 
                                                              data-target="#ModalMostrarAll<%=f.getMatricula()%>"
 
-                                                             >
+                                                     >
                                                         <i class="fas fa-search"></i>
                                                     </button>
                                                    <%if (f.getConta().getId() != 0) {%>

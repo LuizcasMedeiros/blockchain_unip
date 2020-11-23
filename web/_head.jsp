@@ -36,9 +36,9 @@
         <script src="javascript/localizar_funcionario.js" defer></script>
         <script src="javascript/alterar_cliente.js" defer></script>
         <script src="javascript/alterar_investimento.js" defer></script>
-        <script src="javascript/verificar_usuario.js" defer></script>
-        <script src="javascript/verifica_email.js" defer></script>
         <script src="javascript/pesquisa_cliente_funcionario.js" defer></script>
+        <script src="javascript/acessbiliade_texto.js"></script>
+        
         
         <!--Fontes personalizadas para este modelo -->
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type ="text/css">
@@ -66,16 +66,7 @@
         <script  src="javascript/bootsrap_scipts/bootstrap.min.js" ></script>
        
         
-        <!--Plug-ins de nível de página -->
-        
-        <!--<script src ="vendor/chart.js/Chart.min.js"></script>->
-        
-        
-        
-    
-        <script src ="javascript/js/demo/chart-area-demo.js" defer> </script>
-        <script src ="javascript/js/demo/chart-pie-demo.js" defer> </script>
-        -->
+      
        
 </head>
 

@@ -78,9 +78,7 @@
                                                     <datalist id="tipoOperacao">
                                                      
                                                         <option value="Depositar"></option>
-                                                        <option value="Comprar"></option>
                                                         <option value="Sacar"></option>
-                                                        <option value="Vender"></option>
                                                         <option value="Consultar"></option>
                                                           
                                                     </datalist>

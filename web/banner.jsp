@@ -10,6 +10,7 @@
 
 
 <%
+    String pagebb = "";
     Cliente cLogado = new Cliente();;
     try {
         cLogado = (Cliente) session.getAttribute("cliente");
@@ -67,11 +68,13 @@
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
+</ul>
     <%
         } catch (Exception e) {
-            response.sendRedirect("login.jsp");
+            pagebb = "login.jsp";
+            RequestDispatcher dd=request.getRequestDispatcher(pagebb);
+            dd.forward(request, response);
         }
 
     %>
-</ul>
 <!-- End of Sidebar -->

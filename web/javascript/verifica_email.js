@@ -1,6 +1,6 @@
 $(document).ready(function (){;
         
-       $('#funcionario').add('#email').on('blur submit',function(){
+       $('#email').on('blur',function(){
           var dados = $(this).serialize();
           
           
@@ -11,14 +11,17 @@ $(document).ready(function (){;
               data: dados,
               success: function(data){
                   $('#existe').html(data).show().fadeOut( 2111 );
+                  console.log(data.trim())
+                  if(data.trim() === '<p style="color:red"><small>Email já cadastrado!</small></p>'){
+                      $("input[name='email']").val('').focus();
+                  }
                 
-                
-              }
+                }
              
-          }
+            } 
                 
                    
-                   );
-          return false;
+            );
+          
        });
 });

@@ -14,6 +14,7 @@
     String senha = request.getParameter("senha");
     String celular = request.getParameter("celular");
     String data_nascimento = request.getParameter("data_nascimento");
+    String cpf_responsavel = request.getParameter("cpf_responsavel");
    
 
 %>
@@ -23,7 +24,7 @@
         <jsp:param name="pageTitle" value="<%= name%>"/>
     </jsp:include>
     
-    <body>
+    <body class="bg-gradient-primary">
         <div class="container">
             <div class="card o-hidden border-0 shadow-lg my-5">
                 <div class="card-body p-0">
@@ -36,13 +37,14 @@
                                     <h1 class="h4 text-gray-900 mb-4">Criar sua Conta!</h1>
                                 </div>
                                 <form id="cliente" name="cliente" class="user" method="post" action="inserir_cliente.do">
-                                    <input type="hidden" name="nome" value="<%=nome%>">
-                                    <input type="hidden" name="email" value="<%=email%>">
-                                    <input type="hidden" name="user" value="<%=user%>">
-                                    <input type="hidden" name="celular" value="<%=celular%>">
-                                    <input type="hidden" name="data_nascimento" value="<%=data_nascimento%>">
+                                    <input type="hidden" name="nome" value="<%=nome%>"/>
+                                    <input type="hidden" name="email" value="<%=email%>"/>
+                                    <input type="hidden" name="user" value="<%=user%>"/>
+                                    <input type="hidden" name="celular" value="<%=celular%>"/>
+                                    <input type="hidden" name="data_nascimento" value="<%=data_nascimento%>"/>
                                     <input type="hidden" name="cpf" value="<%=cpf%>">
-                                    <input type="hidden" name="senha" value="<%=senha%>">
+                                    <input type="hidden" name="senha" value="<%=senha%>"/>
+                                    <input type ="hidden" name="cpf_responsavel" value="<%=cpf_responsavel%>"/>
                                   
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">

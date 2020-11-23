@@ -12,6 +12,7 @@ public class Cliente {
     private int id;
     private String nome;
     private String cpf;
+    private String cpf_responsavel;
     private String celular;
     private String email;
     private String user;
@@ -31,6 +32,8 @@ public class Cliente {
     
     
     
+    
+    
     public String criptografarSenha(String senha){
         MessageDigest md;
         String retorno = "";
@@ -41,6 +44,15 @@ public class Cliente {
         } catch (Exception e) {}
         return retorno;
     }
+
+    public String getCpf_responsavel() {
+        return cpf_responsavel;
+    }
+
+    public void setCpf_responsavel(String cpf_responsavel) {
+        this.cpf_responsavel = cpf_responsavel;
+    }
+    
 
     public Contrato getContrato() {
         return contrato;
