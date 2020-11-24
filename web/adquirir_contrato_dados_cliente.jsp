@@ -23,7 +23,7 @@
 
 %>
 <html lang="pt-br">
-    <% String name = "Inserir endereço";%>
+    <% String name = "Adquirir Contrato";%>
     <jsp:include page="_head.jsp">
         <jsp:param name="pageTitle" value="<%= name%>"/>
     </jsp:include>

@@ -26,7 +26,7 @@
 
 %>
 <html lang="pt-br">
-        <% String name = "Inserir endereço";%>
+        <% String name = "Listar Contratos Adquiridos";%>
         <jsp:include page="_head.jsp">
             <jsp:param name="pageTitle" value="<%= name%>"/>
         </jsp:include>
@@ -53,7 +53,7 @@
                             <!-- Tabela -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Contratos adquiridos (Pelo os clientes) <span><a href="#" class="btn btn-primary mt-2 mb-2">Novo Tipo de Contrato</a> </span></h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Contratos adquiridos (Pelo os clientes) <span><a href="incluir_contrato.jsp" class="btn btn-primary mt-2 mb-2">Novo Tipo de Contrato</a> </span></h6>
                                    
                                 </div>
                                 

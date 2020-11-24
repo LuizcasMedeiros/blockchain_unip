@@ -87,6 +87,43 @@ public class InvestimentoDAO extends DataBaseDAO {
         return listaj;
     }
     
+     public ArrayList<Investimento> listarinnerPorId(int id) throws Exception {
+        ArrayList<Investimento> listaj = new ArrayList<Investimento>();
+        Investimento in = new Investimento();
+        String sql = "SELECT inv.*,"
+                + "tc.nome "
+                + "FROM investimentos inv "
+                + "LEFT JOIN "
+                + "tipocriptoativos tc "
+                + "ON inv.tipoCriptoativos_id = tc.id "
+                + "WHERE inv.cliente_id = ?";
+        this.conectar();
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setInt(1, id);
+        ResultSet rs = pstm.executeQuery();
+        
+        
+        while (rs.next()) {
+            in.setId(rs.getInt("id"));
+            in.setData(rs.getDate("data"));
+            in.setValor(rs.getDouble("valor"));
+            in.setHora(rs.getTime("hora"));
+
+         
+            
+            CriptoativoDAO cDAO = new CriptoativoDAO();
+
+            in.setCriptoativo(cDAO.carregarPorId(rs.getInt("tipoCriptoativos_id")));
+            
+          
+
+            listaj.add(in);
+        }
+        this.desconectar();
+        return listaj;
+    }
+    
+    
 
     public void excluir(int id) throws Exception {
         String sql = "DELETE FROM investimentos WHERE id=?";

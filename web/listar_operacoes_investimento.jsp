@@ -12,11 +12,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
+    request.setCharacterEncoding("UTF-8");
+    response.setContentType("text/html;charset=UTF-8");
+%>
+<%
   session = request.getSession();  
   Operacoes opS = (Operacoes) session.getAttribute("operacao");
   ArrayList<Operacoes> lista = new ArrayList<Operacoes>();  
   NumberFormat z = NumberFormat.getCurrencyInstance();
-  out.print("id"+opS.getInvestimento().getId());
   
 
   try{
@@ -40,7 +43,7 @@
 
 
 <html lang="pt-br">
-        <% String name = "Inserir endereço";%>
+        <% String name = "Listar Operações Feitas";%>
         <jsp:include page="_head.jsp">
             <jsp:param name="pageTitle" value="<%= name%>"/>
         </jsp:include>

@@ -7,24 +7,23 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <% String name = "login";%>
+    <% String name = "Login Funcionario";%>
     <jsp:include page="_head.jsp">
         <jsp:param name="pageTitle" value="<%= name%>"/>
     </jsp:include>
-    <body class="bg-gradient-primary">
+    <body class="bg-gradient-dark">
         <div class="container">
-            <div class="row justify-content-center">
-                <p class="text-gray-900 mb-4 p-3">Aumentar texto</p>
-                <span class="p-2">
-
-
-                    <button class=""onClick="fonte('a');">
-                        <i class="fas fa-plus"></i>
-                    </button>
-                    <button onClick="fonte('d');">
-                        <i class="fas fa-window-minimize"></i>
-                    </button>
-                </span>
+            <div class="row justify-content-center mt-2">
+                <p class="p-acessibilidade">Aumentar texto</p>
+                    <a class="mais" onClick="fonte('a');">
+                        <!--<i class="fas fa-plus"></i>-->
+                        +
+                    </a>
+                    <a  class="menos" onClick="fonte('d');">
+                        <!--<i class="fas fa-window-minimize"></i>-->
+                        -
+                    </a>
+              
             </div>
 
             <!-- Outer Row -->
@@ -40,7 +39,7 @@
                                 <div class="col-lg-6">
                                     <div class="p-2">
                                         <div class="text-center">
-                                            <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 8rem;" src="assets/COINVEST.png" alt="">
+                                            <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 9rem;" src="assets/COINVEST.png" alt="">
                                             <h1 class="acessibilidade h4 text-gray-900 mb-4">Bem vindo de volta!</h1>
                                             <h5 class="acessibilidade">Login Funcionario</h5>
                                         </div>
@@ -73,7 +72,9 @@
                 </div>
 
             </div>
-
+            <div class="row justify-content-center mt-2">
+                <p class="p-nome-sist">SisblockCBP V.0.1</p>
+            </div>
         </div>
 
 

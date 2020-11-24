@@ -4,13 +4,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-    <% String name = "Alterar Cliente";%>
+    <% String name = "Cadastro Cliente";%>
 
     <jsp:include page="_head.jsp">
         <jsp:param name="pageTitle" value="<%= name%>"/>
     </jsp:include>
 
-    <body class="bg-gradient-primary">
+    <body class="bg-gradient-dark">
 
         <div class="container">
 
@@ -79,10 +79,7 @@
                                 </form>
                                 <hr>
                                 <div class="text-center">
-                                    <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                </div>
-                                <div class="text-center">
-                                    <a class="small" href="login.html">Already have an account? Login!</a>
+                                    <a class="small" href="login.jsp">Já tem uma conta? Entre!</a>
                                 </div>
                             </div>
                         </div>

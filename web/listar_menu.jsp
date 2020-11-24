@@ -29,7 +29,7 @@
             }
         </script>
 
-        <% String name = "Inserir endereço";%>
+        <% String name = "Listar Menu";%>
         <jsp:include page="_head.jsp">
             <jsp:param name="pageTitle" value="<%= name%>"/>
         </jsp:include>

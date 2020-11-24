@@ -4,7 +4,7 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
-    <% String name = "Inserir endereço";%>
+    <% String name = "ERROR";%>
     <jsp:include page="_head.jsp">
         <jsp:param name="pageTitle" value="<%= name%>"/>
     </jsp:include>

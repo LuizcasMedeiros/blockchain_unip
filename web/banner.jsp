@@ -11,7 +11,7 @@
 
 <%
     String pagebb = "";
-    Cliente cLogado = new Cliente();;
+    Cliente cLogado = new Cliente();
     try {
         cLogado = (Cliente) session.getAttribute("cliente");
 

@@ -100,6 +100,14 @@
         <servlet-name>ChartsFuncionario</servlet-name>
         <servlet-class>controle.ChartsFuncionario</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ChartsCliente</servlet-name>
+        <servlet-class>controle.ChartsCliente</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AlterarClienteFunc</servlet-name>
+        <servlet-class>controle.AlterarClienteFunc</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InserirCliente</servlet-name>
         <url-pattern>/inserir_cliente.do</url-pattern>
@@ -199,6 +207,14 @@
     <servlet-mapping>
         <servlet-name>ChartsFuncionario</servlet-name>
         <url-pattern>/charts_funcionarios</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChartsCliente</servlet-name>
+        <url-pattern>/charts_cliente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AlterarClienteFunc</servlet-name>
+        <url-pattern>/alterar_cliente_funcionario.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

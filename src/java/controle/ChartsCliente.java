@@ -5,22 +5,24 @@
  */
 package controle;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Conta;
-import modelo.ContaDAO;
-import modelo.Funcionario;
+import javax.servlet.http.HttpSession;
+import modelo.Cliente;
+import modelo.Investimento;
+import modelo.InvestimentoDAO;
 
 /**
  *
  * @author luizf
  */
-public class AdicionarCartaoFuncionario extends HttpServlet {
+public class ChartsCliente extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,55 +38,21 @@ public class AdicionarCartaoFuncionario extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AdicionarCartaoFuncionario</title>");            
-            out.println("</head>");
-            out.println("<body>");
+            Gson gson = new Gson();
             try{
-               String banco = request.getParameter("banco");
-               String tipo = request.getParameter("tipo");
-               String contaBancaria = request.getParameter("contaBancaria");
-               String nomeCartao = request.getParameter("nomeCartao");
-               Date dataExpiracao = (Date.valueOf(request.getParameter("dataExpiracao")));
-               String agencia = request.getParameter("agencia");
-               int matricula = Integer.parseInt(request.getParameter("matricula"));
-               
-               
-              
-               
-               
-               if(!banco.isEmpty()){
-                   Conta c = new Conta();
-                   ContaDAO cDAO= new ContaDAO();
-                   
-                   
-                   
-                   c.setBanco(banco);
-                   c.setTipo(tipo);
-                   c.setContaBancaria(contaBancaria);
-                   c.setNomeCartao(nomeCartao);
-                   c.setDataExpiracao(dataExpiracao);
-                   c.setAgencia(agencia);
-                   
-                   Funcionario f = new Funcionario();
-                   f.setMatricula(matricula);
-                   
-                   c.setFuncionario(f);
-                   
-                   cDAO.inserirFuncionario(c);
-                   response.sendRedirect("listar_funcionarios.jsp");
-               }else{
-                   out.print("Campo obrigátorio não preenchido");
-               }
-                   
-                
+                HttpSession session = request.getSession();
+                Cliente cliente = new Cliente();
+                cliente = (Cliente) session.getAttribute("cliente");
+                InvestimentoDAO inv = new InvestimentoDAO();
+                ArrayList<Investimento> lista = new ArrayList<>();
+                lista = inv.listarinnerPorId(cliente.getId());
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+                out.println(gson.toJson(lista));
+                out.flush();
             }catch(Exception e){
-                out.print("ERROR: "+e);
+                out.print("O servidor não atendeu a solicitação dos dados");
             }
-            out.println("</body>");
-            out.println("</html>");
         }
     }
 

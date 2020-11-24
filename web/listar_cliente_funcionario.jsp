@@ -32,7 +32,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-    <% String name = "Inserir endereço";%>
+    <% String name = "Listar Clientes Cadastrados";%>
     <jsp:include page="_head.jsp">
         <jsp:param name="pageTitle" value="<%= name%>"/>
     </jsp:include>
@@ -325,7 +325,7 @@
                                         <div class="card-body">
                                             <div class="row justify-content-center pl-4 mt-4 mb-4">
                                                 <div class="col-sm-12 col-md-10 col-lg-8">
-                                                    <form name="alterar_cliente" action="alterar_cliente.do" method="post">
+                                                    <form name="alterar_cliente" action="alterar_cliente_funcionario.do" method="post">
                                                         <div class="form-row">
                                                             <div class="form-group col-sm-6">
                                                                 <label for="nome"> Nome: </label>

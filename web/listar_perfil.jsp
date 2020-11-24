@@ -31,7 +31,7 @@
     </script>
     
 
-    <% String name = "Inserir endereço";%>
+    <% String name = "Listar Perfil";%>
     <jsp:include page="_head.jsp">
         <jsp:param name="pageTitle" value="<%= name%>"/>
     </jsp:include>

@@ -24,7 +24,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-    <%String name = "Inserir endereço";%>
+    <%String name = "Dashboard Funcionario";%>
     <jsp:include page="_head.jsp">
         <jsp:param name="pageTitle" value="<%= name%>"/>
     </jsp:include>
@@ -208,7 +208,7 @@
         <script src="vendor/chart.js/Chart.min.js"></script>
 
 
-        <script src="javascript/chart-area-demo.js"></script>
+        <script src="javascript/chart_dashboard_funcionario.js"></script>
 
     </body>
 

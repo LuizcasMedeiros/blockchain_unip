@@ -12,15 +12,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Conta;
-import modelo.ContaDAO;
-import modelo.Funcionario;
+import modelo.Cliente;
+import modelo.ClienteDAO;
 
 /**
  *
  * @author luizf
  */
-public class AdicionarCartaoFuncionario extends HttpServlet {
+public class AlterarClienteFunc extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,49 +38,41 @@ public class AdicionarCartaoFuncionario extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AdicionarCartaoFuncionario</title>");            
+            out.println("<title>Servlet AlterarClienteFunc</title>");            
             out.println("</head>");
             out.println("<body>");
-            try{
-               String banco = request.getParameter("banco");
-               String tipo = request.getParameter("tipo");
-               String contaBancaria = request.getParameter("contaBancaria");
-               String nomeCartao = request.getParameter("nomeCartao");
-               Date dataExpiracao = (Date.valueOf(request.getParameter("dataExpiracao")));
-               String agencia = request.getParameter("agencia");
-               int matricula = Integer.parseInt(request.getParameter("matricula"));
+           try{
+                int id = Integer.parseInt(request.getParameter("id"));
+                String nome = request.getParameter("nome");
+                String email = request.getParameter("email");
+                Date data_nascimento = (Date) Date.valueOf(request.getParameter("data_nascimento"));
+                String cpf = request.getParameter("cpf");
+                String celular= request.getParameter("celular");
                
                
-              
-               
-               
-               if(!banco.isEmpty()){
-                   Conta c = new Conta();
-                   ContaDAO cDAO= new ContaDAO();
-                   
-                   
-                   
-                   c.setBanco(banco);
-                   c.setTipo(tipo);
-                   c.setContaBancaria(contaBancaria);
-                   c.setNomeCartao(nomeCartao);
-                   c.setDataExpiracao(dataExpiracao);
-                   c.setAgencia(agencia);
-                   
-                   Funcionario f = new Funcionario();
-                   f.setMatricula(matricula);
-                   
-                   c.setFuncionario(f);
-                   
-                   cDAO.inserirFuncionario(c);
-                   response.sendRedirect("listar_funcionarios.jsp");
-               }else{
-                   out.print("Campo obrigátorio não preenchido");
-               }
-                   
                 
-            }catch(Exception e){
-                out.print("ERROR: "+e);
+                if(!nome.isEmpty() && !email.isEmpty()){
+                    Cliente c = new Cliente();
+                    ClienteDAO cDAO = new ClienteDAO();
+                    
+                    c.setNome(nome);
+                    c.setCpf(cpf);
+                    c.setEmail(email);
+                    c.setCelular(celular);
+                    c.setData_nascimento(data_nascimento);
+                    c.setId(id);
+                    
+                    
+                    cDAO.alterar(c);
+                    
+                    response.sendRedirect("listar_cliente_funcionario.jsp");
+                }else{
+                    out.println("Algum campo obrigátorio não foi preenchido");
+                }
+                    
+                
+            }catch (Exception e){
+                out.println("Error"+e);
             }
             out.println("</body>");
             out.println("</html>");
