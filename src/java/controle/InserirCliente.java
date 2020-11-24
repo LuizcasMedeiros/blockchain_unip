@@ -58,6 +58,7 @@ public class InserirCliente extends HttpServlet {
                 String complemento = request.getParameter("complemento");
                 String uf = request.getParameter("uf");
                 String cpf_responsavel = request.getParameter("cpf_responsavel");
+                String cnpj = request.getParameter("cnpj");
                 
                         
                 
@@ -77,6 +78,7 @@ public class InserirCliente extends HttpServlet {
                     c.setComplemento(complemento);
                     c.setUf(uf);
                     c.setCpf_responsavel(cpf_responsavel);
+                    c.setCnpj(cnpj);
                     c.setUser(user);
                     c.setSenha(senha);
                    

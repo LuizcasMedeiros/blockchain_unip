@@ -90,33 +90,25 @@ public class InvestimentoDAO extends DataBaseDAO {
      public ArrayList<Investimento> listarinnerPorId(int id) throws Exception {
         ArrayList<Investimento> listaj = new ArrayList<Investimento>();
         Investimento in = new Investimento();
-        String sql = "SELECT inv.*,"
-                + "tc.nome "
+        String sql = "SELECT inv.*, tc.nome "
                 + "FROM investimentos inv "
                 + "LEFT JOIN "
                 + "tipocriptoativos tc "
-                + "ON inv.tipoCriptoativos_id = tc.id "
+                + "ON inv.tipoCriptoativos_id = tc.id  "
                 + "WHERE inv.cliente_id = ?";
         this.conectar();
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setInt(1, id);
         ResultSet rs = pstm.executeQuery();
-        
-        
         while (rs.next()) {
             in.setId(rs.getInt("id"));
             in.setData(rs.getDate("data"));
             in.setValor(rs.getDouble("valor"));
             in.setHora(rs.getTime("hora"));
-
-         
-            
             CriptoativoDAO cDAO = new CriptoativoDAO();
-
+           
             in.setCriptoativo(cDAO.carregarPorId(rs.getInt("tipoCriptoativos_id")));
-            
-          
-
+           
             listaj.add(in);
         }
         this.desconectar();
@@ -175,11 +167,44 @@ public class InvestimentoDAO extends DataBaseDAO {
             CriptoativoDAO cDAO = new CriptoativoDAO();
             
             in.setCriptoativo(cDAO.carregarPorId(rs.getInt("tipoCriptoativos_id")));
-        }
+         }
         this.desconectar();
         
         return in;
 
+    }
+    
+    public ArrayList<Investimento> listarGrafico(int cliente_id) throws Exception {
+        ArrayList<Investimento> lista = new ArrayList<Investimento>();
+        String sql = "SELECT * FROM investimentos WHERE cliente_id=?";
+        this.conectar();
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setInt(1, cliente_id);
+        ResultSet rs = pstm.executeQuery();
+        
+        while (rs.next()) {
+            Investimento in = new Investimento();
+            in.setId(rs.getInt("id"));
+            in.setData(rs.getDate("data"));
+            in.setValor(rs.getDouble("valor"));
+            in.setHora(rs.getTime("hora"));
+            Cliente cl = new Cliente();
+            cl.setId(rs.getInt("cliente_id"));
+            
+            CriptoativoDAO cDAO = new CriptoativoDAO();
+
+            in.setCriptoativo(cDAO.carregarPorId(rs.getInt("tipoCriptoativos_id")));
+            
+            
+            ClienteDAO clienteDAO = new ClienteDAO();
+            
+            in.setCliente(cl);
+
+            lista.add(in);
+        }
+        pstm.close();
+        this.desconectar();
+        return lista;
     }
 
 }

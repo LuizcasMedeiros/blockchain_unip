@@ -4,6 +4,8 @@
     Author     : luizf
 --%>
 
+<%@page import="modelo.Cliente"%>
+<%@page import="modelo.ClienteDAO"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="modelo.OperacoesDAO"%>
@@ -80,34 +82,72 @@
                                             <thead>
                                                 <tr>
                                                     <th scope="col">ID</th>
-                                                    <th scope="col">Valor</th>
+                                                    <th scope="col">Valor Antes da Operação</th>
+                                                    <th scope="col">Valor Depos da operação</th>
+                                                    <th scope="col">Valor da operação</th>
                                                     <th scope="col">Data e horario</th>
                                                     <th scope="col">Descrição da operação</th>
                                                     <th scope="col">Nome do criptoativo</th>
+                                                   
                                                 </tr>
                                             </thead>
                                             <tfoot>
                                                 <tr>
-                                                    <th scope="col">ID</th>
-                                                    <th scope="col">Valor</th>
-                                                    <th scope="col">Data e horario da operação</th>
+                                                   <th scope="col">ID</th>
+                                                    <th scope="col">Valor Antes da Operação</th>
+                                                    <th scope="col">Valor Depos da operação</th>
+                                                    <th scope="col">Valor da operação</th>
+                                                    <th scope="col">Data e horario</th>
+                                                    <th scope="col">Descrição da operação</th>
                                                     <th scope="col">Nome do criptoativo</th>
-                                                    <th scope="col"> Cliente que realizou</th>
+                                                    
                                                 </tr>
                                             </tfoot>
-                                            <% for (Operacoes op : lista) 
+                                            <% 
+                                                int i;
+                                                int j=0;
+                                                Double valor =0.0;
+                                                Double valorantes=0.0;
+                                                Double valorDepois=0.0;
+                                                for (Operacoes op : lista) 
                                                  if(op.getInvestimento().getId() == opS.getInvestimento().getId()){
                                             
                                             {%>
                                             <tbody>
                                                 <tr>
                                                     <td scope="row"><%=op.getId()%></td>
-                                                   
-                                                 
-                                                    <td><%=z.format(op.getInvestimento().getValor())%></td>
+                                                   <%
+                                                           Double valorInvestimento = op.getInvestimento().getValor();
+                                                           Double valorInvestimentototal=+ op.getValor();
+                                                           Double valorOp = op.getValor();
+                                                           valorDepois = valorDepois;
+                                                           if(j>0 && op.getDescricao().equals("Depositar")){
+                                                             valorantes=  valorDepois;
+                                                             valorDepois = valorantes+valorOp;
+                                                            
+                                                            
+                                                            
+                                                           }else if(j == 0 && op.getDescricao().equals("Depositar")){ 
+                                                            valorantes = Math.abs((valorOp+valorOp)-(valorInvestimento+valorInvestimentototal));
+                                                            valorDepois = Math.abs(valorantes)+valorOp;
+                                                           }else if(j > 0 && op.getDescricao().equals("Sacar")){
+                                                            valorantes = valorDepois;
+                                                            valorDepois = valorantes-valorOp;
+                                                           }
+                                                            j++;
+                                                           
+                                                           
+                                                       
+                                                   %>
+                                                    <td><%=z.format(valorantes)%></td>
+                                                    <td><%=z.format(valorDepois)%></td>
+                                                    <td><%=z.format(op.getValor())%></td>
                                                     <td><%=sdf.format(op.getData_hora())%></td>
                                                     <td><%=op.getDescricao()%></td>
                                                     <td><%=op.getInvestimento().getCriptoativo().getNome()%></td>
+
+                                                    
+ 
                                                     
                                                 </tr>
 
@@ -173,7 +213,7 @@
                     <footer class="sticky-footer bg-white">
                         <div class="container my-auto">
                             <div class="copyright text-center my-auto">
-                                <span>Copyright &copy; Your Website 2020</span>
+                                <span>Copyright &copy; SisblockCBPV.0.1</span>
                             </div>
                         </div>
                     </footer>
@@ -203,7 +243,7 @@
                         <div class="modal-body">Tem certeza que deseja sair?</div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                            <a class="btn btn-primary" href="logoff.jsp">Sair</a>
+                            <a class="btn btn-primary" href="logoff_funcionario.jsp">Sair</a>
                         </div>
                     </div>
                 </div>

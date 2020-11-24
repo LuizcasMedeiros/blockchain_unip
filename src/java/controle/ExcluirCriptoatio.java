@@ -5,24 +5,20 @@
  */
 package controle;
 
-import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import modelo.Cliente;
-import modelo.Investimento;
-import modelo.InvestimentoDAO;
+import modelo.CriptoativoDAO;
+import modelo.FuncionarioDAO;
 
 /**
  *
  * @author luizf
  */
-public class ChartsCliente extends HttpServlet {
+public class ExcluirCriptoatio extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,22 +34,22 @@ public class ChartsCliente extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            Gson gson = new Gson();
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ExcluirCriptoatio</title>");            
+            out.println("</head>");
+            out.println("<body>");
             try{
-                HttpSession session = request.getSession();
-                Cliente cliente = new Cliente();
-                cliente = (Cliente) session.getAttribute("cliente");
-                InvestimentoDAO invDAO = new InvestimentoDAO();
-                ArrayList<Investimento> lista = new ArrayList<>();
-                lista = invDAO.listarGrafico(cliente.getId());
-                String jsonresp = gson.toJson(lista);
-                response.setContentType("application/json");
-                response.setCharacterEncoding("UTF-8");
-                out.println(jsonresp);
-                out.flush();
-            }catch(Exception e){
-                out.print("erro"+e);
-            }
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    CriptoativoDAO cDAO = new CriptoativoDAO();
+                    cDAO.excluir(id);
+                    response.sendRedirect("listar_criptoativos_funcionario");
+                }catch (Exception erro){
+                    out.println("Erro"+erro);    
+                } 
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 

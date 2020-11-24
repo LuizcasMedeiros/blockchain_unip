@@ -20,7 +20,7 @@ $(document).ready(function(){
 	// Compara se o usuário tem mais de 18 anos
 	if(anos < 18){
 		// Adiciona a classe cpfresponsavel 
-		document.getElementById('cpf_responsavell').classList.toggle('cpfresponsavel');
+              document.getElementById('cpf_responsavell').classList.toggle('cpfresponsavel');
 	      document.getElementById('cpf_responsavel').required = true;
               } 
 

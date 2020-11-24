@@ -12,6 +12,7 @@ public class Cliente {
     private int id;
     private String nome;
     private String cpf;
+    private String cnpj;
     private String cpf_responsavel;
     private String celular;
     private String email;
@@ -44,6 +45,16 @@ public class Cliente {
         } catch (Exception e) {}
         return retorno;
     }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+    
+    
 
     public String getCpf_responsavel() {
         return cpf_responsavel;

@@ -9,8 +9,8 @@ public class ClienteDAO extends DataBaseDAO {
 
     public void inserir(Cliente c) throws Exception {
         String sql = "INSERT INTO cliente (nome, email, cep, localidade, bairro, complemento,logradouro,"
-                + "uf, user, senha, cpf, celular, data_nascimento, data_inclusao, perfil_id, cpf_responsavel)"
-                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,now(),2,?)";
+                + "uf, user, senha, cpf, celular, data_nascimento, data_inclusao, perfil_id, cpf_responsavel,cnpj)"
+                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,now(),2,?,?)";
 
         this.conectar();
 
@@ -29,6 +29,7 @@ public class ClienteDAO extends DataBaseDAO {
         pstm.setString(12, c.getCelular());
         pstm.setDate(13, (Date) c.getData_nascimento());
         pstm.setString(14, c.getCpf_responsavel());
+        pstm.setString(15, c.getCnpj());
         pstm.execute();
         this.desconectar();
     }
@@ -219,6 +220,24 @@ public class ClienteDAO extends DataBaseDAO {
         return c;
     }
 
+    
+       public Cliente carregarPorIdRetornaNome(int id) throws Exception {
+        Cliente c = new Cliente();
+        String sql = "SELECT * FROM cliente WHERE id=?";
+        this.conectar();
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setInt(1, id);
+        ResultSet rs = pstm.executeQuery();
+        if (rs.next()) {
+            c.setId(rs.getInt("id"));
+            c.setNome(rs.getString("nome"));
+         
+        }
+        this.desconectar();
+        return c;
+    }
+       
+       
     public Cliente carregarPorIdEndereco(int id) throws Exception {
         Cliente c = new Cliente();
         String sql = "SELECT * FROM cliente WHERE id=?";

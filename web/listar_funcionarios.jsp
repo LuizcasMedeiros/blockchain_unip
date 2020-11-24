@@ -31,7 +31,7 @@
     </jsp:include>
     <script type="text/javascript">
         function excluir(nome, matricula) {
-            if (confirm("Tem certeza que deseja excluir o cliente: " + nome + "?")) {
+            if (confirm("Tem certeza que deseja excluir o Funcionario: " + nome + "?")) {
                 window.open("excluir_funcionario.do?op=c&id=" + matricula, "_self");
             }
         }
@@ -522,7 +522,7 @@
                 <footer class="sticky-footer bg-white">
                     <div class="container my-auto">
                         <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; Your Website 2020</span>
+                            <span>Copyright &copy; SisblockCBPV.0.1</span>
                         </div>
                     </div>
                 </footer>

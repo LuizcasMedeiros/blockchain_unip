@@ -170,7 +170,7 @@ public class ContratoDAO extends DataBaseDAO {
                 +     "cc.contrato_id, c.nome, c.cpf, c.data_nascimento, cc.cliente_id " +
                       "FROM cliente_contrato cc " +
                       "LEFT JOIN contrato con ON con.id = cc.contrato_id " +
-                       "LEFT JOIN cliente c ON c.id = cc.cliente_id";
+                      "LEFT JOIN cliente c ON c.id = cc.cliente_id";
         this.conectar();
         PreparedStatement pstm = conn.prepareStatement(sql);
         ResultSet rs = pstm.executeQuery();
@@ -181,7 +181,6 @@ public class ContratoDAO extends DataBaseDAO {
             ct.setDataEncerramento(rs.getDate("data_encerramento"));
             ct.setValor(rs.getDouble("valor"));
             ct.setId(rs.getInt("contrato_id"));
-            ClienteDAO cDAO = new ClienteDAO();
             Cliente c = new Cliente();
             c.setId(rs.getInt("cliente_id"));
             c.setNome(rs.getString("nome"));

@@ -108,6 +108,10 @@
         <servlet-name>AlterarClienteFunc</servlet-name>
         <servlet-class>controle.AlterarClienteFunc</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ExcluirCriptoatio</servlet-name>
+        <servlet-class>controle.ExcluirCriptoatio</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InserirCliente</servlet-name>
         <url-pattern>/inserir_cliente.do</url-pattern>
@@ -215,6 +219,10 @@
     <servlet-mapping>
         <servlet-name>AlterarClienteFunc</servlet-name>
         <url-pattern>/alterar_cliente_funcionario.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExcluirCriptoatio</servlet-name>
+        <url-pattern>/excluir_criptoativo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

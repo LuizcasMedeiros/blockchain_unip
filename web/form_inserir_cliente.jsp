@@ -25,6 +25,14 @@
                                     <h1 class="h4 text-gray-900 mb-4">Criar sua Conta!</h1>
                                 </div>
                                 <form id="cliente" name="cliente" class="user" method="post" action="inserir_endereco.jsp" onsubmit="return validar()">
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox ml-3" id="checkbox_cnpj">
+                                            
+                                            <input type="checkbox" class="custom-control-input" id="cnpjcheck">
+                                            <label class="custom-control-label" for="cnpjcheck">Pessoa Juridica</label>
+                                        </div> 
+                                    </div>
+
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
                                             <input class="form-control form-control-user" id="nome" type="text"  placeholder="Nome" name="nome"  required/> 
@@ -39,7 +47,12 @@
                                     </div>  
                                     <div class="form-group">
                                         <div class="cpfresponsavel" id="cpf_responsavell">
-                                          <input class="form-control form-control-user" type="text"  placeholder="Cpf Responsavel" name="cpf_responsavel"  id="cpf_responsavel" OnKeyPress="formatar('###.###.###-##', this)" maxlength="14" />   
+                                            <input class="form-control form-control-user" type="text"  placeholder="Cpf Responsavel" name="cpf_responsavel"  id="cpf_responsavel" OnKeyPress="formatar('###.###.###-##', this)" maxlength="14" />   
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="cnpj_div" id="cnpj_div_id">
+                                            <input class="form-control form-control-user" type="text" id="cnpj" placeholder="Cnpj" name="cnpj" />   
                                         </div>
                                     </div>
 
@@ -60,7 +73,7 @@
                                             <input class="form-control form-control-user" type="text"  placeholder="Username" name="user" id="user" maxlength="45"  required/>
                                         </div>
                                         <div class="column" id="existe">
-                                            
+
                                         </div>
                                         <div class="col-sm-6 mb-3 mb-sm-0">
                                             <input id="senha" class="form-control form-control-user" name="senha" type="password"  placeholder="Senha" minlength="3"  maxlength="16"   required/>
@@ -71,7 +84,7 @@
                                             <input type="password" id="confirmarSenha" class="form-control form-control-user"  placeholder="Confirmar Senha" minlength="3"  maxlength="16"  required/>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <input class="form-control btn btn-primary btn-user btn-blocky" type="submit" value="Registar" />
                                     </div>
@@ -100,6 +113,7 @@
         <script src="javascript/js/sb-admin-2.min.js"></script>
         <script src="javascript/verificar_usuario.js" ></script>
         <script src="javascript/verifica_maioridade.js"></script>
+        <script src="javascript/cnpj.js"></script>
 
     </body>
 

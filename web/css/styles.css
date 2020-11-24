@@ -50,8 +50,12 @@
         display: none;
     }
     
-    .cpfresponsavel{
+.cpfresponsavel{
 	display: none;
+}
+
+.cnpj_div{
+    display:none;
 }
 
 .mais, .menos{
@@ -88,6 +92,10 @@
     
 }
 
+.link_termos{
+    cursor: pointer;
+    
+}
 
 
 

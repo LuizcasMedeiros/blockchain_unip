@@ -33,6 +33,13 @@
         <jsp:include page="_head.jsp">
             <jsp:param name="pageTitle" value="<%= name%>"/>
         </jsp:include>
+        <script type="text/javascript">
+        function excluir(nome, id) {
+            if (confirm("Tem certeza que deseja excluir o criptoativo " + nome + "?")) {
+                window.open("excluir_criptoativo?op=c&id=" + id, "_self");
+            }
+        }
+        </script>
 
         <body id="page-top">
 
@@ -86,6 +93,9 @@
                                                     <td> <%=c.getNome()%></td>
                                                     <td> <%=z.format(c.getValor())%></td>
                                                     <td>  
+                                                        <a onclick="excluir('<%=c.getNome()%>', <%=c.getId()%>)"  class="btn btn-danger btn-sm">
+                                                            <i class="fas fa-trash"></i>
+                                                        </a>
                                                         <button id="alterarSenha" type="button" class="btn btn-primary btn-sm" 
                                                             data-toggle="modal" 
                                                             data-target="#ModalAlterarCriptoativo"
@@ -158,7 +168,7 @@
                     <footer class="sticky-footer bg-white">
                         <div class="container my-auto">
                             <div class="copyright text-center my-auto">
-                                <span>Copyright &copy; Your Website 2020</span>
+                                <span>Copyright &copy; SisblockCBPV.0.1</span>
                             </div>
                         </div>
                     </footer>

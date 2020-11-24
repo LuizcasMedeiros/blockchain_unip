@@ -32,7 +32,7 @@ public class OperacoesDAO extends DataBaseDAO{
 
     public ArrayList<Operacoes> listar() throws Exception {
         ArrayList<Operacoes> lista = new ArrayList<Operacoes>();
-        String sql = "SELECT op.*"+
+        String sql = "SELECT op.*, inv.cliente_id "+
                      "FROM operacoes op "+
                      "LEFT JOIN investimentos inv "+
                      "ON inv.id = op.investimentos_id"; 
@@ -50,6 +50,8 @@ public class OperacoesDAO extends DataBaseDAO{
             
             
             op.setInvestimento(invDAO.CarregarPorId(rs.getInt("investimentos_id")));
+            
+            
 			
            
             

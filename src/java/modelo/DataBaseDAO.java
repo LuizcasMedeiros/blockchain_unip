@@ -10,7 +10,7 @@ public class DataBaseDAO {
     
     
     public void conectar() throws Exception{
-        String url = "jdbc:mysql://localhost/blockchain_teste";
+        String url = "jdbc:mysql://localhost/sisblock_database";
         String user = "root";
         String pass = "";
         Class.forName("com.mysql.jdbc.Driver");

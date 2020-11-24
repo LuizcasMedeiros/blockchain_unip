@@ -29,7 +29,7 @@ function grafico(vendas, cliente){
             labels: cliente,
             datasets: [{
                 label: 'Valor do Contrato',
-                data: vendas,
+                data: "R$"+vendas,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
