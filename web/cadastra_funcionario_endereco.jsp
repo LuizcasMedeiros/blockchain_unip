@@ -9,6 +9,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
+    request.setCharacterEncoding("UTF-8");
+    response.setContentType("text/html;charset=UTF-8");
+%>
+<%
     session = request.getSession();;
     Funcionario funcionario = new Funcionario();
     Funcionario f = (Funcionario) session.getAttribute("funcionario_cadastro");

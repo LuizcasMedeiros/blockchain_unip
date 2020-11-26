@@ -102,19 +102,6 @@
                                     </div>
                                 </div> 
                             </div>
-                            
-
-                            <div class="card-body">
-                                <div class="row justify-content-center pl-4 mt-4 mb-4">
-                                    <h6>Adicione uma conta para o seu perfil para continuar</h6>
-                                    <button  type="button" class="btn btn-primary btn-sm">
-                                          <i class="fas fa-search-dollar"></i>
-                                    </button>
-                                </div> 
-                            </div>
-                            
-                      
-                         
                         </div>
 
                     </div>

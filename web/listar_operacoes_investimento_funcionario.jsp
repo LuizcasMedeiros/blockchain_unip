@@ -104,7 +104,15 @@
                                                 </tr>
                                             </tfoot>
                                             <% 
-                                                int i;
+                                                Double valoresdeopOp =0.0;
+                                                int cont;
+                                                for (Operacoes op : lista){
+                                                    
+                                                    for(cont=0;cont<=lista.size();cont++){
+                                                        valoresdeopOp = op.getValor();
+                                                    }
+                                                }
+                                                
                                                 int j=0;
                                                 Double valor =0.0;
                                                 Double valorantes=0.0;
